@@ -1,4 +1,5 @@
 import { GluestackUIProvider } from "@gluestack-ui/themed";
+import { useFonts } from "expo-font";
 import { Slot } from "expo-router";
 import { View } from "react-native";
 import {
@@ -6,6 +7,7 @@ import {
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
 import { config } from "../config/gluestack-ui.config";
+import "../localization/i18n";
 
 function HomeLayout() {
   const insets = useSafeAreaInsets();
@@ -17,6 +19,12 @@ function HomeLayout() {
 }
 
 export default function RootLayout() {
+  const [fontsLoaded] = useFonts({
+    boxicons: require("../assets/icon/boxicons.ttf"),
+  });
+  if (!fontsLoaded) {
+    return null;
+  }
   return (
     <SafeAreaProvider>
       <GluestackUIProvider config={config}>

@@ -423,11 +423,13 @@ export const Button = createStyle({
           _text: {
             textDecorationLine: 'underline',
           },
+          bg: 'transparent',
         },
         ':active': {
           _text: {
             textDecorationLine: 'underline',
           },
+          bg: 'transparent',
         },
       },
       outline: {

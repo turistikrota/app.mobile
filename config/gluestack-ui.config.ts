@@ -420,6 +420,7 @@ export const gluestackUIConfig = createConfig({
       backgroundDarkMuted: '#252526',
       white: '#FFFFFF',
       black: '#000000',
+      transparent: 'transparent'
     },
     space: {
       'px': '1px',

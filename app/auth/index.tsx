@@ -1,35 +1,59 @@
-import { AlertCircleIcon, Box, FormControl, FormControlError, FormControlErrorIcon, FormControlErrorText, FormControlHelper, FormControlHelperText, FormControlLabel, FormControlLabelText, Input, InputField } from "@gluestack-ui/themed";
+import {
+  AlertCircleIcon,
+  Box,
+  FormControl,
+  FormControlError,
+  FormControlErrorIcon,
+  FormControlErrorText,
+  FormControlLabel,
+  FormControlLabelText,
+  Input,
+  InputField,
+  View,
+} from "@gluestack-ui/themed";
+import { useFormik } from "formik";
+import { useTranslation } from "react-i18next";
+import PageDetailHeader from "../../components/layout/PageDetailHeader";
 
 export default function AuthPage() {
-  return <Box h="$32" w="$72">
-    <FormControl
-      size="md"
-      isDisabled={false}
-      isInvalid={false}
-      isReadOnly={false}
-      isRequired={false}
-    >
-      <FormControlLabel mb="$1">
-        <FormControlLabelText>Password</FormControlLabelText>
-      </FormControlLabel>
-      <Input>
-        <InputField
-          type="password"
-          defaultValue="12345"
-          placeholder="password"
-        />
-      </Input>
-      <FormControlHelper>
-        <FormControlHelperText>
-          Must be atleast 6 characters.
-        </FormControlHelperText>
-      </FormControlHelper>
-      <FormControlError>
-        <FormControlErrorIcon as={AlertCircleIcon} />
-        <FormControlErrorText>
-          Atleast 6 characters are required.
-        </FormControlErrorText>
-      </FormControlError>
-    </FormControl>
-  </Box>;
+  const { t } = useTranslation("auth");
+
+  const form = useFormik({
+    initialValues: {},
+    onSubmit: () => {},
+  });
+  return (
+    <Box h="$32" w="$full">
+      <PageDetailHeader title={t("login.title")} />
+      <View p="$2">
+        <FormControl
+          size="md"
+          isDisabled={false}
+          isInvalid={true}
+          isReadOnly={false}
+          isRequired={false}
+          id="email"
+          nativeID="email"
+        >
+          <FormControlLabel mb="$1">
+            <FormControlLabelText>{t("email.label")}</FormControlLabelText>
+          </FormControlLabel>
+          <Input nativeID="email">
+            <InputField
+              type="text"
+              defaultValue=""
+              nativeID="email"
+              placeholder={t("email.placeholder")}
+            />
+          </Input>
+          <FormControlError>
+            <FormControlErrorIcon as={AlertCircleIcon} />
+            <FormControlErrorText>
+              Atleast 6 characters are required.
+            </FormControlErrorText>
+          </FormControlError>
+        </FormControl>
+      </View>
+    </Box>
+  );
 }
