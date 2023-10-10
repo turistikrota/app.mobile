@@ -14,7 +14,7 @@ import {
   InputField,
   VStack,
 } from "@gluestack-ui/themed";
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { useFormik } from "formik";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -26,7 +26,8 @@ import { useAlert } from "../../hooks/alert";
 import { httpClient } from "../../http/client";
 import { parseApiError } from "../../utils/api-error";
 
-export default function AuthPage() {
+export default function CheckEmailPage() {
+  const params = useLocalSearchParams();
   const { t, i18n } = useTranslation("auth");
   const [token, setToken] = useState("");
   const [turnstileKey, setTurnstileKey] = useState(0);
@@ -52,9 +53,9 @@ export default function AuthPage() {
         )
         .then((res) => {
           if (res?.data?.exists) {
-            router.push(`/auth/login?email=${email}`);
+            router.replace(`/auth/login?email=${email}`);
           } else {
-            router.push(`/auth/register?email=${email}`);
+            router.replace(`/auth/register?email=${email}`);
           }
         })
         .catch((res) => {
