@@ -4,6 +4,11 @@ import {
   Button,
   ButtonSpinner,
   ButtonText,
+  CheckIcon,
+  Checkbox,
+  CheckboxIcon,
+  CheckboxIndicator,
+  CheckboxLabel,
   FormControl,
   FormControlError,
   FormControlErrorIcon,
@@ -12,12 +17,13 @@ import {
   FormControlLabelText,
   Input,
   InputField,
+  Text,
   VStack,
 } from "@gluestack-ui/themed";
-import { router, useLocalSearchParams } from "expo-router";
+import { Link, router, useLocalSearchParams } from "expo-router";
 import { useFormik } from "formik";
 import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import PageDetailHeader from "../../components/layout/PageDetailHeader";
 import Turnstile from "../../components/shared/Turnstile";
 import { Config } from "../../config/config";
@@ -80,6 +86,27 @@ export default function RegisterPage() {
         });
     },
   });
+
+  const PrivacyNotify = () => (
+    <Link href="/agreement/privacyNote">
+      <Text color="$secondary500">{t("policy.privacyNotify")}</Text>
+    </Link>
+  );
+
+  const PrivacyPolicy = () => (
+    <Link href="/agreement/privacyAndPersonalData">
+      <Text color="$secondary500">{t("policy.privacyPolicy")}</Text>
+    </Link>
+  );
+
+  const TermsOfUse = () => (
+    <Link href="/agreement/termsOfUse">
+      <Text color="$secondary500">{t("policy.termsOfUse")}</Text>
+    </Link>
+  );
+
+  const Space = () => <Text> </Text>;
+
   return (
     <Box h="$32" w="$full">
       <PageDetailHeader title={t("register.title")} />
@@ -132,6 +159,47 @@ export default function RegisterPage() {
           <FormControlError>
             <FormControlErrorIcon as={AlertCircleIcon} />
             <FormControlErrorText>{form.errors.password}</FormControlErrorText>
+          </FormControlError>
+        </FormControl>
+        <FormControl
+          size="md"
+          isInvalid={!!form.errors.privacy && form.touched.privacy}
+          isRequired={true}
+          id="privacy"
+          nativeID="privacy"
+        >
+          <Checkbox
+            size="md"
+            isInvalid={!!form.errors.privacy && form.touched.privacy}
+            value={form.values.privacy ? "on" : "off"}
+            onChange={(isSelected: boolean) => {
+              form.setFieldValue("privacy", isSelected);
+            }}
+            onBlur={form.handleBlur("privacy")}
+            aria-label={t("policy.label")}
+          >
+            <CheckboxIndicator mr="$2">
+              <CheckboxIcon as={CheckIcon} />
+            </CheckboxIndicator>
+            <CheckboxLabel>
+              {" "}
+              <Text>
+                <Trans
+                  parent={Text as React.ComponentType<any>}
+                  i18nKey={t("policy.text")}
+                  components={{
+                    termsOfUse: <TermsOfUse />,
+                    privacyPolicy: <PrivacyPolicy />,
+                    privacyNotify: <PrivacyNotify />,
+                    space: <Space />,
+                  }}
+                />
+              </Text>
+            </CheckboxLabel>
+          </Checkbox>
+          <FormControlError>
+            <FormControlErrorIcon as={AlertCircleIcon} />
+            <FormControlErrorText>{form.errors.privacy}</FormControlErrorText>
           </FormControlError>
         </FormControl>
         <Turnstile onVerify={setToken} key={turnstileKey} />
