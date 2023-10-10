@@ -8,6 +8,7 @@ export default function App() {
   return (
     <Box>
       <Link href="/auth">{t("auth")}</Link>
+      <Link href="/agreement/termsOfUse">{t("termsOfUse")}</Link>
     </Box>
   );
 }
