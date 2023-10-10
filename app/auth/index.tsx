@@ -2,6 +2,8 @@ import {
   AlertCircleIcon,
   Box,
   Button,
+  ButtonSpinner,
+  ButtonText,
   FormControl,
   FormControlError,
   FormControlErrorIcon,
@@ -10,22 +12,65 @@ import {
   FormControlLabelText,
   Input,
   InputField,
-  Text,
   VStack,
 } from "@gluestack-ui/themed";
+import { router } from "expo-router";
 import { useFormik } from "formik";
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import PageDetailHeader from "../../components/layout/PageDetailHeader";
+import Turnstile from "../../components/shared/Turnstile";
+import { Config } from "../../config/config";
+import { Services, apiUrl } from "../../config/services";
+import { useAlert } from "../../hooks/alert";
+import { httpClient } from "../../http/client";
+import { parseApiError } from "../../utils/api-error";
 
 export default function AuthPage() {
-  const { t } = useTranslation("auth");
+  const { t, i18n } = useTranslation("auth");
+  const [token, setToken] = useState("");
+  const [turnstileKey, setTurnstileKey] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const alert = useAlert();
 
   const form = useFormik({
     initialValues: {
       email: "",
     },
-    onSubmit: () => {},
+    onSubmit: ({ email }) => {
+      setLoading(true);
+      httpClient
+        .post(
+          apiUrl(Services.Auth, "/checkEmail"),
+          { email },
+          {
+            headers: {
+              [Config.headers.TurnstileToken]: token,
+              [Config.headers.AcceptLang]: i18n.language,
+            },
+          }
+        )
+        .then((res) => {
+          if (res?.data?.exists) {
+            router.push(`/auth/login?email=${email}`);
+          } else {
+            router.push(`/auth/register?email=${email}`);
+          }
+        })
+        .catch((res) => {
+          setTurnstileKey(turnstileKey + 1);
+          parseApiError({
+            error: res?.response?.data,
+            toast: (msg: string) => {
+              alert.alert(msg, false);
+            },
+            form,
+          });
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    },
   });
   return (
     <Box h="$32" w="$full">
@@ -56,8 +101,17 @@ export default function AuthPage() {
             <FormControlErrorText>{form.errors.email}</FormControlErrorText>
           </FormControlError>
         </FormControl>
-        <Button>
-          <Text color="$white">{t("login.submit")}</Text>
+        <Turnstile onVerify={setToken} key={turnstileKey} />
+        <Button
+          onPress={() => form.handleSubmit()}
+          isDisabled={loading || !token}
+        >
+          {loading && <ButtonSpinner mr="$1" />}
+          <ButtonText color="$white" fontWeight="$medium" fontSize="$sm">
+            {!token
+              ? t("captcha.loading")
+              : t(`login.${loading ? "loading" : "submit"}`)}
+          </ButtonText>
         </Button>
       </VStack>
     </Box>

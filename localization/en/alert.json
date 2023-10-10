@@ -1,0 +1,12 @@
+{
+  "confirm": "Are you sure?",
+  "cancel": "Cancel",
+  "ok": "OK",
+  "reminder": "Reminder later",
+  "prompt": "Enter information",
+  "alert": "Warning",
+  "alert_success": "Operation successful",
+  "alert_info": "Information",
+  "alert_danger": "Error",
+  "quest": "Question"
+}

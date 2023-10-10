@@ -1,7 +1,9 @@
+import alertEN from './alert.json';
 import authEN from './auth.json';
 import commonEN from './common.json';
 
 export default {
     common: commonEN,
-    auth: authEN
+    auth: authEN,
+    alert: alertEN
 }

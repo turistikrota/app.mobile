@@ -1,0 +1,12 @@
+{
+  "confirm": "Emin misiniz?",
+  "cancel": "İptal",
+  "ok": "Tamam",
+  "reminder": "Daha sonra hatırlat",
+  "prompt": "Bilgi giriniz",
+  "alert": "Uyarı",
+  "alert_success": "İşlem başarılı",
+  "alert_info": "Bilgi",
+  "alert_danger": "Hata",
+  "quest": "Soru"
+}
