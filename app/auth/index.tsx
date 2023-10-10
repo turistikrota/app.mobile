@@ -26,8 +26,12 @@ import { useAlert } from "../../hooks/alert";
 import { httpClient } from "../../http/client";
 import { parseApiError } from "../../utils/api-error";
 
+type SearchParams = {
+  redirect?: string;
+};
+
 export default function CheckEmailPage() {
-  const params = useLocalSearchParams();
+  const params = useLocalSearchParams<SearchParams>();
   const { t, i18n } = useTranslation("auth");
   const [token, setToken] = useState("");
   const [turnstileKey, setTurnstileKey] = useState(0);
@@ -52,10 +56,11 @@ export default function CheckEmailPage() {
           }
         )
         .then((res) => {
+          let extra = params.redirect ? `&redirect=${params.redirect}` : "";
           if (res?.data?.exists) {
-            router.replace(`/auth/login?email=${email}`);
+            router.replace(`/auth/login?email=${email}${extra}`);
           } else {
-            router.replace(`/auth/register?email=${email}`);
+            router.replace(`/auth/register?email=${email}${extra}`);
           }
         })
         .catch((res) => {

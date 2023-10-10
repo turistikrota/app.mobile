@@ -28,6 +28,7 @@ import { parseApiError } from "../../utils/api-error";
 
 type SearchParams = {
   email?: string;
+  redirect?: string;
 };
 
 export default function LoginPage() {
@@ -57,7 +58,11 @@ export default function LoginPage() {
           }
         )
         .then((res) => {
-          router.replace("/");
+          let to: string = "/";
+          if (params.redirect) {
+            to = params.redirect;
+          }
+          router.replace(to);
         })
         .catch((res) => {
           setTurnstileKey(turnstileKey + 1);

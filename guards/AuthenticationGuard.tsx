@@ -1,4 +1,5 @@
 import { Center, Spinner, View } from "@gluestack-ui/themed";
+import { router } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Services, apiUrl } from "../config/services";
@@ -23,8 +24,7 @@ const AuthenticationGuard: React.FC<React.PropsWithChildren> = ({
       })
       .catch((err) => {
         if (err && err.response && err.response.status === 401) {
-          // add login page
-          alert.alert("open login page knk");
+          router.push("/auth");
           return;
         }
         setIsServerError(true);
