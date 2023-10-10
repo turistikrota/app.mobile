@@ -9,13 +9,13 @@ export const Input = createStyle({
   'alignContent': 'center',
 
   ':hover': {
-    borderColor: '$borderLight400',
+    borderColor: '$secondary400',
   },
 
   ':focus': {
-    'borderColor': '$primary700',
+    'borderColor': '$secondary500',
     ':hover': {
-      borderColor: '$primary700',
+      borderColor: '$secondary500',
     },
   },
 
@@ -41,9 +41,9 @@ export const Input = createStyle({
       borderColor: '$borderDark400',
     },
     ':focus': {
-      'borderColor': '$primary400',
+      'borderColor': '$secondary400',
       ':hover': {
-        borderColor: '$primary400',
+        borderColor: '$secondary400',
       },
     },
     ':disabled': {
@@ -197,7 +197,7 @@ export const Input = createStyle({
           },
         },
         ':focus': {
-          borderColor: '$primary700',
+          borderColor: '$secondary500',
           _web: {
             boxShadow: 'inset 0 0 0 1px $primary700',
           },

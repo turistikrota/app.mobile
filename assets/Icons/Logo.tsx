@@ -8,7 +8,7 @@ const Logo = () => {
       fadeDuration={0}
       style={{ width: 20, height: 20 }}
       alt={"logo"}
-    ></Image>
+    />
   );
 };
 
@@ -19,7 +19,7 @@ const VerticalLogo = () => {
       fadeDuration={0}
       style={{ width: 222.666666667, height: 47 }}
       alt={"logo"}
-    ></Image>
+    />
   );
 };
 

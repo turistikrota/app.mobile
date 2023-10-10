@@ -1,6 +1,7 @@
 import { GluestackUIProvider } from "@gluestack-ui/themed";
 import { useFonts } from "expo-font";
 import { Slot } from "expo-router";
+import React from "react";
 import { View } from "react-native";
 import {
   SafeAreaProvider,

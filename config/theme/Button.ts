@@ -434,6 +434,7 @@ export const Button = createStyle({
       },
       outline: {
         'bg': 'transparent',
+        'color': '$textLight0',
         'borderWidth': '$1',
         ':hover': {
           bg: '$backgroundLight50',
