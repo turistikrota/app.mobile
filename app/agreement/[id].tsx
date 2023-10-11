@@ -1,10 +1,9 @@
 import { ScrollView, Text, View } from "@gluestack-ui/themed";
-import { useLocalSearchParams } from "expo-router";
-import React, { useMemo } from "react";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import React, { useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useWindowDimensions } from "react-native";
 import RenderHtml from "react-native-render-html";
-import DetailHeader from "~partials/layout/DetailHeader";
 import {
   agreements,
   type AgreementDetail,
@@ -17,6 +16,7 @@ type GlobalParams = {
 };
 
 export default function AgreementDetail() {
+  const router = useRouter();
   const { width } = useWindowDimensions();
   const { i18n } = useTranslation();
   const glob = useLocalSearchParams<GlobalParams>();
@@ -32,9 +32,14 @@ export default function AgreementDetail() {
     return agreement.en;
   }, [i18n.language]);
 
+  useEffect(() => {
+    router.setParams({
+      title: details.title,
+    });
+  }, [details.title]);
+
   return (
     <View>
-      <DetailHeader title={details.title} />
       <ScrollView contentInsetAdjustmentBehavior="automatic" px="$2">
         <RenderHtml
           contentWidth={width}
