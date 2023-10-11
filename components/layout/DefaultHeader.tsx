@@ -1,4 +1,4 @@
-import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { AntDesign } from "@expo/vector-icons";
 import { Box } from "@gluestack-ui/themed";
 import React from "react";
 import LogoSvg from "../../assets/Icons/LightbulbPerson";
@@ -33,7 +33,7 @@ const Header = () => {
           justifyContent: "flex-end",
         }}
       >
-        <FontAwesome size={20} name="user" />
+        <AntDesign name="user" size={20} color="black" />
       </Box>
     </Box>
   );
