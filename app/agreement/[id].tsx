@@ -4,7 +4,7 @@ import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useWindowDimensions } from "react-native";
 import RenderHtml from "react-native-render-html";
-import PageDetailHeader from "../../components/layout/PageDetailHeader";
+import DetailHeader from "~partials/layout/DetailHeader";
 import {
   agreements,
   type AgreementDetail,
@@ -34,7 +34,7 @@ export default function AgreementDetail() {
 
   return (
     <View>
-      <PageDetailHeader title={details.title} />
+      <DetailHeader title={details.title} />
       <ScrollView contentInsetAdjustmentBehavior="automatic" px="$2">
         <RenderHtml
           contentWidth={width}

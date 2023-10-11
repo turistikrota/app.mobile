@@ -9,7 +9,7 @@ type Props = {
   onBack?: () => void;
 };
 
-const PageDetailHeader: React.FC<Props> = ({ title, onBack }) => {
+const DetailHeader: React.FC<Props> = ({ title, onBack }) => {
   const { t } = useTranslation("common");
 
   const onPrevClick = () => {
@@ -61,4 +61,4 @@ const PageDetailHeader: React.FC<Props> = ({ title, onBack }) => {
   );
 };
 
-export default PageDetailHeader;
+export default DetailHeader;

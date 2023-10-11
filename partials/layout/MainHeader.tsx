@@ -1,9 +1,9 @@
 import { AntDesign } from "@expo/vector-icons";
 import { Box } from "@gluestack-ui/themed";
 import React from "react";
-import LogoSvg from "../../assets/Icons/LightbulbPerson";
+import LogoSvg from "~assets/Icons/LightbulbPerson";
 
-const Header = () => {
+const MainHeader = () => {
   return (
     <Box
       sx={{
@@ -39,4 +39,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default MainHeader;

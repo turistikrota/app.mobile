@@ -1,7 +1,7 @@
 import { router } from "expo-router";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import LoadingFullPage from "../components/shared/LoadingFullPage";
+import LoadingFullScreen from "~partials/state/LoadingFullScreen";
 import useAuth from "../hooks/auth";
 import { RootState } from "../store";
 
@@ -23,7 +23,7 @@ const AuthRequiredGuard: React.FC<React.PropsWithChildren> = ({ children }) => {
     }
   }, []);
 
-  if (loading) return <LoadingFullPage />;
+  if (loading) return <LoadingFullScreen />;
   return <>{children}</>;
 };
 
@@ -46,7 +46,7 @@ const AuthForbiddenGuard: React.FC<React.PropsWithChildren> = ({
     }
   }, [isAuthenticated]);
 
-  if (loading) return <LoadingFullPage />;
+  if (loading) return <LoadingFullScreen />;
   return <>{children}</>;
 };
 

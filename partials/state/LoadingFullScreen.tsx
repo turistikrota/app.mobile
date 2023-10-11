@@ -1,7 +1,7 @@
 import { Center, Spinner, View } from "@gluestack-ui/themed";
 import React from "react";
 
-const LoadingFullPage: React.FC = () => {
+const LoadingFullScreen: React.FC = () => {
   return (
     <Center h="$full" w="$full">
       <View>
@@ -11,4 +11,4 @@ const LoadingFullPage: React.FC = () => {
   );
 };
 
-export default LoadingFullPage;
+export default LoadingFullScreen;

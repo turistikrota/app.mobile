@@ -18,6 +18,7 @@ module.exports = function (api) {
             "~localization": "./localization",
             "~static": "./static",
             "~store": "./store",
+            "~partials": "./partials",
           },
           extensions: [
             ".js",
