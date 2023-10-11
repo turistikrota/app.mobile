@@ -18,12 +18,12 @@ import { router, useLocalSearchParams } from "expo-router";
 import { useFormik } from "formik";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import Turnstile from "../../components/shared/Turnstile";
-import { Config } from "../../config/config";
-import { Services, apiUrl } from "../../config/services";
-import { useAlert } from "../../hooks/alert";
-import { httpClient } from "../../http/client";
-import { parseApiError } from "../../utils/api-error";
+import Turnstile from "~components/shared/Turnstile";
+import { Config } from "~config/config";
+import { Services, apiUrl } from "~config/services";
+import { useAlert } from "~hooks/alert";
+import { httpClient } from "~http/client";
+import { parseApiError } from "~utils/api-error";
 
 type SearchParams = {
   redirect?: string;
@@ -78,7 +78,7 @@ export default function CheckEmailPage() {
     },
   });
   return (
-    <Box h="$32" w="$full">
+    <Box h="$full" w="$full" bg="$white">
       <VStack space="md" p="$2">
         <FormControl
           size="md"

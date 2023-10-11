@@ -12,8 +12,9 @@ type AuthGuard = {
 };
 
 const AuthRequiredGuard: React.FC<React.PropsWithChildren> = ({ children }) => {
-  const { loading, isAuthenticated } = useSelector(
-    (state: RootState) => state.auth
+  const loading = useSelector((state: RootState) => state.auth.loading);
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.auth.isAuthenticated
   );
   useAuth();
 
@@ -35,8 +36,9 @@ const AuthOptionalGuard: React.FC<React.PropsWithChildren> = ({ children }) => {
 const AuthForbiddenGuard: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
-  const { loading, isAuthenticated } = useSelector(
-    (state: RootState) => state.auth
+  const loading = useSelector((state: RootState) => state.auth.loading);
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.auth.isAuthenticated
   );
   useAuth();
 

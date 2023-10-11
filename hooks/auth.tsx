@@ -4,10 +4,12 @@ import { Services, apiUrl } from "../config/services";
 import { httpClient } from "../http/client";
 import { RootState } from "../store";
 import { setAuth, setLoading } from "../store/auth.store";
+import { useAlert } from "./alert";
 
 const useAuth = (): void => {
   const isFetched = useSelector((state: RootState) => state.auth.isFetched);
   const dispatch = useDispatch();
+  const alert = useAlert();
 
   useEffect(() => {
     if (isFetched) return;
@@ -42,6 +44,9 @@ const useAuth = (): void => {
           isError: true,
           loading: false,
         });
+      })
+      .finally(() => {
+        dispatch(setLoading(false));
       });
   }, []);
 

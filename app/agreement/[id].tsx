@@ -39,7 +39,11 @@ export default function AgreementDetail() {
   }, [details.title]);
 
   return (
-    <View>
+    <View
+      sx={{
+        backgroundColor: "$white",
+      }}
+    >
       <ScrollView contentInsetAdjustmentBehavior="automatic" px="$2">
         <RenderHtml
           contentWidth={width}
