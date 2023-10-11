@@ -24,6 +24,7 @@ const PageDetailHeader: React.FC<Props> = ({ title, onBack }) => {
         alignItems: "center",
         borderBottomColor: "$borderLight100",
         borderBottomWidth: 1,
+        h: "$11",
       }}
     >
       <Box w="$1/6">
