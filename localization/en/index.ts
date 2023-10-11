@@ -2,10 +2,12 @@ import alertEN from './alert.json';
 import authEN from './auth.json';
 import commonEN from './common.json';
 import menuEN from './menu.json';
+import appsEN from './apps.json';
 
 export default {
     common: commonEN,
     auth: authEN,
     alert: alertEN,
-    menu: menuEN
+    menu: menuEN,
+    apps: appsEN
 }

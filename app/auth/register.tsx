@@ -24,7 +24,6 @@ import { Link, router, useLocalSearchParams } from "expo-router";
 import { useFormik } from "formik";
 import React, { useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
-import PageDetailHeader from "../../components/layout/PageDetailHeader";
 import Turnstile from "../../components/shared/Turnstile";
 import { Config } from "../../config/config";
 import { Services, apiUrl } from "../../config/services";
@@ -109,7 +108,6 @@ export default function RegisterPage() {
 
   return (
     <Box h="$32" w="$full">
-      <PageDetailHeader title={t("register.title")} />
       <VStack space="md" p="$2">
         <FormControl
           size="md"

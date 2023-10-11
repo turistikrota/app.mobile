@@ -28,10 +28,11 @@ function HomeLayout() {
           headerRight: (props) => <HeaderRight {...props} />,
         }}
       >
-        <Stack.Screen name="apps" options={{ presentation: "modal" }} />
+        <Stack.Screen name="apps" />
         <Stack.Screen name="auth" />
         <Stack.Screen name="agreement/[id]" />
         <Stack.Screen name="index" />
+        <Stack.Screen name="account/index" />
       </Stack>
     </View>
   );

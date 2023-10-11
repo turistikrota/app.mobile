@@ -720,3 +720,6 @@ export const config = {
   ...gluestackUIConfig,
   components: componentsConfig,
 };
+
+export type BackgroundColors = keyof Config['tokens']['colors'];
+export type Colors = BackgroundColors;

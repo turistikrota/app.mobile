@@ -1,0 +1,38 @@
+{
+  "place": {
+    "name": "Yerler",
+    "description": "Size veya tatilinize en yakın gezilecek harika yerleri bulun."
+  },
+  "account": {
+    "name": "Hesap",
+    "description": "Hesabınızı, ayarlarınızı ve bildirimlerinizi yönetin."
+  },
+  "owner": {
+    "name": "Sahip",
+    "description": "Sahip olduğunuz yerleri, yorumları ve bildirimleri yönetin."
+  },
+  "booking": {
+    "name": "Rezervasyon",
+    "description": "Rezervasyonlarınızı ve rezervasyon isteklerinizi yönetin."
+  },
+  "wallet": {
+    "name": "Cüzdan",
+    "description": "Ödemelerinizi ve ödeme isteklerinizi yönetin."
+  },
+  "chat": {
+    "name": "Sohbet",
+    "description": "Sohbetlerinizi yönetin veya yeni sohbetler başlatın."
+  },
+  "invoice": {
+    "name": "Fatura",
+    "description": "Faturalarınızı ve fatura isteklerinizi yönetin."
+  },
+  "settings": {
+    "name": "Ayarlar",
+    "description": "Dilinizi, para biriminizi ve bildirimlerinizi yönetin."
+  },
+  "support": {
+    "name": "Destek",
+    "description": "Yardım merkezine ulaşın veya bize ulaşın."
+  }
+}

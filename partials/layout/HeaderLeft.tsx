@@ -4,7 +4,7 @@ import type { HeaderBackButtonProps } from "@react-navigation/native-stack/lib/t
 import { Link, router } from "expo-router";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import CategoryIcon from "~assets/Icons/CategoryIcon";
+import BoxIcon from "~assets/Icons/BoxIcon";
 
 const HeaderLeft: React.FC<HeaderBackButtonProps> = ({ canGoBack }) => {
   const { t } = useTranslation("common");
@@ -25,7 +25,7 @@ const HeaderLeft: React.FC<HeaderBackButtonProps> = ({ canGoBack }) => {
   }
   return (
     <Link href="/apps">
-      <CategoryIcon />
+      <BoxIcon name="category" />
     </Link>
   );
 };
