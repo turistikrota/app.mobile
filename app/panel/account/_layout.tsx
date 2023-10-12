@@ -10,7 +10,7 @@ export default function AccountLayout() {
   const { t } = useTranslation("account");
   return (
     <AuthGuard.Required>
-      <AccountGuard.Required>
+      <AccountGuard.Optional>
         <Stack
           initialRouteName="select"
           screenOptions={{
@@ -37,7 +37,7 @@ export default function AccountLayout() {
             }}
           />
         </Stack>
-      </AccountGuard.Required>
+      </AccountGuard.Optional>
     </AuthGuard.Required>
   );
 }

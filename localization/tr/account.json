@@ -5,5 +5,12 @@
   },
   "create": {
     "title": "Profil Oluştur"
+  },
+  "edit": {
+    "title": "Profili Düzenle"
+  },
+  "completion": {
+    "title": "Profil Doluluk Oranı",
+    "desc": "Profil doluluk oranınızı artırmak için aşağıdaki adımları tamamlayın. Profil doluluk oranınız %100 olduğunda, diğer kullanıcılar tarafından daha kolay bulunabilirsiniz."
   }
 }

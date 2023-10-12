@@ -4,6 +4,7 @@ module.exports = function (api) {
     presets: ["babel-preset-expo"],
     plugins: [
       "expo-router/babel",
+      "react-native-reanimated/plugin",
       [
         "module-resolver",
         {
@@ -20,6 +21,7 @@ module.exports = function (api) {
             "~store": "./store",
             "~partials": "./partials",
             "~http": "./http",
+            "~types": "./types",
           },
           extensions: [
             ".js",

@@ -12,10 +12,28 @@ type ForbiddenProps = {
 type AccountGuard = {
   Required: React.FC<React.PropsWithChildren>;
   Optional: React.FC<React.PropsWithChildren>;
+  SelectionRequired: React.FC<React.PropsWithChildren>;
   Forbidden: React.FC<React.PropsWithChildren<ForbiddenProps>>;
 };
 
 const AccountRequiredGuard: React.FC<React.PropsWithChildren> = ({
+  children,
+}) => {
+  const loading = useSelector((state: RootState) => state.account.loading);
+  const profile = useSelector((state: RootState) => state.account.profile);
+  useAccount();
+
+  useEffect(() => {
+    if (!profile) {
+      router.push("/panel/account/select");
+    }
+  }, []);
+
+  if (loading) return <LoadingFullScreen />;
+  return <>{children}</>;
+};
+
+const AccountSelectionRequired: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
   const loading = useSelector((state: RootState) => state.account.loading);
@@ -60,6 +78,7 @@ const AccountGuard: AccountGuard = {
   Required: AccountRequiredGuard,
   Optional: AccountOptionalGuard,
   Forbidden: AccountForbiddenGuard,
+  SelectionRequired: AccountSelectionRequired,
 };
 
 export default AccountGuard;
