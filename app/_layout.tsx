@@ -53,20 +53,14 @@ function HomeLayout() {
           },
           headerTitle: () => null,
           headerRight: () => (
-            <Link href="/notification">
-              <BoxIcon name="bell" />
+            <Link href="/panel">
+              <BoxIcon name="user" />
             </Link>
           ),
         }}
       >
         <Tabs.Screen
           name="search/index"
-          options={{
-            href: null,
-          }}
-        />
-        <Tabs.Screen
-          name="notification"
           options={{
             href: null,
           }}
@@ -93,8 +87,18 @@ function HomeLayout() {
           }}
         />
         <Tabs.Screen
+          name="notification"
+          options={{
+            title: t("notification"),
+            tabBarIcon: ({ color, size }) => (
+              <BoxIcon name={"bell"} color={color} width={size} height={size} />
+            ),
+          }}
+        />
+        <Tabs.Screen
           name="panel"
           options={{
+            href: null,
             title: t("panel"),
             tabBarIcon: ({ color, size }) => (
               <BoxIcon name="user" color={color} width={size} height={size} />
