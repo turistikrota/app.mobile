@@ -14,13 +14,14 @@ export default function PanelLayout() {
           },
           headerLeft: (props) => <HeaderLeft {...props} />,
           headerTitle: (props) => <HeaderTitle {...props} />,
+          headerRight: () => null,
         }}
-        initialRouteName="panel"
+        initialRouteName="board"
       >
-        <Stack.Screen name="panel" />
+        <Stack.Screen name="board" />
         <Stack.Screen name="auth" />
-        <Stack.Screen name="agreement/index" />
-        <Stack.Screen name="agreement/[id]" />
+        <Stack.Screen name="help/index" />
+        <Stack.Screen name="help/[id]" />
       </Stack>
     </AuthGuard.Optional>
   );

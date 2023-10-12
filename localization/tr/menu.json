@@ -2,7 +2,8 @@
   "apps": "Tüm Uygulamalar",
   "route": "Rota",
   "home": "Anasayfa",
-  "panel": "Panel",
+  "board": "Kontrol Paneli",
   "auth": "Giriş Yap",
-  "register": "Kayıt Ol"
+  "register": "Kayıt Ol",
+  "help/index": "Yardım"
 }

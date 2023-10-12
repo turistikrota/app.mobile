@@ -13,14 +13,7 @@ const HeaderTitle: React.FC<React.PropsWithChildren<Props>> = ({
   const params = useGlobalSearchParams();
   const { t } = useTranslation("menu");
   return (
-    <Text
-      sx={{
-        flexWrap: "wrap",
-        flex: 1,
-        textAlign: "center",
-        maxWidth: 200,
-      }}
-    >
+    <Text isTruncated>
       {params && params.title ? params.title : t(children as string)}
     </Text>
   );

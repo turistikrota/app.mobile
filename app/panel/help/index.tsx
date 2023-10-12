@@ -2,7 +2,7 @@ import { ScrollView, Text, View } from "@gluestack-ui/themed";
 import React from "react";
 import ListLinkItem from "~components/ListLinkItem";
 
-export default function AgreementListPage() {
+export default function HelpListPage() {
   return (
     <View
       sx={{
@@ -12,13 +12,13 @@ export default function AgreementListPage() {
       }}
     >
       <ScrollView>
-        <ListLinkItem href="/panel/agreement/privacyAndPersonalData">
+        <ListLinkItem href="/panel/help/privacyAndPersonalData">
           <Text>KVKK</Text>
         </ListLinkItem>
-        <ListLinkItem href="/panel/agreement/privacyNote">
+        <ListLinkItem href="/panel/help/privacyNote">
           <Text>Privacy Note</Text>
         </ListLinkItem>
-        <ListLinkItem href="/panel/agreement/termsOfUse">
+        <ListLinkItem href="/panel/help/termsOfUse">
           <Text>Kullanım Koşulları</Text>
         </ListLinkItem>
       </ScrollView>

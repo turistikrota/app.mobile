@@ -94,19 +94,19 @@ export default function RegisterPage() {
   });
 
   const PrivacyNotify = () => (
-    <Link href="/panel/agreement/privacyNote">
+    <Link href="/panel/help/privacyNote">
       <Text color="$secondary500">{t("policy.privacyNotify")}</Text>
     </Link>
   );
 
   const PrivacyPolicy = () => (
-    <Link href="/panel/agreement/privacyAndPersonalData">
+    <Link href="/panel/help/privacyAndPersonalData">
       <Text color="$secondary500">{t("policy.privacyPolicy")}</Text>
     </Link>
   );
 
   const TermsOfUse = () => (
-    <Link href="/panel/agreement/termsOfUse">
+    <Link href="/panel/help/termsOfUse">
       <Text color="$secondary500">{t("policy.termsOfUse")}</Text>
     </Link>
   );
