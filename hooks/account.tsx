@@ -1,3 +1,4 @@
+import { router } from "expo-router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Services, apiUrl } from "~config/services";
@@ -36,7 +37,7 @@ export function isAccountListResponse(
   return Array.isArray(response) && response.every(isAccountListItem);
 }
 
-const useAccount = (): void => {
+const useAccount = (redirect: boolean = false): void => {
   const isFetched = useSelector((state: RootState) => state.account.isFetched);
   const dispatch = useDispatch();
 
@@ -58,6 +59,17 @@ const useAccount = (): void => {
         }
       })
       .catch((err) => {
+        if (
+          err &&
+          err.response &&
+          err.response.status === 400 &&
+          err.response.data &&
+          err.response.data.mustSelect
+        ) {
+          if (redirect) {
+            return router.push("/panel/account/select");
+          }
+        }
         if (err && err.response && err.response.status === 401) {
           dispatch(
             setAccount({

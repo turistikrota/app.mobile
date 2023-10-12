@@ -20,11 +20,11 @@ const AccountRequiredGuard: React.FC<React.PropsWithChildren> = ({
 }) => {
   const loading = useSelector((state: RootState) => state.account.loading);
   const profile = useSelector((state: RootState) => state.account.profile);
-  useAccount();
+  useAccount(true);
 
   useEffect(() => {
     if (!profile) {
-      router.push("/panel/account");
+      router.push("/panel/account/select");
     }
   }, []);
 
