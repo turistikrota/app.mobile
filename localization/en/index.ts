@@ -1,3 +1,4 @@
+import accountEN from './account.json';
 import alertEN from './alert.json';
 import appsEN from './apps.json';
 import authEN from './auth.json';
@@ -11,5 +12,6 @@ export default {
     alert: alertEN,
     menu: menuEN,
     apps: appsEN,
-    panel: panelEN
+    panel: panelEN,
+    account: accountEN
 }

@@ -1,3 +1,4 @@
+import accountTR from './account.json';
 import alertTR from './alert.json';
 import appsTR from './apps.json';
 import authTR from './auth.json';
@@ -11,5 +12,6 @@ export default {
     alert: alertTR,
     menu: menuTR,
     apps: appsTR,
-    panel: panelTR
+    panel: panelTR,
+    account: accountTR
 }

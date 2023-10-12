@@ -30,6 +30,12 @@ export function isAccountListItem(response: any): response is AccountListItem {
   );
 }
 
+export function isAccountListResponse(
+  response: any
+): response is AccountListItem[] {
+  return Array.isArray(response) && response.every(isAccountListItem);
+}
+
 const useAccount = (): void => {
   const isFetched = useSelector((state: RootState) => state.account.isFetched);
   const dispatch = useDispatch();

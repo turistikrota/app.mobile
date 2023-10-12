@@ -1,6 +1,7 @@
 import {
   Avatar,
   AvatarFallbackText,
+  AvatarImage,
   Box,
   Center,
   Divider,
@@ -116,6 +117,11 @@ const ProfileSelectedItems: React.FC = () => {
       >
         <Avatar bgColor="$trueGray400" size="2xl" borderRadius="$full">
           <AvatarFallbackText>{profile.fullName}</AvatarFallbackText>
+          <AvatarImage
+            source={{
+              uri: profile.avatarUrl,
+            }}
+          />
         </Avatar>
         <Text
           sx={{
@@ -245,7 +251,14 @@ export default function PanelPage() {
         ) : auth.isAuthenticated ? (
           <>
             {!!account.profile ? (
-              <ProfileSelectedItems />
+              <>
+                <ProfileSelectedItems />
+                <Divider
+                  sx={{
+                    my: "$2",
+                  }}
+                />
+              </>
             ) : (
               <NoProfileSelectedItems />
             )}
