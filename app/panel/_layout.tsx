@@ -19,6 +19,7 @@ export default function PanelLayout() {
       >
         <Stack.Screen name="panel" />
         <Stack.Screen name="auth" />
+        <Stack.Screen name="agreement/index" />
         <Stack.Screen name="agreement/[id]" />
       </Stack>
     </AuthGuard.Optional>

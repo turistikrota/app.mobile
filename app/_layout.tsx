@@ -17,7 +17,6 @@ import { store } from "~store";
 function HomeLayout() {
   const { t } = useTranslation("menu");
   const insets = useSafeAreaInsets();
-  const p2 = useToken("space", "2");
   const secondaryColor = useToken("colors", "secondary500");
   return (
     <View style={{ flex: 1 }}>

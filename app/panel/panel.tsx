@@ -7,11 +7,21 @@ import {
   Text,
   View,
 } from "@gluestack-ui/themed";
-import React from "react";
+import { useRouter } from "expo-router";
+import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import BoxIcon from "~assets/Icons/BoxIcon";
 import ListLinkItem from "~components/ListLinkItem";
 
 export default function PanelPage() {
+  const { t } = useTranslation("panel");
+  const router = useRouter();
+
+  useEffect(() => {
+    router.setParams({
+      title: t("title"),
+    });
+  }, []);
   return (
     <View
       sx={{
@@ -42,7 +52,6 @@ export default function PanelPage() {
           <Text
             sx={{
               fontSize: "$sm",
-              color: "$gray600",
             }}
           >
             @johndoe
