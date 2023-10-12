@@ -6,6 +6,7 @@ import { Services, apiUrl } from "~config/services";
 import AccountGuard from "~guards/account";
 import { httpClient } from "~http/client";
 import AccountEditProfileCompletedRate from "~partials/account/AccountEditProfileCompletedRate";
+import AccountEditProfilePictureSection from "~partials/account/AccountEditProfilePictureSection";
 import { RootState } from "~store";
 import { Account, isAccount } from "~types/account";
 
@@ -33,6 +34,12 @@ export default function EditAccountPage() {
         setIsLoading(false);
       });
   };
+
+  const refetch = () => {
+    setTimeout(() => {
+      fetchProfile();
+    }, 1000);
+  };
   return (
     <AccountGuard.SelectionRequired>
       <View
@@ -45,6 +52,12 @@ export default function EditAccountPage() {
         <ScrollView>
           {details && (
             <>
+              <AccountEditProfilePictureSection
+                avatar={details.avatarUrl}
+                fullName={details.fullName}
+                userName={details.userName}
+                onUpdate={refetch}
+              />
               <AccountEditProfileCompletedRate value={details.completedRate} />
             </>
           )}
