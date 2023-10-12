@@ -66,6 +66,12 @@ function HomeLayout() {
           }}
         />
         <Tabs.Screen
+          name="profile/[userName]"
+          options={{
+            href: null,
+          }}
+        />
+        <Tabs.Screen
           name="index"
           options={{
             title: t("home"),

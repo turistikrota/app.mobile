@@ -53,10 +53,10 @@ const AuthProtectedItems: React.FC = () => {
 
   return (
     <>
-      <ListLinkItem href="/panel/auth" icon={<BoxIcon name="user-plus" />}>
+      <ListLinkItem href="/panel/invite" icon={<BoxIcon name="user-plus" />}>
         <Text>{t("invite")}</Text>
       </ListLinkItem>
-      <ListLinkItem href="/panel/auth" icon={<BoxIcon name="lock" />}>
+      <ListLinkItem href="/panel/manage" icon={<BoxIcon name="lock" />}>
         <Text>{t("manage")}</Text>
       </ListLinkItem>
       <ListLinkItem
@@ -134,13 +134,19 @@ const ProfileSelectedItems: React.FC = () => {
           @{profile.userName}
         </Text>
       </Center>
-      <ListLinkItem href="/panel/auth" icon={<BoxIcon name="profile" />}>
+      <ListLinkItem
+        href={`/profile/${profile.userName}`}
+        icon={<BoxIcon name="profile" />}
+      >
         <Text>{t("profile.view")}</Text>
       </ListLinkItem>
-      <ListLinkItem href="/panel/auth" icon={<BoxIcon name="edit" />}>
+      <ListLinkItem href="/panel/account/edit" icon={<BoxIcon name="edit" />}>
         <Text>{t("profile.edit")}</Text>
       </ListLinkItem>
-      <ListLinkItem href="/panel/auth" icon={<BoxIcon name="account" />}>
+      <ListLinkItem
+        href="/panel/account/select"
+        icon={<BoxIcon name="account" />}
+      >
         <Text>{t("profile.all")}</Text>
       </ListLinkItem>
     </>
@@ -153,7 +159,7 @@ const NoProfileSelectedItems: React.FC = () => {
   return (
     <>
       <ListLinkItem
-        href="/panel/auth"
+        href="/panel/account/select"
         sx={{
           bg: "$secondary0",
           borderRadius: "$md",
@@ -183,12 +189,12 @@ const PublicItems: React.FC = () => {
     {
       name: "settings",
       icon: "settings",
-      href: "/panel/auth",
+      href: "/panel/settings",
     },
     {
       name: "country",
       icon: "world",
-      href: "/panel/auth",
+      href: "/panel/country",
     },
     {
       name: "help",
