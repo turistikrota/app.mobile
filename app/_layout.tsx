@@ -100,6 +100,10 @@ function HomeLayout() {
             tabBarIcon: ({ color, size }) => (
               <BoxIcon name="user" color={color} width={size} height={size} />
             ),
+            headerShown: false,
+            tabBarStyle: {
+              display: "none",
+            },
           }}
         />
       </Tabs>
