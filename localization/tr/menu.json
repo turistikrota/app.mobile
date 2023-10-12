@@ -2,5 +2,7 @@
   "apps": "Tüm Uygulamalar",
   "route": "Rota",
   "home": "Anasayfa",
-  "panel": "Panel"
+  "panel": "Panel",
+  "auth": "Giriş Yap",
+  "register": "Kayıt Ol"
 }

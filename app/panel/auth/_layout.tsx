@@ -4,7 +4,7 @@ import AuthGuard from "~guards/auth";
 
 export default function AuthLayout() {
   return (
-    <AuthGuard.Forbidden>
+    <AuthGuard.Forbidden fallback="/panel">
       <Slot />
     </AuthGuard.Forbidden>
   );

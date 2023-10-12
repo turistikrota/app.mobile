@@ -57,7 +57,7 @@ export default function LoginPage() {
           }
         )
         .then((res) => {
-          let to: string = "/";
+          let to: string = "/panel";
           if (params.redirect) {
             to = params.redirect;
           }

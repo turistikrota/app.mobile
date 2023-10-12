@@ -5,10 +5,14 @@ import LoadingFullScreen from "~partials/state/LoadingFullScreen";
 import useAuth from "../hooks/auth";
 import { RootState } from "../store";
 
+type ForbiddenProps = {
+  fallback?: string;
+};
+
 type AuthGuard = {
   Required: React.FC<React.PropsWithChildren>;
   Optional: React.FC<React.PropsWithChildren>;
-  Forbidden: React.FC<React.PropsWithChildren>;
+  Forbidden: React.FC<React.PropsWithChildren<ForbiddenProps>>;
 };
 
 const AuthRequiredGuard: React.FC<React.PropsWithChildren> = ({ children }) => {
@@ -20,7 +24,7 @@ const AuthRequiredGuard: React.FC<React.PropsWithChildren> = ({ children }) => {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      router.push("/auth");
+      router.push("/panel/auth");
     }
   }, []);
 
@@ -33,8 +37,9 @@ const AuthOptionalGuard: React.FC<React.PropsWithChildren> = ({ children }) => {
   return <>{children}</>;
 };
 
-const AuthForbiddenGuard: React.FC<React.PropsWithChildren> = ({
+const AuthForbiddenGuard: React.FC<React.PropsWithChildren<ForbiddenProps>> = ({
   children,
+  fallback = "/",
 }) => {
   const loading = useSelector((state: RootState) => state.auth.loading);
   const isAuthenticated = useSelector(
@@ -44,7 +49,7 @@ const AuthForbiddenGuard: React.FC<React.PropsWithChildren> = ({
 
   useEffect(() => {
     if (isAuthenticated) {
-      router.push("/");
+      router.push(fallback);
     }
   }, [isAuthenticated]);
 

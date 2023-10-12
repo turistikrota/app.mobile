@@ -20,9 +20,9 @@ import {
   Text,
   VStack,
 } from "@gluestack-ui/themed";
-import { Link, router, useLocalSearchParams } from "expo-router";
+import { Link, useLocalSearchParams, useRouter } from "expo-router";
 import { useFormik } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import Turnstile from "~components/shared/Turnstile";
 import { Config } from "~config/config";
@@ -43,6 +43,13 @@ export default function RegisterPage() {
   const [turnstileKey, setTurnstileKey] = useState(0);
   const [loading, setLoading] = useState(false);
   const alert = useAlert();
+  const router = useRouter();
+
+  useEffect(() => {
+    router.setParams({
+      title: t("register.title"),
+    });
+  }, []);
 
   const form = useFormik({
     initialValues: {
@@ -64,7 +71,7 @@ export default function RegisterPage() {
           }
         )
         .then((res) => {
-          let to: string = "/";
+          let to: string = "/panel";
           if (params.redirect) {
             to = params.redirect;
           }
@@ -87,19 +94,19 @@ export default function RegisterPage() {
   });
 
   const PrivacyNotify = () => (
-    <Link href="/agreement/privacyNote">
+    <Link href="/panel/agreement/privacyNote">
       <Text color="$secondary500">{t("policy.privacyNotify")}</Text>
     </Link>
   );
 
   const PrivacyPolicy = () => (
-    <Link href="/agreement/privacyAndPersonalData">
+    <Link href="/panel/agreement/privacyAndPersonalData">
       <Text color="$secondary500">{t("policy.privacyPolicy")}</Text>
     </Link>
   );
 
   const TermsOfUse = () => (
-    <Link href="/agreement/termsOfUse">
+    <Link href="/panel/agreement/termsOfUse">
       <Text color="$secondary500">{t("policy.termsOfUse")}</Text>
     </Link>
   );

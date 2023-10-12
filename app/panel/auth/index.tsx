@@ -57,9 +57,9 @@ export default function CheckEmailPage() {
         .then((res) => {
           let extra = params.redirect ? `&redirect=${params.redirect}` : "";
           if (res?.data?.exists) {
-            router.replace(`/auth/login?email=${email}${extra}`);
+            router.replace(`/panel/auth/login?email=${email}${extra}`);
           } else {
-            router.replace(`/auth/register?email=${email}${extra}`);
+            router.replace(`/panel/auth/register?email=${email}${extra}`);
           }
         })
         .catch((res) => {
