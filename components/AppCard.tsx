@@ -1,12 +1,10 @@
-import { Box, Text } from "@gluestack-ui/themed";
-import { Link } from "expo-router";
+import { Box, Pressable, Text, useToken } from "@gluestack-ui/themed";
+import { router } from "expo-router";
 import React from "react";
 import { BackgroundColors, Colors } from "~config/gluestack-ui.config";
-import { useAlert } from "~hooks/alert";
 
 type Props = {
   name: string;
-  description: string;
   href: string;
   isReady: boolean;
   bg: BackgroundColors;
@@ -17,7 +15,6 @@ type Props = {
 
 const AppCard: React.FC<Props> = ({
   name,
-  description,
   href,
   isReady,
   icon,
@@ -25,79 +22,90 @@ const AppCard: React.FC<Props> = ({
   titleColor,
   descriptionColor,
 }) => {
-  const alert = useAlert();
+  const bgColor = useToken("colors", bg);
   return (
-    <Link
-      disabled={!isReady}
-      href={href}
-      style={{
-        marginBottom: 10,
-        width: "100%",
-        backgroundColor: "transparent",
-        borderRadius: 10,
-        overflow: "hidden",
-        flex: 1,
+    <Pressable
+      sx={{
+        position: "relative",
+        width: "48.8%",
+        backgroundColor: bgColor,
+        borderRadius: "$sm",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
       }}
+      disabled={!isReady}
+      onPress={() => router.push(href)}
     >
-      <Box
-        sx={{
-          flexDirection: "row",
-          gap: "$3",
-          width: "100%",
-          p: "$3",
-          borderRadius: 10,
-          backgroundColor: `$${bg}`,
-        }}
-      >
-        {icon}
-        <Box
-          sx={{
-            flexDirection: "column",
-            gap: "$1",
-            flex: 1,
-            justifyContent: "center",
-          }}
-        >
-          <Text
-            sx={{
-              fontWeight: "$bold",
-              fontSize: "$lg",
-              color: `$${titleColor}`,
-            }}
-          >
-            {name}
-          </Text>
-          <Text
-            sx={{
-              color: `$${descriptionColor}`,
-              fontWeight: "$bold",
-              fontSize: "$sm",
-            }}
-          >
-            {description}
-          </Text>
-        </Box>
-        {!isReady && (
+      {!isReady && (
+        <>
           <Box
             sx={{
               position: "absolute",
-              right: 0,
               top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              borderRadius: "$sm",
+              opacity: 0.5,
+              backgroundColor: "$white",
+              padding: "$3",
+              zIndex: 1,
+            }}
+          ></Box>
+          <Box
+            sx={{
+              position: "absolute",
+              top: -55,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              zIndex: 2,
+              display: "flex",
+              flexDirection: "row",
               alignItems: "center",
               justifyContent: "center",
-              px: "$2",
-              py: "$1",
-              flex: 1,
-              flexDirection: "row",
             }}
           >
-            <Text sx={{ color: `$red700`, fontSize: "$sm" }}>
-              {isReady ? "Ready" : "Coming soon"}
-            </Text>
+            <Box
+              sx={{
+                px: "$2",
+                backgroundColor: `$red100`,
+                borderRadius: "$md",
+              }}
+            >
+              <Text
+                sx={{
+                  color: `$red500`,
+                  fontSize: "$xs",
+                }}
+              >
+                Coming Soon
+              </Text>
+            </Box>
           </Box>
-        )}
-      </Box>
-    </Link>
+        </>
+      )}
+      <Text
+        sx={{
+          mt: "$5",
+        }}
+      >
+        {icon}
+      </Text>
+
+      <Text
+        sx={{
+          fontWeight: "$bold",
+          fontSize: "$lg",
+          color: `$${titleColor}`,
+          mb: "$5",
+        }}
+      >
+        {name}
+      </Text>
+    </Pressable>
   );
 };
 

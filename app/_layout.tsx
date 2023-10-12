@@ -1,23 +1,27 @@
-import { GluestackUIProvider } from "@gluestack-ui/themed";
-import { Stack } from "expo-router";
+import { GluestackUIProvider, useToken } from "@gluestack-ui/themed";
+import { Link, Tabs } from "expo-router";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
 import { Provider } from "react-redux";
+import BoxIcon from "~assets/Icons/BoxIcon";
+import Logo from "~assets/Icons/Logo";
 import { config } from "~config/gluestack-ui.config";
 import "~localization/i18n";
-import HeaderLeft from "~partials/layout/HeaderLeft";
-import HeaderRight from "~partials/layout/HeaderRight";
-import HeaderTitle from "~partials/layout/HeaderTitle";
 import { store } from "~store";
 
 function HomeLayout() {
+  const { t } = useTranslation("menu");
   const insets = useSafeAreaInsets();
+  const p2 = useToken("space", "2");
+  const secondaryColor = useToken("colors", "secondary500");
   return (
-    <View style={{ flex: 1, paddingTop: insets.top }}>
+    <View style={{ flex: 1 }}>
+      {/*
       <Stack
         screenOptions={{
           contentStyle: {
@@ -34,6 +38,71 @@ function HomeLayout() {
         <Stack.Screen name="index" />
         <Stack.Screen name="account/index" />
       </Stack>
+       */}
+      <Tabs
+        safeAreaInsets={insets}
+        detachInactiveScreens={true}
+        screenOptions={{
+          tabBarActiveTintColor: secondaryColor,
+          tabBarActiveBackgroundColor: "transparent",
+          headerLeft: () => <Logo />,
+          headerLeftContainerStyle: {
+            paddingLeft: 8,
+          },
+          headerRightContainerStyle: {
+            paddingRight: 8,
+          },
+          headerTitle: () => null,
+          headerRight: () => (
+            <Link href="/notification">
+              <BoxIcon name="bell" />
+            </Link>
+          ),
+        }}
+      >
+        <Tabs.Screen
+          name="search/index"
+          options={{
+            href: null,
+          }}
+        />
+        <Tabs.Screen
+          name="notification"
+          options={{
+            href: null,
+          }}
+        />
+        <Tabs.Screen
+          name="index"
+          options={{
+            title: t("home"),
+            tabBarIcon: ({ color, size }) => (
+              <BoxIcon name={"home"} color={color} width={size} height={size} />
+            ),
+            tabBarIconStyle: {
+              color: secondaryColor,
+            },
+          }}
+        />
+        <Tabs.Screen
+          name="apps"
+          options={{
+            title: t("route"),
+            tabBarIcon: ({ color, size }) => (
+              <BoxIcon name="route" color={color} width={size} height={size} />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="panel"
+          options={{
+            title: t("panel"),
+            tabBarIcon: ({ color, size }) => (
+              <BoxIcon name="user" color={color} width={size} height={size} />
+            ),
+          }}
+        />
+      </Tabs>
     </View>
   );
 }

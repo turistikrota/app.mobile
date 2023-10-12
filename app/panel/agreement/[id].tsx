@@ -9,7 +9,7 @@ import {
   type AgreementDetail,
   type AgreementLocaleContent,
   type Agreements,
-} from "../../static/agreements";
+} from "~static/agreements";
 
 type GlobalParams = {
   id: keyof Agreements;

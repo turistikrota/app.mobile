@@ -10,6 +10,7 @@ export default function App() {
     <Box>
       <Link href="/auth">{t("auth")}</Link>
       <Link href="/agreement/termsOfUse">{t("termsOfUse")}</Link>
+      <Link href="/home/messages">Navigate to nested route</Link>
       <Text>{JSON.stringify(params)}</Text>
     </Box>
   );

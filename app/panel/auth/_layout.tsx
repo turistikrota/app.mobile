@@ -1,6 +1,6 @@
 import { Slot } from "expo-router";
 import React from "react";
-import AuthGuard from "../../guards/auth";
+import AuthGuard from "~guards/auth";
 
 export default function AuthLayout() {
   return (

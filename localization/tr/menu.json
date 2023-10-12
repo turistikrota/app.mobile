@@ -1,3 +1,6 @@
 {
-  "apps": "Tüm Uygulamalar"
+  "apps": "Tüm Uygulamalar",
+  "route": "Rota",
+  "home": "Anasayfa",
+  "panel": "Panel"
 }

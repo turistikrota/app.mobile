@@ -1,5 +1,4 @@
-import { Box, ScrollView, View, useToken } from "@gluestack-ui/themed";
-import { StatusBar } from "expo-status-bar";
+import { Box, View, useToken } from "@gluestack-ui/themed";
 import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import BoxIcon from "~assets/Icons/BoxIcon";
@@ -21,7 +20,6 @@ export default function AppsPage() {
     () => [
       {
         name: "place.name",
-        description: "place.description",
         href: "/places",
         icon: <BoxIcon name="map" color={primary} width={60} height={60} />,
         isReady: true,
@@ -31,7 +29,6 @@ export default function AppsPage() {
       },
       {
         name: "owner.name",
-        description: "owner.description",
         href: "/owner",
         icon: <BoxIcon name="owner" color={secondary} width={60} height={60} />,
         isReady: true,
@@ -41,7 +38,6 @@ export default function AppsPage() {
       },
       {
         name: "account.name",
-        description: "account.description",
         href: `/account`,
         icon: <BoxIcon name="account" color={fuchsia} width={60} height={60} />,
         isReady: true,
@@ -50,20 +46,7 @@ export default function AppsPage() {
         descriptionColor: "fuchsia500",
       },
       {
-        name: "settings.name",
-        description: "settings.description",
-        href: "/settings",
-        icon: (
-          <BoxIcon name="settings" color={lightBlue} width={60} height={60} />
-        ),
-        isReady: true,
-        bg: "lightBlue50",
-        titleColor: "lightBlue600",
-        descriptionColor: "lightBlue500",
-      },
-      {
         name: "booking.name",
-        description: "booking.description",
         href: "/booking",
         icon: (
           <BoxIcon name="reservation" color={teal} width={60} height={60} />
@@ -75,7 +58,6 @@ export default function AppsPage() {
       },
       {
         name: "chat.name",
-        description: "chat.description",
         href: "/chat",
         icon: <BoxIcon name="chat" color={cyan} width={60} height={60} />,
         isReady: false,
@@ -85,35 +67,12 @@ export default function AppsPage() {
       },
       {
         name: "wallet.name",
-        description: "wallet.description",
         href: "/wallet",
         icon: <BoxIcon name="wallet" color={indigo} width={60} height={60} />,
         isReady: false,
         bg: "indigo50",
         titleColor: "indigo600",
         descriptionColor: "indigo500",
-      },
-      {
-        name: "invoice.name",
-        description: "invoice.description",
-        href: "/invoice",
-        icon: (
-          <BoxIcon name="file-archive" color={rose} width={60} height={60} />
-        ),
-        isReady: false,
-        bg: "rose50",
-        titleColor: "rose700",
-        descriptionColor: "rose500",
-      },
-      {
-        name: "support.name",
-        description: "support.description",
-        href: "/support",
-        icon: <BoxIcon name="support" color={pink} width={60} height={60} />,
-        isReady: false,
-        bg: "pink50",
-        titleColor: "pink600",
-        descriptionColor: "pink500",
       },
     ],
     []
@@ -123,25 +82,19 @@ export default function AppsPage() {
       sx={{
         flex: 1,
         bg: "$white",
+        height: "100%",
+        p: "$2",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "space-between",
+        width: "100%",
+        gap: "$2",
       }}
     >
-      <ScrollView
-        sx={{
-          flex: 1,
-          p: "$2",
-        }}
-      >
-        {Apps.map((app) => (
-          <AppCard
-            key={app.name}
-            {...app}
-            description={t(app.description)}
-            name={t(app.name)}
-          />
-        ))}
-        <Box h="$16" />
-      </ScrollView>
-      <StatusBar style="light" />
+      {Apps.map((app) => (
+        <AppCard key={app.name} {...app} name={t(app.name)} />
+      ))}
+      <Box h="$8" />
     </View>
   );
 }
