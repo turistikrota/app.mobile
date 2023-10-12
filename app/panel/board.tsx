@@ -1,6 +1,7 @@
 import {
   Avatar,
   AvatarFallbackText,
+  Box,
   Center,
   Divider,
   ScrollView,
@@ -8,30 +9,70 @@ import {
   View,
   useToken,
 } from "@gluestack-ui/themed";
-import React from "react";
+import React, { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import BoxIcon from "~assets/Icons/BoxIcon";
 import ListLinkItem from "~components/ListLinkItem";
+import { Services, apiUrl } from "~config/services";
+import { useAlert } from "~hooks/alert";
+import { httpClient } from "~http/client";
+import LoadingListItem from "~partials/state/LoadingListItem";
 import { RootState } from "~store";
+import { reset as resetAccountStore } from "~store/account.store";
+import { reset as resetAuthStore } from "~store/auth.store";
 
 const AuthProtectedItems: React.FC = () => {
+  const [logoutLoading, setLogoutLoading] = useState<boolean>(false);
+  const { t } = useTranslation("panel");
+  const alert = useAlert();
+  const dispatch = useDispatch();
+
+  const logout = async () => {
+    const res = await alert.confirm(t("logout.checkText"), {
+      okText: t("logout.okButtonText"),
+    });
+    if (!res.confirmed) return;
+    setLogoutLoading(true);
+    httpClient
+      .post(apiUrl(Services.Auth, "/logout"), null)
+      .then((res) => {
+        if (res.status === 200) {
+          dispatch(resetAuthStore());
+          dispatch(resetAccountStore());
+          alert.alert(t("logout.success"));
+        }
+      })
+      .catch((err) => {
+        alert.alert(t("logout.error"));
+      })
+      .finally(() => {
+        setLogoutLoading(false);
+      });
+  };
+
   return (
     <>
       <ListLinkItem href="/panel/auth" icon={<BoxIcon name="user-plus" />}>
-        <Text>Arkadaşını Davet Et</Text>
+        <Text>{t("invite")}</Text>
       </ListLinkItem>
       <ListLinkItem href="/panel/auth" icon={<BoxIcon name="lock" />}>
-        <Text>Hesabını Yönet</Text>
+        <Text>{t("manage")}</Text>
       </ListLinkItem>
-      <ListLinkItem href="/panel/auth" icon={<BoxIcon name="logout" />}>
-        <Text>Çıkış Yap</Text>
+      <ListLinkItem
+        href="/panel/auth"
+        disabled={logoutLoading}
+        icon={<BoxIcon name="logout" />}
+        onPress={logout}
+      >
+        <Text>{t("logout.button")}</Text>
       </ListLinkItem>
     </>
   );
 };
 
 const NoAuthProtectedItems: React.FC = () => {
+  const { t } = useTranslation("panel");
   const iconColor = useToken("colors", "primary700");
   return (
     <>
@@ -52,7 +93,7 @@ const NoAuthProtectedItems: React.FC = () => {
             color: "$primary700",
           }}
         >
-          Giriş Yap
+          {t("login")}
         </Text>
       </ListLinkItem>
     </>
@@ -60,6 +101,11 @@ const NoAuthProtectedItems: React.FC = () => {
 };
 
 const ProfileSelectedItems: React.FC = () => {
+  const { t } = useTranslation("panel");
+  const profile = useSelector((state: RootState) => state.account.profile);
+
+  if (!profile) return <></>;
+
   return (
     <>
       <Center
@@ -69,7 +115,7 @@ const ProfileSelectedItems: React.FC = () => {
         }}
       >
         <Avatar bgColor="$trueGray400" size="2xl" borderRadius="$full">
-          <AvatarFallbackText>Sandeep Srivastava</AvatarFallbackText>
+          <AvatarFallbackText>{profile.fullName}</AvatarFallbackText>
         </Avatar>
         <Text
           sx={{
@@ -78,24 +124,24 @@ const ProfileSelectedItems: React.FC = () => {
             mt: "$2",
           }}
         >
-          John Doe
+          {profile.fullName}
         </Text>
         <Text
           sx={{
             fontSize: "$sm",
           }}
         >
-          @johndoe
+          @{profile.userName}
         </Text>
       </Center>
       <ListLinkItem href="/panel/auth" icon={<BoxIcon name="profile" />}>
-        <Text>Profilimi Görüntüle</Text>
+        <Text>{t("profile.view")}</Text>
       </ListLinkItem>
       <ListLinkItem href="/panel/auth" icon={<BoxIcon name="edit" />}>
-        <Text>Profilimi Düzenle</Text>
+        <Text>{t("profile.edit")}</Text>
       </ListLinkItem>
       <ListLinkItem href="/panel/auth" icon={<BoxIcon name="account" />}>
-        <Text>Tüm Profillerim</Text>
+        <Text>{t("profile.all")}</Text>
       </ListLinkItem>
     </>
   );
@@ -103,6 +149,7 @@ const ProfileSelectedItems: React.FC = () => {
 
 const NoProfileSelectedItems: React.FC = () => {
   const iconColor = useToken("colors", "secondary700");
+  const { t } = useTranslation("panel");
   return (
     <>
       <ListLinkItem
@@ -122,7 +169,7 @@ const NoProfileSelectedItems: React.FC = () => {
             color: "$secondary700",
           }}
         >
-          Profil Seç
+          {t("profile.select")}
         </Text>
       </ListLinkItem>
     </>
@@ -130,24 +177,47 @@ const NoProfileSelectedItems: React.FC = () => {
 };
 
 const PublicItems: React.FC = () => {
+  const { t } = useTranslation("panel");
+
+  const items = [
+    {
+      name: "settings",
+      icon: "settings",
+      href: "/panel/auth",
+    },
+    {
+      name: "country",
+      icon: "world",
+      href: "/panel/auth",
+    },
+    {
+      name: "help",
+      icon: "question",
+      href: "/panel/help",
+    },
+  ];
   return (
     <>
-      <ListLinkItem href="/panel/auth" icon={<BoxIcon name="settings" />}>
-        <Text>Ayarlar</Text>
-      </ListLinkItem>
-      <ListLinkItem href="/panel/auth" icon={<BoxIcon name="world" />}>
-        <Text>Ülke Değiştir</Text>
-      </ListLinkItem>
-      <ListLinkItem href="/panel/help" icon={<BoxIcon name="question" />}>
-        <Text>Yardım</Text>
-      </ListLinkItem>
+      {items.map((i) => (
+        <ListLinkItem
+          key={i.name}
+          href={i.href}
+          icon={<BoxIcon name={i.icon} />}
+        >
+          <Text>{t(i.name)}</Text>
+        </ListLinkItem>
+      ))}
     </>
   );
 };
 
 export default function PanelPage() {
-  const { t } = useTranslation("panel");
   const auth = useSelector((state: RootState) => state.auth);
+  const account = useSelector((state: RootState) => state.account);
+  const isLoading = useMemo(
+    () => auth.loading || account.loading,
+    [auth.loading, account.loading]
+  );
   return (
     <View
       sx={{
@@ -157,9 +227,23 @@ export default function PanelPage() {
       }}
     >
       <ScrollView>
-        {auth.isAuthenticated ? (
+        {isLoading ? (
+          <Box
+            sx={{
+              mb: "$4",
+              pt: "$2",
+            }}
+          >
+            <LoadingListItem />
+          </Box>
+        ) : auth.isAuthenticated ? (
           <>
-            <NoProfileSelectedItems />
+            {!!account.profile ? (
+              <ProfileSelectedItems />
+            ) : (
+              <NoProfileSelectedItems />
+            )}
+
             <AuthProtectedItems />
             <Divider
               sx={{

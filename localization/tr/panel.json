@@ -1,3 +1,22 @@
 {
-  "title": "Kontrol Paneli"
+  "title": "Kontrol Paneli",
+  "settings": "Ayarlar",
+  "country": "Ülke Değiştir",
+  "help": "Yardım",
+  "login": "Giriş Yap",
+  "manage": "Hesabını Yönet",
+  "invite": "Arkadaşlarını Davet Et",
+  "profile": {
+    "select": "Profil Seç",
+    "view": "Profilimi Görüntüle",
+    "edit": "Profilimi Düzenle",
+    "all": "Tüm Profillerim"
+  },
+  "logout": {
+    "button": "Çıkış Yap",
+    "checkText": "Çıkış yapmak istediğinizden emin misiniz?",
+    "okButtonText": "Çıkış Yap",
+    "success": "Çıkış Yapıldı",
+    "error": "Çıkış Yapılamadı"
+  }
 }

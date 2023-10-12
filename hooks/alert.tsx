@@ -12,20 +12,25 @@ type ConfirmResponse = {
   cancelled: boolean;
 };
 
+type ConfirmOpts = {
+  cancelText?: string;
+  okText?: string;
+};
+
 export const useAlert = () => {
   const { t } = useTranslation("alert");
 
   return {
-    confirm: (text: string): Promise<ConfirmResponse> => {
+    confirm: (text: string, opts?: ConfirmOpts): Promise<ConfirmResponse> => {
       return new Promise<ConfirmResponse>((resolve, reject) => {
         Alert.alert(t("confirm"), text, [
           {
-            text: t("cancel"),
+            text: t(opts && opts.cancelText ? opts.cancelText : "cancel"),
             onPress: () => resolve({ confirmed: false, cancelled: true }),
             style: "cancel",
           },
           {
-            text: t("ok"),
+            text: t(opts && opts.okText ? opts.okText : "ok"),
             onPress: () => resolve({ confirmed: true, cancelled: false }),
           },
         ]);

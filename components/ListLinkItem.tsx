@@ -8,6 +8,7 @@ import BoxIcon from "~assets/Icons/BoxIcon";
 
 type Props = {
   href: string;
+  disabled?: boolean;
   icon?: React.ReactNode;
   sx?: SxProps<StyleProp<ViewStyle>>;
   onPress?: () => void;
@@ -17,6 +18,7 @@ type Props = {
 const ListLinkItem: React.FC<React.PropsWithChildren<Props>> = ({
   href,
   icon,
+  disabled,
   children,
   sx,
   onPress,
@@ -24,6 +26,7 @@ const ListLinkItem: React.FC<React.PropsWithChildren<Props>> = ({
 }) => {
   return (
     <Pressable
+      disabled={disabled}
       onPress={() => (onPress ? onPress() : router.push(href))}
       sx={{
         ...sx,
