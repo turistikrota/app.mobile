@@ -16,5 +16,31 @@
   "completion": {
     "title": "Profil Doluluk Oranı",
     "desc": "Profil doluluk oranınızı artırmak için aşağıdaki adımları tamamlayın. Profil doluluk oranınız %100 olduğunda, diğer kullanıcılar tarafından daha kolay bulunabilirsiniz."
+  },
+  "activation": {
+    "title": "Profil Durumu",
+    "activeDesc": "Profiliniz aktif. Profilinizi devre dışı bırakmak için yandaki butona tıklayın.",
+    "passiveDesc": "Profiliniz devre dışı. Profilinizi aktif hale getirmek için yandaki butona tıklayın.",
+    "enable": {
+      "cancel": "Vazgeç",
+      "confirm": "Aktif Et",
+      "title": "Profili Aktif Hale Getir",
+      "description": "Profilinizi aktif hale getirmek istediğinize emin misiniz? Profiliniz aktif hale getirildiğinde, değişikliklerin tüm siteye yansıması için tekrar giriş yapmanız gerekecektir.",
+      "success": "Profiliniz başarıyla aktif hale getirildi! Lütfen tekrar giriş yapın.",
+      "alt": "Profili aktif hale getir"
+    },
+    "disable": {
+      "cancel": "Vazgeç",
+      "confirm": "Devre Dışı Bırak",
+      "title": "Profili Devre Dışı Bırak",
+      "description": "Profilinizi devre dışı bırakmak istediğinize emin misiniz? Profiliniz devre dışı bırakıldığında, değişikliklerin tüm siteye yansıması için tekrar giriş yapmanız gerekecektir.",
+      "success": "Profiliniz başarıyla devre dışı bırakıldı! Lütfen tekrar giriş yapın.",
+      "alt": "Profili devre dışı bırak"
+    }
+  },
+  "deletion": {
+    "title": "Profili Sil",
+    "description": "Yandaki kutucuğu işaretleyerek profilinizi silebilirsiniz.",
+    "alt": "Profili sil"
   }
 }

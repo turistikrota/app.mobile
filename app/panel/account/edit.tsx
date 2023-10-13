@@ -1,12 +1,16 @@
-import { ScrollView, View } from "@gluestack-ui/themed";
+import { ScrollView, VStack, View } from "@gluestack-ui/themed";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Services, apiUrl } from "~config/services";
 import AccountGuard from "~guards/account";
 import { httpClient } from "~http/client";
+import AccountEditProfileActivationForm from "~partials/account/AccountEditProfileActiviationForm";
 import AccountEditProfileCompletedRate from "~partials/account/AccountEditProfileCompletedRate";
+import AccountEditProfileDeletionForm from "~partials/account/AccountEditProfileDeletionForm";
+import AccountEditProfileForm from "~partials/account/AccountEditProfileForm";
 import AccountEditProfilePictureSection from "~partials/account/AccountEditProfilePictureSection";
+import LoadingFullScreen from "~partials/state/LoadingFullScreen";
 import { RootState } from "~store";
 import { Account, isAccount } from "~types/account";
 
@@ -35,6 +39,15 @@ export default function EditAccountPage() {
       });
   };
 
+  const onActivationChange = (val: boolean) => {
+    if (details) {
+      setDetails({
+        ...details,
+        isActive: val,
+      });
+    }
+  };
+
   const refetch = () => {
     setTimeout(() => {
       fetchProfile();
@@ -50,8 +63,9 @@ export default function EditAccountPage() {
         }}
       >
         <ScrollView>
-          {details && (
-            <>
+          {isLoading && <LoadingFullScreen />}
+          {!isLoading && details && (
+            <VStack space="md">
               <AccountEditProfilePictureSection
                 avatar={details.avatarUrl}
                 fullName={details.fullName}
@@ -59,7 +73,14 @@ export default function EditAccountPage() {
                 onUpdate={refetch}
               />
               <AccountEditProfileCompletedRate value={details.completedRate} />
-            </>
+              <AccountEditProfileForm />
+              <AccountEditProfileActivationForm
+                isActive={details.isActive}
+                userName={details.userName}
+                onChange={onActivationChange}
+              />
+              <AccountEditProfileDeletionForm />
+            </VStack>
           )}
         </ScrollView>
       </View>

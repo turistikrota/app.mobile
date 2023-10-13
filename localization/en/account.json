@@ -16,5 +16,29 @@
   "completion": {
     "title": "Profile Fill Rate",
     "desc": "Complete the following steps to increase your profile fill rate. When your profile fill rate is 100%, you can be found more easily by other users."
+  },
+  "activation": {
+    "title": "Profile Status",
+    "activeDesc": "Your profile is active. Click the side button to deactivate your profile.",
+    "passiveDesc": "Your profile is disabled. Click the side button to activate your profile.",
+    "enable": {
+      "cancel": "Cancel",
+      "title": "Activate Profile",
+      "confirm": "Are you sure you want to activate your profile? Once your profile is activated, you will need to log in again for the changes to be reflected on the entire site.",
+      "success": "Your profile has been successfully activated! Please log in again.",
+      "alt": "Activate Profile"
+    },
+    "disable": {
+      "cancel": "Cancel",
+      "title": "Deactivate Profile",
+      "confirm": "Are you sure you want to deactivate your profile? Once your profile is deactivated, you will need to log in again for the changes to be reflected on the entire site.",
+      "success": "Your profile has been successfully deactivated! Please log in again.",
+      "alt": "Deactivate Profile"
+    }
+  },
+  "deletion": {
+    "title": "Delete Profile",
+    "description": "You can delete your profile by checking the box on the side.",
+    "alt": "Delete Profile"
   }
 }

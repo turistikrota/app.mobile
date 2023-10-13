@@ -18,5 +18,5 @@ export type Account = {
   }
 
   export function isAccount(arg: any): arg is Account {
-    return arg && arg.userName && arg.fullName && arg.avatarUrl && arg.description && arg.social && arg.isActive && arg.completedRate && typeof arg.isVerified !== undefined && arg.birthDate && arg.createdAt && arg.updatedAt;
+    return arg && typeof arg.userName === 'string' && typeof arg.fullName === 'string' && typeof arg.avatarUrl === 'string' && typeof arg.description === 'string' && typeof arg.social === 'object' && typeof arg.isActive === 'boolean' && typeof arg.completedRate === 'number' && typeof arg.isVerified === 'boolean' && (arg.birthDate === null || typeof arg.birthDate === 'string') && typeof arg.createdAt === 'string' && typeof arg.updatedAt === 'string'
   }
