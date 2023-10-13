@@ -1,5 +1,5 @@
-import { GluestackUIProvider, useToken } from "@gluestack-ui/themed";
-import { Link, Tabs } from "expo-router";
+import { GluestackUIProvider, Pressable, useToken } from "@gluestack-ui/themed";
+import { Link, Tabs, router } from "expo-router";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
@@ -54,7 +54,9 @@ function HomeLayout() {
           headerTitle: () => null,
           headerRight: () => (
             <Link href="/panel">
-              <BoxIcon name="user" />
+              <Pressable onPress={() => router.push("/panel")}>
+                <BoxIcon name="user" />
+              </Pressable>
             </Link>
           ),
         }}
