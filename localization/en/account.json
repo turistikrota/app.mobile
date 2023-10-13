@@ -38,7 +38,6 @@
   },
   "deletion": {
     "title": "Delete Profile",
-    "description": "You can delete your profile by checking the box on the side.",
-    "alt": "Delete Profile"
+    "confirm": "Are you sure you want to delete your profile? This action cannot be undone."
   }
 }

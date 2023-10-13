@@ -79,7 +79,7 @@ export default function EditAccountPage() {
                 userName={details.userName}
                 onChange={onActivationChange}
               />
-              <AccountEditProfileDeletionForm />
+              <AccountEditProfileDeletionForm userName={details.userName} />
             </VStack>
           )}
         </ScrollView>

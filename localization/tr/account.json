@@ -40,7 +40,6 @@
   },
   "deletion": {
     "title": "Profili Sil",
-    "description": "Yandaki kutucuğu işaretleyerek profilinizi silebilirsiniz.",
-    "alt": "Profili sil"
+    "confirm": "Profili silmek istediğinize emin misiniz? Bu işlem geri alınamaz."
   }
 }
