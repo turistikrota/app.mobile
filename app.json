@@ -5,7 +5,7 @@
     "slug": "turistikrota",
     "version": "0.0.1",
     "orientation": "portrait",
-    "icon": "./assets/logo-enteresan.png",
+    "icon": "./assets/logo-garip.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/mobile.png",
