@@ -1,1 +1,20 @@
-{}
+{
+  "new": "Create a New Profile",
+  "select": {
+    "title": "Select a Profile"
+  },
+  "create": {
+    "title": "Create Profile"
+  },
+  "edit": {
+    "title": "Edit Profile",
+    "picture": {
+      "change": "Change Profile Picture",
+      "uploaded": "Profile picture has been uploaded. It may take a while for your profile picture to appear."
+    }
+  },
+  "completion": {
+    "title": "Profile Fill Rate",
+    "desc": "Complete the following steps to increase your profile fill rate. When your profile fill rate is 100%, you can be found more easily by other users."
+  }
+}
