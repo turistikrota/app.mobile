@@ -8,6 +8,7 @@ import HeaderTitle from "~partials/layout/HeaderTitle";
 
 export default function AccountLayout() {
   const { t } = useTranslation("account");
+
   return (
     <AuthGuard.Required>
       <AccountGuard.Optional>
