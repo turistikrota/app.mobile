@@ -80,7 +80,6 @@ const AccountEditProfilePictureSection: React.FC<Props> = ({
     <Center
       sx={{
         mt: "$2",
-        mb: "$4",
       }}
     >
       <Avatar size="2xl" borderRadius="$sm" bgColor="$coolGray200">

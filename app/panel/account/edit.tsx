@@ -65,7 +65,7 @@ export default function EditAccountPage() {
         <ScrollView>
           {isLoading && <LoadingFullScreen />}
           {!isLoading && details && (
-            <VStack space="md">
+            <VStack space="2xl">
               <AccountEditProfilePictureSection
                 avatar={details.avatarUrl}
                 fullName={details.fullName}
