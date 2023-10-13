@@ -1,1 +1,38 @@
-{}
+{
+  "place": {
+    "name": "Places",
+    "description": "Find great attractions near you or your holiday."
+  },
+  "account": {
+    "name": "Account",
+    "description": "Manage your account, settings and notifications."
+  },
+  "owner": {
+    "name": "Owner",
+    "description": "Manage your own locations, comments, and notifications."
+  },
+  "booking": {
+    "name": "Reservation",
+    "description": "Manage your reservations and reservation requests."
+  },
+  "wallet": {
+    "name": "Wallet",
+    "description": "Manage your payments and payment requests."
+  },
+  "chat": {
+    "name": "Chat",
+    "description": "Manage your chats or start new chats."
+  },
+  "invoice": {
+    "name": "Invoice",
+    "description": "Manage your invoices and invoice requests."
+  },
+  "settings": {
+    "name": "Settings",
+    "description": "Manage your language, currency and notifications."
+  },
+  "support": {
+    "name": "Support",
+    "description": "Contact the help center or contact us."
+  }
+}

@@ -1,1 +1,10 @@
-{}
+{
+  "apps": "All Apps",
+  "route": "Route",
+  "home": "Homepage",
+  "board": "Control Panel",
+  "auth": "Sign In",
+  "register": "Register",
+  "help/index": "Help",
+  "account": "Account"
+}

@@ -1,1 +1,22 @@
-{}
+{
+  "title": "Control Panel",
+  "settings": "Settings",
+  "country": "Change Country",
+  "help": "Help",
+  "login": "Sign In",
+  "manage": "Manage Your Account",
+  "invite": "Invite Friends",
+  "profile": {
+    "select": "Select Profile",
+    "view": "View My Profile",
+    "edit": "Edit My Profile",
+    "all": "All My Profiles"
+  },
+  "logout": {
+    "button": "Log Out",
+    "checkText": "Are you sure you want to log out?",
+    "okButtonText": "Log Out",
+    "success": "Logged Out",
+    "error": "Exit Failed"
+  }
+}
