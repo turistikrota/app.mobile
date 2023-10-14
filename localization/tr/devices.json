@@ -1,0 +1,25 @@
+{
+  "title": "Cihazları Yönet",
+  "detailTitle": "Cihaz Bilgileri",
+  "lastSeen": "Son giriş {{date}}",
+  "ago": " önce",
+  "infoTitle": "Cihaz Kontrolü",
+  "infoDesc": "Şu anda hesabınızda oturum açmış olan cihazlar",
+  "destroyOthers": "Diğer cihazları yok et",
+  "destroy": "Bu cihazı yok et",
+  "securityInfo": "Eğer şüpheli bir cihaz veya giriş olduğunu düşünüyorsanız, yalnızca o cihazdaki oturumu kaldırabilirsiniz. Dilerseniz de şu anda giriş yaptığınız cihaz hariç tüm cihazlardan çıkış yapabilirsiniz.",
+  "browserInfo": "Tarayıcıların yapısı gereği bir fiziksel cihazda birden fazla oturum görebilirsiniz. Aynı cihazda farklı tarayıcılardan yaptığınız girişler farklı cihaz olarak görünür.",
+  "device": {
+    "ip": "IP Adresi",
+    "lastSeen": "Son Görülme",
+    "os": "İşletim Sistemi",
+    "type": "Cihaz Türü",
+    "types": {
+      "desktop": "Masaüstü",
+      "mobile": "Mobil",
+      "tablet": "Tablet",
+      "bot": "Bot",
+      "unknown": "Bilinmiyor"
+    }
+  }
+}

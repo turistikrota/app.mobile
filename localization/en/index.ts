@@ -3,6 +3,7 @@ import alertEN from './alert.json';
 import appsEN from './apps.json';
 import authEN from './auth.json';
 import commonEN from './common.json';
+import devicesEN from './devices.json';
 import menuEN from './menu.json';
 import panelEN from './panel.json';
 import validationEN from './validation.json';
@@ -16,4 +17,5 @@ export default {
     panel: panelEN,
     account: accountEN,
     validation: validationEN,
+    devices: devicesEN
 }

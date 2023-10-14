@@ -1,0 +1,25 @@
+{
+  "title": "Manage Devices",
+  "detailTitle": "Device Information",
+  "lastSeen": "Last login {{date}}",
+  "ago": " ago",
+  "infoTitle": "Device Control",
+  "infoDesc": "Devices that are currently logged in to your account",
+  "destroyOthers": "Destroy other devices",
+  "destroy": "Destroy The Device",
+  "securityInfo": "If you think there is a suspicious device or login, you can simply remove the login from that device. If you wish, you can log out from all devices except the device you are currently logged in to.",
+  "browserInfo": "Due to the nature of browsers, you can see more than one session on one physical device. Entries you make from different browsers on the same device appear as different devices.",
+  "device": {
+    "ip": "IP Address",
+    "lastSeen": "Last Seen",
+    "os": "Operating System",
+    "type": "Device Type",
+    "types": {
+      "desktop": "Desktop",
+      "mobile": "Mobile",
+      "tablet": "Tablet",
+      "bot": "Bot",
+      "unknown": "Unknown"
+    }
+  }
+}
