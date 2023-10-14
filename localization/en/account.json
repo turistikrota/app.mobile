@@ -39,5 +39,23 @@
   "deletion": {
     "title": "Delete Profile",
     "confirm": "Are you sure you want to delete your profile? This action cannot be undone."
+  },
+  "general": {
+    "title": "Profile Information",
+    "subtitle": "The information here will appear on your profile. You can change this information at any time.",
+    "fullName": {
+      "label": "Your Name and Surname",
+      "placeholder": "John Doe"
+    },
+    "description": {
+      "label": "About You",
+      "placeholder": "You can talk about yourself in your about section."
+    },
+    "birth": {
+      "label": "Your date of birth",
+      "placeholder": "Tap to Select"
+    },
+    "submit": "Save Changes",
+    "success": "Your profile information has been updated successfully! It may take some time for the changes to be implemented."
   }
 }

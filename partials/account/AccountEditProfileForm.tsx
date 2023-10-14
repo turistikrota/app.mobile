@@ -30,6 +30,7 @@ import { Services, apiUrl } from "~config/services";
 import { useAlert } from "~hooks/alert";
 import { useDayJS } from "~hooks/dayjs";
 import { httpClient } from "~http/client";
+import Loading from "~partials/state/Loading";
 import { useAccountUpdateSchema } from "~schemas/account/update.schema";
 import { setNames } from "~store/account.store";
 import { parseApiError } from "~utils/api-error";
@@ -58,7 +59,7 @@ const AccountEditProfileForm: React.FC<Props> = ({
   const clr = Colors.lighter;
   const [pickerShown, setPickerShown] = useState<boolean>(false);
   const [birthDateValue, setBirthDateValue] = useState<Date | null>(
-    birthDate ? dayjs(birthDate).toDate() : null
+    birthDate ? dayjs(birthDate, "YYYY-MM-DD").toDate() : null
   );
 
   const form = useFormik({
@@ -76,7 +77,9 @@ const AccountEditProfileForm: React.FC<Props> = ({
         .put(apiUrl(Services.Account, `/@${userName}`), {
           fullName: values.fullName,
           description: values.description,
-          birthDate: birthDateValue ?? undefined,
+          birthDate: birthDateValue
+            ? dayjs(birthDateValue).format("YYYY-MM-DD")
+            : undefined,
         })
         .then((res) => {
           if (res.status === 200) {
@@ -193,7 +196,7 @@ const AccountEditProfileForm: React.FC<Props> = ({
         >
           <Box
             sx={{
-              w: birthDate === null ? "$full" : "$5/6",
+              w: !birthDate && !birthDateValue ? "$full" : "$5/6",
               paddingRight: birthDate === null ? "$0" : "$2",
               justifyContent: "center",
               flexDirection: "row",
@@ -225,7 +228,7 @@ const AccountEditProfileForm: React.FC<Props> = ({
               </Text>
             </Button>
           </Box>
-          {![null, ""].includes(birthDate) && (
+          {(![null, ""].includes(birthDate) || !!birthDateValue) && (
             <Box
               sx={{
                 w: "$1/6",
@@ -239,7 +242,11 @@ const AccountEditProfileForm: React.FC<Props> = ({
           )}
         </Box>
       </FormControl>
-      <Button></Button>
+      <Button onPress={() => form.handleSubmit()}>
+        <Loading color="$white" value={loading}>
+          <Text color="$white">{t("general.submit")}</Text>
+        </Loading>
+      </Button>
     </VStack>
   );
 };

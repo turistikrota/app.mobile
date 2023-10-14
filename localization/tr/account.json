@@ -41,5 +41,23 @@
   "deletion": {
     "title": "Profili Sil",
     "confirm": "Profili silmek istediğinize emin misiniz? Bu işlem geri alınamaz."
+  },
+  "general": {
+    "title": "Profil Bilgileri",
+    "subtitle": "Buradaki bilgiler profilinizde görünecektir. Bu bilgileri dilediğiniz zaman değiştirebilirsiniz.",
+    "fullName": {
+      "label": "Adınız ve Soyadınız",
+      "placeholder": "Ahmet Yılmaz"
+    },
+    "description": {
+      "label": "Hakkınızda",
+      "placeholder": "Hakkında kısmınızda kendinizden bahsedebilirsiniz."
+    },
+    "birth": {
+      "label": "Doğum tarihiniz",
+      "placeholder": "Seçmek için Dokun"
+    },
+    "submit": "Değişiklikleri Kaydet",
+    "success": "Profil bilgileriniz başarıyla güncellendi! Değişikliklerin uygulanması biraz zaman alabilir."
   }
 }
