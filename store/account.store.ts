@@ -41,10 +41,14 @@ const accountSlice = createSlice({
         },
         setAccountIsActive: (state, action) => {
             state.profile!.isActive = action.payload;
+        },
+        setNames: (state, action) => {
+            state.profile!.fullName = action.payload.fullName;
+            state.profile!.description = action.payload.description;
         }
     }
 })
 
-export const { setLoading, setAccount, setProfile, reset, setAccountIsActive } = accountSlice.actions;
+export const { setLoading, setAccount, setProfile, reset, setAccountIsActive, setNames } = accountSlice.actions;
 
 export default accountSlice.reducer;

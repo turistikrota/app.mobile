@@ -5,6 +5,7 @@ import authTR from './auth.json';
 import commonTR from './common.json';
 import menuTR from './menu.json';
 import panelTR from './panel.json';
+import validationTR from './validation.json';
 
 export default {
     common: commonTR,
@@ -13,5 +14,6 @@ export default {
     menu: menuTR,
     apps: appsTR,
     panel: panelTR,
-    account: accountTR
+    account: accountTR,
+    validation: validationTR,
 }

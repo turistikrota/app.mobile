@@ -143,6 +143,12 @@ const Icons: Record<string, Icon> = {
   plus: {
     draws: ["M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"],
   },
+  trash: {
+    draws: [
+      "M5 20a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8h2V6h-4V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H3v2h2zM9 4h6v2H9zM8 8h9v12H7V8z",
+      "M9 10h2v8H9zm4 0h2v8h-2z",
+    ],
+  },
 };
 
 type IconName = keyof typeof Icons;

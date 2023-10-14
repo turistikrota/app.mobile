@@ -22,6 +22,7 @@ module.exports = function (api) {
             "~partials": "./partials",
             "~http": "./http",
             "~types": "./types",
+            "~schemas": "./schemas",
           },
           extensions: [
             ".js",

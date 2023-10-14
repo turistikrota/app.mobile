@@ -73,7 +73,13 @@ export default function EditAccountPage() {
                 onUpdate={refetch}
               />
               <AccountEditProfileCompletedRate value={details.completedRate} />
-              <AccountEditProfileForm />
+              <AccountEditProfileForm
+                userName={details.userName}
+                fullName={details.fullName}
+                description={details.description}
+                birthDate={details.birthDate}
+                onUpdate={refetch}
+              />
               <AccountEditProfileActivationForm
                 isActive={details.isActive}
                 userName={details.userName}

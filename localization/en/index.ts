@@ -5,6 +5,7 @@ import authEN from './auth.json';
 import commonEN from './common.json';
 import menuEN from './menu.json';
 import panelEN from './panel.json';
+import validationEN from './validation.json';
 
 export default {
     common: commonEN,
@@ -13,5 +14,6 @@ export default {
     menu: menuEN,
     apps: appsEN,
     panel: panelEN,
-    account: accountEN
+    account: accountEN,
+    validation: validationEN,
 }
