@@ -6,11 +6,13 @@ import {
   AlertText,
   Button,
   Center,
+  Heading,
   InfoIcon,
   ScrollView,
   Text,
   View,
 } from "@gluestack-ui/themed";
+import { useNavigation } from "expo-router";
 import { useTranslation } from "react-i18next";
 import BoxIcon from "~assets/Icons/BoxIcon";
 import { Services, apiUrl } from "~config/services";
@@ -20,8 +22,10 @@ import { httpClient } from "~http/client";
 import DeviceListItem from "~partials/device/DeviceListItem";
 import LoadingListItem from "~partials/state/LoadingListItem";
 import { DeviceItem, isDeviceItems } from "~types/device";
+import { parseApiError } from "~utils/api-error";
 
 const DeviceControlPage: React.FC = () => {
+  const navigation = useNavigation();
   const { t } = useTranslation("devices");
   const [loading, setLoading] = useState(true);
   const [devices, setDevices] = useState<DeviceItem[]>([]);
@@ -36,7 +40,7 @@ const DeviceControlPage: React.FC = () => {
     [devices]
   );
 
-  useEffect(() => {
+  const fetch = () => {
     httpClient
       .get(apiUrl(Services.Auth, "/session"))
       .then((res) => {
@@ -48,9 +52,31 @@ const DeviceControlPage: React.FC = () => {
       .finally(() => {
         setLoading(false);
       });
+  };
+
+  useEffect(() => {
+    navigation.addListener("focus", fetch);
   }, []);
 
-  const destroyOthers = () => {};
+  const destroyOthers = async () => {
+    const res = await alert.confirm(t("confirm.others"));
+    if (!res.confirmed) return;
+    setLoading(true);
+    httpClient
+      .delete(apiUrl(Services.Auth, `/session/others`))
+      .then((res) => {
+        fetch();
+      })
+      .catch((err) => {
+        parseApiError({
+          error: err?.response?.data,
+          toast: (msg) => alert.alert(msg),
+        });
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
   return (
     <AuthGuard.Required>
       <View sx={{ bg: "$white", h: "$full", px: "$2" }}>
@@ -66,15 +92,26 @@ const DeviceControlPage: React.FC = () => {
             }}
           >
             <BoxIcon name="devices" width={100} height={100}></BoxIcon>
-            <Text sx={{ fontSize: "$lg", fontWeight: "bold" }}>
+            <Heading sx={{ fontSize: "$lg", fontWeight: "bold" }}>
               {t("infoTitle")}
-            </Text>
-            <Text sx={{ fontSize: "$sm", color: "$gray500" }}>
+            </Heading>
+            <Text sx={{ fontSize: "$sm", color: "$textLight600" }}>
               {t("infoDesc")}
             </Text>
-            <Button onPress={destroyOthers} action="negative" sx={{ mt: "$2" }}>
-              <Text color="$white">{t("destroyOthers")}</Text>
-            </Button>
+            {filteredItems.length === 0 ? (
+              <Alert mt="$2" action="info" variant="accent">
+                <AlertIcon as={InfoIcon} mr="$3" />
+                <AlertText>{t("noOtherDevices")}</AlertText>
+              </Alert>
+            ) : (
+              <Button
+                onPress={destroyOthers}
+                action="negative"
+                sx={{ mt: "$2" }}
+              >
+                <Text color="$white">{t("destroyOthers")}</Text>
+              </Button>
+            )}
           </Center>
           {loading ? (
             <LoadingListItem />

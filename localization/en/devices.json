@@ -21,5 +21,10 @@
       "bot": "Bot",
       "unknown": "Unknown"
     }
+  },
+  "noOtherDevices": "There are no other devices.",
+  "confirm": {
+    "others": "Are you sure you want to destroy other devices? If you confirm, you will log out of all devices except the one you are currently logged in.",
+    "destroy": "Are you sure you want to destroy this device? If you confirm, the session on this device will be removed."
   }
 }

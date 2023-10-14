@@ -6,16 +6,19 @@ import {
   View,
   useToken,
 } from "@gluestack-ui/themed";
-import { useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import BoxIcon from "~assets/Icons/BoxIcon";
 import LineTable from "~components/LineTable";
+import { Services, apiUrl } from "~config/services";
 import { useAlert } from "~hooks/alert";
 import { useDeviceDate, useDeviceIcon } from "~hooks/device";
+import { httpClient } from "~http/client";
 import Loading from "~partials/state/Loading";
 import { DeviceItemWithoutCurrent } from "~types/device";
+import { parseApiError } from "~utils/api-error";
 
 const DeviceDetailModal: React.FC = () => {
   const { t } = useTranslation("devices");
@@ -27,7 +30,25 @@ const DeviceDetailModal: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const alert = useAlert();
 
-  const destroy = async () => {};
+  const destroy = async () => {
+    const res = await alert.confirm(t("confirm.destroy"));
+    if (!res.confirmed) return;
+    setLoading(true);
+    httpClient
+      .delete(apiUrl(Services.Auth, `/session/${device.device_uuid}`))
+      .then((res) => {
+        router.back();
+      })
+      .catch((err) => {
+        parseApiError({
+          error: err?.response?.data,
+          toast: (msg) => alert.alert(msg),
+        });
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
   return (
     <View
       sx={{
@@ -86,7 +107,7 @@ const DeviceDetailModal: React.FC = () => {
           </LineTable.Item>
         </LineTable>
         <Button onPress={destroy} action="negative" sx={{ mt: "$2" }}>
-          <Loading value={loading}>
+          <Loading value={loading} color="$white">
             <Text color="$white">{t("destroy")}</Text>
           </Loading>
         </Button>
