@@ -54,9 +54,6 @@ const AuthProtectedItems: React.FC = () => {
 
   return (
     <>
-      <ListLinkItem href="/panel/invite" icon={<BoxIcon name="user-plus" />}>
-        <Text>{t("invite")}</Text>
-      </ListLinkItem>
       <ListLinkItem href="/panel/devices" icon={<BoxIcon name="devices" />}>
         <Text>{t("devices")}</Text>
       </ListLinkItem>
