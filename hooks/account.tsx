@@ -53,7 +53,7 @@ const useAccount = (redirect: boolean = false): void => {
               isFetched: true,
               isError: false,
               loading: false,
-              account: res.data,
+              profile: res.data,
             })
           );
         }
@@ -76,7 +76,7 @@ const useAccount = (redirect: boolean = false): void => {
               isFetched: true,
               isError: false,
               loading: false,
-              account: null,
+              profile: null,
             })
           );
           return;
@@ -86,7 +86,7 @@ const useAccount = (redirect: boolean = false): void => {
             isFetched: true,
             isError: true,
             loading: false,
-            account: null,
+            profile: null,
           })
         );
       })

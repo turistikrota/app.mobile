@@ -76,7 +76,7 @@ const DeviceListItem: React.FC<DeviceItem> = ({
         sx={{
           w: "$1/6",
           justifyContent: "center",
-          alignItems: "center",
+          alignItems: "flex-end",
           p: "$2",
         }}
       >

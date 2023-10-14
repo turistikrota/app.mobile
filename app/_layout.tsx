@@ -1,5 +1,5 @@
-import { GluestackUIProvider, Pressable, useToken } from "@gluestack-ui/themed";
-import { Link, Tabs, router } from "expo-router";
+import { GluestackUIProvider, useToken } from "@gluestack-ui/themed";
+import { Tabs } from "expo-router";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
@@ -12,6 +12,7 @@ import BoxIcon from "~assets/Icons/BoxIcon";
 import Logo from "~assets/Icons/Logo";
 import { config } from "~config/gluestack-ui.config";
 import "~localization/i18n";
+import AccountHeadButton from "~partials/account/AccountHeadButton";
 import { store } from "~store";
 
 function HomeLayout() {
@@ -52,13 +53,7 @@ function HomeLayout() {
             paddingRight: 8,
           },
           headerTitle: () => null,
-          headerRight: () => (
-            <Link href="/panel">
-              <Pressable onPress={() => router.push("/panel")}>
-                <BoxIcon name="user" />
-              </Pressable>
-            </Link>
-          ),
+          headerRight: () => <AccountHeadButton />,
         }}
       >
         <Tabs.Screen
