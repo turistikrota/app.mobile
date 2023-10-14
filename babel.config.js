@@ -25,6 +25,7 @@ module.exports = function (api) {
             "~schemas": "./schemas",
           },
           extensions: [
+            ".svg",
             ".js",
             ".jsx",
             ".ts",

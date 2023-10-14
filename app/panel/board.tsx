@@ -201,11 +201,6 @@ const PublicItems: React.FC = () => {
       href: "/panel/settings",
     },
     {
-      name: "country",
-      icon: "world",
-      href: "/panel/country",
-    },
-    {
       name: "help",
       icon: "question",
       href: "/panel/help",
