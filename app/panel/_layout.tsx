@@ -33,6 +33,7 @@ export default function PanelLayout() {
           >
             <Stack.Screen name="board" />
             <Stack.Screen name="auth" />
+            <Stack.Screen name="devices" />
             <Stack.Screen
               name="account"
               options={{
