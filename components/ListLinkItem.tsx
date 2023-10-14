@@ -40,7 +40,7 @@ const ListLinkItem: React.FC<React.PropsWithChildren<Props>> = ({
             w: "$1/6",
             justifyContent: "center",
             alignItems: "center",
-            p: "$2",
+            py: "$2",
           }}
         >
           {icon}
@@ -59,8 +59,8 @@ const ListLinkItem: React.FC<React.PropsWithChildren<Props>> = ({
           sx={{
             w: "$1/6",
             justifyContent: "center",
-            alignItems: "center",
-            p: "$2",
+            alignItems: "flex-end",
+            py: "$2",
           }}
         >
           <BoxIcon name="chevron-right" color={iconColor} />
