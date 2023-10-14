@@ -6,5 +6,6 @@
   "auth": "Sign In",
   "register": "Register",
   "help/index": "Help",
-  "account": "Account"
+  "account": "Account",
+  "manage": "Manage Account"
 }

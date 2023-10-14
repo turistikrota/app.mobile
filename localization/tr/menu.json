@@ -6,5 +6,6 @@
   "auth": "Giriş Yap",
   "register": "Kayıt Ol",
   "help/index": "Yardım",
-  "account": "Hesap"
+  "account": "Hesap",
+  "manage": "Hesabını Yönet"
 }

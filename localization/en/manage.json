@@ -1,0 +1,5 @@
+{
+  "alert": "If you log in again within 30 days after deleting your account, you can get your account back. If you do not log in within 30 days, your account will be permanently deleted.",
+  "confirm": "Are you sure you want to delete your account? This action cannot be undone.",
+  "button": "Delete My Account"
+}

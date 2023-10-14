@@ -1,0 +1,5 @@
+{
+  "alert": "Hesabınızı sildikten sonra 30 gün içinde tekrar giriş yaparsanız hesabınızı geri alabilirsiniz. 30 gün içinde giriş yapmazsanız hesabınız kalıcı olarak silinecektir.",
+  "confirm": "Hesabınızı silmek istediğinize emin misiniz? Bu işlem geri alınamaz.",
+  "button": "Hesabımı Sil"
+}
