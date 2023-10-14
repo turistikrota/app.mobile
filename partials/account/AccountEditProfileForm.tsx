@@ -22,7 +22,6 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import { useFormik } from "formik";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 import { useDispatch } from "react-redux";
 import BoxIcon from "~assets/Icons/BoxIcon";
 import { FormDescription, FormTitle } from "~components/Form";
@@ -56,7 +55,6 @@ const AccountEditProfileForm: React.FC<Props> = ({
   const schema = useAccountUpdateSchema();
   const alert = useAlert();
   const dayjs = useDayJS();
-  const clr = Colors.lighter;
   const [pickerShown, setPickerShown] = useState<boolean>(false);
   const [birthDateValue, setBirthDateValue] = useState<Date | null>(
     birthDate ? dayjs(birthDate, "YYYY-MM-DD").toDate() : null

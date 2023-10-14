@@ -4,7 +4,13 @@
     "title": "Bir Profil Seç"
   },
   "create": {
-    "title": "Profil Oluştur"
+    "title": "Profil Oluştur",
+    "userName": {
+      "label": "Kullanıcı Adı",
+      "placeholder": "Benzersiz bir kullanıcı adı girin"
+    },
+    "submit": "Profil Oluştur",
+    "success": "Profiliniz başarıyla oluşturuldu!"
   },
   "edit": {
     "title": "Profili Düzenle",

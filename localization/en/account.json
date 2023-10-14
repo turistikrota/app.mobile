@@ -4,7 +4,13 @@
     "title": "Select a Profile"
   },
   "create": {
-    "title": "Create Profile"
+    "title": "Create Profile",
+    "userName": {
+      "label": "Username",
+      "placeholder": "Enter a unique username"
+    },
+    "submit": "Create Profile",
+    "success": "Your profile was created successfully!"
   },
   "edit": {
     "title": "Edit Profile",
