@@ -140,12 +140,6 @@ const ProfileSelectedItems: React.FC = () => {
           @{profile.userName}
         </Text>
       </Center>
-      <ListLinkItem
-        href={`/profile/${profile.userName}`}
-        icon={<BoxIcon name="profile" />}
-      >
-        <Text>{t("profile.view")}</Text>
-      </ListLinkItem>
       <ListLinkItem href="/panel/account/edit" icon={<BoxIcon name="edit" />}>
         <Text>{t("profile.edit")}</Text>
       </ListLinkItem>
