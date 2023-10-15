@@ -25,6 +25,7 @@ import { Services, apiUrl } from "~config/services";
 import { useAlert } from "~hooks/alert";
 import { httpClient } from "~http/client";
 import { loggedIn } from "~store/auth.store";
+import { isVerifyRequiredForLoginResponse } from "~types/auth";
 import { parseApiError } from "~utils/api-error";
 
 type SearchParams = {
@@ -65,6 +66,14 @@ export default function LoginPage() {
         })
         .catch((res) => {
           setTurnstileKey(turnstileKey + 1);
+          if (isVerifyRequiredForLoginResponse(res?.response?.data)) {
+            return router.push({
+              pathname: "/panel/auth/resend",
+              params: {
+                email,
+              },
+            });
+          }
           parseApiError({
             error: res?.response?.data,
             toast: (msg: string) => {
