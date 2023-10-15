@@ -539,7 +539,7 @@ export const gluestackUIConfig = createConfig({
     },
     fonts: {
       heading: undefined,
-      body: undefined,
+      body: "Verdana",
       mono: undefined,
     },
     fontSizes: {
