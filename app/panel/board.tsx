@@ -192,28 +192,34 @@ const PublicItems: React.FC = () => {
 
   const items = [
     {
+      name: "vision",
+      href: "/panel/vision",
+    },
+    {
       name: "about",
-      icon: "info",
       href: "/panel/about",
     },
     {
-      name: "help",
-      icon: "question",
-      href: "/panel/help",
+      name: "personal-data",
+      href: "/panel/help/privacyAndPersonalData",
+    },
+    {
+      name: "privacy-note",
+      href: "/panel/help/privacyNote",
+    },
+    {
+      name: "terms-of-use",
+      href: "/panel/help/termsOfUse",
     },
   ];
   return (
-    <>
+    <Box sx={{ px: "$2" }}>
       {items.map((i) => (
-        <ListLinkItem
-          key={i.name}
-          href={i.href}
-          icon={<BoxIcon name={i.icon} />}
-        >
+        <ListLinkItem key={i.name} href={i.href}>
           <Text>{t(i.name)}</Text>
         </ListLinkItem>
       ))}
-    </>
+    </Box>
   );
 };
 
@@ -232,7 +238,6 @@ export default function PanelPage() {
       sx={{
         backgroundColor: "$white",
         h: "$full",
-        px: "$2",
       }}
     >
       <ScrollView>

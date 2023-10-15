@@ -45,7 +45,6 @@ export default function PanelLayout() {
                 headerShown: false,
               }}
             />
-            <Stack.Screen name="help/index" />
             <Stack.Screen name="help/[id]" />
           </Stack>
         </View>

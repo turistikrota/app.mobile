@@ -9,6 +9,10 @@
   "devices": "Cihazları Yönet",
   "about": "Uygulama Hakkında",
   "change-password": "Şifre Değiştir",
+  "personal-data": "Aydınlatma Metni",
+  "privacy-note": "Gizlilik Politikası",
+  "terms-of-use": "Kullanım Koşulları",
+  "vision": "Vizyonumuz",
   "profile": {
     "select": "Profil Seç",
     "view": "Profilimi Görüntüle",

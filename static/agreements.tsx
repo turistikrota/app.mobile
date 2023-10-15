@@ -17,7 +17,7 @@ export type Agreements = {
 export const agreements: Agreements = {
   privacyAndPersonalData: {
     tr: {
-      title: "Kişisel Verilerin Korunması ve Gizlilik Politikası",
+      title: "Aydınlatma Metni",
       content: `<h2 id="web-sitesi-gizlilik-sözleşmesi">Web Sitesi Gizlilik Sözleşmesi</h2>
       <p>turistikrota.com&#39;u ziyaret etmeniz ve bu site vasıtasıyla sunduğumuz hizmetlerden yararlanmanız sırasında size ve talep ettiğiniz hizmetlere ilişkin olarak elde ettiğimiz bilgilerin ne şekilde kullanılacağı ve korunacağı işbu &quot;Gizlilik Politikası&quot;nda belirtilen şartlara tabidir. Bu web sitesini ziyaret etmekle ve bu site vasıtasıyla hizmetlerimizden yararlanmakla işbu Gizlilik Politikası&#39;nı okuduğunuzu, anladığınızı ve kabul ettiğinizi beyan etmiş olursunuz.</p>
       <h2 id="i-kişisel-verilerin-korunması-ve-işlenmesi-politikasının-amacı">I. Kişisel verilerin korunması ve işlenmesi politikasının amacı</h2>
@@ -148,7 +148,7 @@ export const agreements: Agreements = {
       `,
     },
     en: {
-      title: "Protection of Personal Data and Privacy Policy",
+      title: "Clarification Text",
       content: `<h2 id="website-privacy-policy">Website Privacy Policy</h2>
       <p>How to use and protect the information we obtain about you and the services you request during your visit to Turistikrota and your use of the services we offer through this site are subject to the conditions set forth in this &quot;Privacy Policy&quot;. By visiting this website and using our services through this website, you declare that you have read, understood and accepted this Privacy Policy.</p>
       <h2 id="i-purpose-of-personal-data-protection-and-processing-policy">I. Purpose of personal data protection and processing policy</h2>
@@ -318,7 +318,7 @@ export const agreements: Agreements = {
   },
   termsOfUse: {
     tr: {
-      title: "KULLANIM KOŞULLARI",
+      title: "Kullanım Koşulları",
       content: `<p>Siteye erişiminizden veya siteyi kullanımınızdan önce lütfen bu sözleşmeyi dikkatle okuyunuz. Siteye erişmekle veya siteyi kullanmakla, aşağıda belirtilen şartlar ve hükümlerle bağlı olmayı kabul etmektesiniz. Eğer bu şartlar ve hükümlerle bağlı olmak istemezseniz, siteye erişmeyebilir veya siteyi kullanmayabilirisiniz ve böyle bir kullanıma başladıysanız kullanımı derhal durdurmalısınız. <a href="https://www.turistikrota.com/">turistikrota.com</a> bu sözleşmede her zaman değişiklik yapabilir ve bu değişiklikler değiştirilmiş sözleşmenin siteye konulmasıyla derhal yürürlük kazanır. Siz bu değişikliklerden haberdar olmak amacıyla periyodik olarak sözleşmeyi gözden geçirmeyi kabul etmektesiniz ve siteye devam eden erişiminiz veya devam eden siteyi kullanımınız değiştirilmiş sözleşmeyi kesin olarak kabul ettiğiniz anlamına gelecektir.</p>
       <h2 id="1-ticari-markalar-fikri-mülkiyet-telif-hakları">1. Ticari Markalar, Fikri Mülkiyet, Telif Hakları</h2>
       <p><a href="https://www.turistikrota.com/">turistikrota.com</a> sitesinin tüm hakları Turistikrota LTD. ŞTİ.&#39;a aittir. Bu web sayfalarında yayımlanan içerikler (örneğin yazılım, ürünler, logolar, vs. gibi ticari markalar, bilgiler, raporlar, resimler ve grafikler), ulusal ve uluslar arası kanunlar ve uluslar arası sözleşmeler ile korunmaktadır.</p>
@@ -340,7 +340,7 @@ export const agreements: Agreements = {
       `,
     },
     en: {
-      title: "TERMS OF USE",
+      title: "Terms of Use",
       content: `<p>Please read this agreement carefully before accessing or using the site. By accessing or using the site, you agree to be bound by the terms and conditions set forth below. If you do not wish to be bound by these terms and conditions, you may not access or use the site, and if you have started such use, you should immediately stop using it. <a href="https://www.turistikrota.com/">turistikrota.com</a> can make changes to this agreement at any time, and these changes will become effective immediately after the amended agreement is posted on the site. You agree to periodically review the agreement to be aware of these changes, and your continued access to or use of the site will constitute your final acceptance of the amended agreement.</p>
       <h2 id="1-trademarks-intellectual-property-copyrights">1. Trademarks, Intellectual Property, Copyrights</h2>
       <p>All rights of <a href="https://www.turistikrota.com/">turistikrota.com</a> belong to Turistikrota LTD. STI. The contents published on these web pages (eg trademarks, information, reports, pictures and graphics such as software, products, logos, etc.) are protected by national and international laws and international agreements.</p>

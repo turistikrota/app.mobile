@@ -9,6 +9,10 @@
   "devices": "Manage Devices",
   "about": "About Application",
   "change-password": "Change Password",
+  "personal-data": "Clarification Text",
+  "privacy-note": "Privacy Policy",
+  "terms-of-use": "Terms of Use",
+  "vision": "Our Vision",
   "profile": {
     "select": "Select Profile",
     "view": "View My Profile",
