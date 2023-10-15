@@ -2,6 +2,7 @@ import accountTR from './account.json';
 import alertTR from './alert.json';
 import appsTR from './apps.json';
 import authTR from './auth.json';
+import changePasswordTR from './change-password.json';
 import commonTR from './common.json';
 import devicesTR from './devices.json';
 import manageTR from './manage.json';
@@ -19,5 +20,6 @@ export default {
     account: accountTR,
     validation: validationTR,
     devices: devicesTR,
-    manage: manageTR
+    manage: manageTR,
+    changePassword: changePasswordTR
 }

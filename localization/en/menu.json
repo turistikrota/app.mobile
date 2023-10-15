@@ -8,5 +8,6 @@
   "help/index": "Help",
   "account": "Account",
   "about": "About Application",
-  "manage": "Manage Account"
+  "manage": "Manage Account",
+  "change-password": "Change Password"
 }

@@ -81,7 +81,11 @@ export default function ManageAccountPage() {
           >
             <Loading value={loading} color="$white">
               <Text color="$white">
-                {!token ? t("captcha.loading") : t("button")}
+                {!token
+                  ? t("captcha.loading")
+                  : loading
+                  ? t("loading")
+                  : t("button")}
               </Text>
             </Loading>
           </Button>

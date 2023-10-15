@@ -61,6 +61,12 @@ const AuthProtectedItems: React.FC = () => {
         <Text>{t("manage")}</Text>
       </ListLinkItem>
       <ListLinkItem
+        href="/panel/change-password"
+        icon={<BoxIcon name="shield" />}
+      >
+        <Text>{t("change-password")}</Text>
+      </ListLinkItem>
+      <ListLinkItem
         href="/panel/auth"
         disabled={logoutLoading}
         icon={<BoxIcon name="logout" />}

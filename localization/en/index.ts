@@ -3,6 +3,7 @@ import accountEN from './account.json';
 import alertEN from './alert.json';
 import appsEN from './apps.json';
 import authEN from './auth.json';
+import changePasswordEN from './change-password.json';
 import commonEN from './common.json';
 import devicesEN from './devices.json';
 import manageEN from './manage.json';
@@ -21,5 +22,6 @@ export default {
     validation: validationEN,
     devices: devicesEN,
     manage: manageEN,
-    about: aboutEN
+    about: aboutEN,
+    changePassword: changePasswordEN
 }

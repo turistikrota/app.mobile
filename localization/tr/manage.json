@@ -4,5 +4,6 @@
   "button": "Hesabımı Sil",
   "captcha": {
     "loading": "Robot doğrulaması yapılıyor..."
-  }
+  },
+  "loading": "Siliniyor..."
 }
