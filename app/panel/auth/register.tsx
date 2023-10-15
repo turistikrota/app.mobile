@@ -30,7 +30,7 @@ import { Config } from "~config/config";
 import { Services, apiUrl } from "~config/services";
 import { useAlert } from "~hooks/alert";
 import { httpClient } from "~http/client";
-import { reset } from "~store/auth.store";
+import { loggedIn } from "~store/auth.store";
 import { parseApiError } from "~utils/api-error";
 
 type SearchParams = {
@@ -74,12 +74,8 @@ export default function RegisterPage() {
           }
         )
         .then((res) => {
-          let to: string = "/panel";
-          if (params.redirect) {
-            to = params.redirect;
-          }
-          dispatch(reset());
-          router.replace(to);
+          dispatch(loggedIn());
+          router.back();
         })
         .catch((res) => {
           setTurnstileKey(turnstileKey + 1);

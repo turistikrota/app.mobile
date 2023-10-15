@@ -49,7 +49,7 @@ const ListLinkItem: React.FC<React.PropsWithChildren<Props>> = ({
       <Box
         sx={{
           w: "$5/6",
-          p: "$2",
+          py: "$2",
         }}
       >
         {children}

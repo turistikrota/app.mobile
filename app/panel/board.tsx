@@ -82,10 +82,10 @@ const NoAuthProtectedItems: React.FC = () => {
         sx={{
           bg: "$primary0",
           borderRadius: "$md",
-          mt: "$2",
-          pt: "$1",
-          pb: "$1",
-          mb: "$2",
+          my: "$2",
+          py: "$1",
+          pl: "$2",
+          pr: "$1",
         }}
         iconColor={iconColor}
       >
@@ -163,10 +163,10 @@ const NoProfileSelectedItems: React.FC = () => {
         sx={{
           bg: "$secondary0",
           borderRadius: "$md",
-          mt: "$2",
-          pt: "$1",
-          pb: "$1",
-          mb: "$2",
+          my: "$2",
+          py: "$1",
+          pl: "$2",
+          pr: "$1",
         }}
         iconColor={iconColor}
       >
@@ -208,11 +208,14 @@ const PublicItems: React.FC = () => {
 };
 
 export default function PanelPage() {
-  const auth = useSelector((state: RootState) => state.auth);
+  const authLoading = useSelector((state: RootState) => state.auth.loading);
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.auth.isAuthenticated
+  );
   const account = useSelector((state: RootState) => state.account);
   const isLoading = useMemo(
-    () => auth.loading || account.loading,
-    [auth.loading, account.loading]
+    () => authLoading || account.loading,
+    [authLoading, account.loading]
   );
   return (
     <View
@@ -232,7 +235,7 @@ export default function PanelPage() {
           >
             <LoadingListItem />
           </Box>
-        ) : auth.isAuthenticated ? (
+        ) : isAuthenticated ? (
           <>
             {!!account.profile ? (
               <>
