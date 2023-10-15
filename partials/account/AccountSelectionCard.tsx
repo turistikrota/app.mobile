@@ -22,10 +22,10 @@ const AccountSelectionCard: React.FC<Props> = ({
   userName,
   fullName,
   progress,
-  disabled
+  disabled,
 }) => {
   return (
-    <Pressable sx={{ mb: "$4", flex: 1 }} onPress={onPress} disabled={disabled}>
+    <Pressable sx={{ mb: "$2", flex: 1 }} onPress={onPress} disabled={disabled}>
       <Box
         sx={{
           flexDirection: "row",
@@ -42,7 +42,7 @@ const AccountSelectionCard: React.FC<Props> = ({
             w: "$1/4",
             justifyContent: "center",
             alignItems: "center",
-            p: "$4",
+            p: "$2",
           }}
         >
           {icon}
@@ -50,7 +50,7 @@ const AccountSelectionCard: React.FC<Props> = ({
         <Box
           sx={{
             w: "$3/4",
-            p: "$4",
+            p: "$2",
             bg: "$light100",
             h: "$full",
             alignItems: "flex-start",
@@ -59,7 +59,7 @@ const AccountSelectionCard: React.FC<Props> = ({
             borderBottomRightRadius: !progress ? "$sm" : 0,
           }}
         >
-          <Text sx={{ fontSize: "$lg", fontWeight: "bold" }}>{userName}</Text>
+          <Text sx={{ fontWeight: "bold" }}>{userName}</Text>
           {fullName && (
             <Text sx={{ fontSize: "$sm", color: "$trueGray600" }}>
               {fullName}
