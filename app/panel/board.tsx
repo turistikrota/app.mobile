@@ -41,7 +41,6 @@ const AuthProtectedItems: React.FC = () => {
         if (res.status === 200) {
           dispatch(resetAuthStore());
           dispatch(resetAccountStore());
-          alert.alert(t("logout.success"));
         }
       })
       .catch((err) => {

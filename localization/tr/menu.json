@@ -5,6 +5,8 @@
   "board": "Kontrol Paneli",
   "auth": "Giriş Yap",
   "register": "Kayıt Ol",
+  "resend": "Yeni Kod Gönder",
+  "activate": "Hesabı Aktive Et",
   "help/index": "Yardım",
   "account": "Hesap",
   "manage": "Hesabını Yönet",

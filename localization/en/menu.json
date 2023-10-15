@@ -7,6 +7,8 @@
   "register": "Register",
   "help/index": "Help",
   "account": "Account",
+  "resend": "Send New Code",
+  "activate": "Activate Account",
   "about": "About Application",
   "manage": "Manage Account",
   "change-password": "Change Password"
