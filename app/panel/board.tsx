@@ -196,20 +196,20 @@ const PublicItems: React.FC = () => {
       href: "/panel/vision",
     },
     {
-      name: "about",
-      href: "/panel/about",
-    },
-    {
-      name: "personal-data",
-      href: "/panel/help/privacyAndPersonalData",
+      name: "terms-of-use",
+      href: "/panel/help/termsOfUse",
     },
     {
       name: "privacy-note",
       href: "/panel/help/privacyNote",
     },
     {
-      name: "terms-of-use",
-      href: "/panel/help/termsOfUse",
+      name: "personal-data",
+      href: "/panel/help/privacyAndPersonalData",
+    },
+    {
+      name: "about",
+      href: "/panel/about",
     },
   ];
   return (

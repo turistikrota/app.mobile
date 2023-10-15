@@ -9,6 +9,7 @@ import manageTR from './manage.json';
 import menuTR from './menu.json';
 import panelTR from './panel.json';
 import validationTR from './validation.json';
+import visionTR from './vision.json';
 
 export default {
     common: commonTR,
@@ -21,5 +22,6 @@ export default {
     validation: validationTR,
     devices: devicesTR,
     manage: manageTR,
-    changePassword: changePasswordTR
+    changePassword: changePasswordTR,
+    vision: visionTR
 }

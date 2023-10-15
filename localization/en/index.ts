@@ -10,6 +10,7 @@ import manageEN from './manage.json';
 import menuEN from './menu.json';
 import panelEN from './panel.json';
 import validationEN from './validation.json';
+import visionEN from './vision.json';
 
 export default {
     common: commonEN,
@@ -23,5 +24,6 @@ export default {
     devices: devicesEN,
     manage: manageEN,
     about: aboutEN,
-    changePassword: changePasswordEN
+    changePassword: changePasswordEN,
+    vision: visionEN
 }
