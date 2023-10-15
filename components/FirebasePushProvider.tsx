@@ -4,12 +4,14 @@ import { FirebaseMessagingTypes } from "@react-native-firebase/messaging";
 import React, { useEffect } from "react";
 import { Platform } from "react-native";
 import PushNotification from "react-native-push-notification";
-import { useAlert } from "~hooks/alert";
+import { useDispatch } from "react-redux";
+import { setFcmToken } from "~store/auth.store";
 
 const FirebasePushProvider: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
-  const alert = useAlert();
+  const dispatch = useDispatch();
+
   const getToken = () => {
     firebase
       .messaging()
@@ -17,7 +19,9 @@ const FirebasePushProvider: React.FC<React.PropsWithChildren> = ({
         appName: firebase.app().name,
         senderId: firebase.app().options.messagingSenderId,
       })
-      .then((x) => console.log(x))
+      .then((token: string) => {
+        dispatch(setFcmToken(token));
+      })
       .catch((e) => console.log(e));
   };
   const requestPermissions = () => {

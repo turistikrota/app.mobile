@@ -127,13 +127,13 @@ function RootLayout() {
   return (
     <SafeAreaProvider>
       <SafeAreaView edges={["bottom"]}>
-        <FirebasePushProvider>
-          <Provider store={store}>
+        <Provider store={store}>
+          <FirebasePushProvider>
             <GluestackUIProvider config={config}>
               <HomeLayout />
             </GluestackUIProvider>
-          </Provider>
-        </FirebasePushProvider>
+          </FirebasePushProvider>
+        </Provider>
       </SafeAreaView>
     </SafeAreaProvider>
   );

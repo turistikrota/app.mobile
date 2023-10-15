@@ -3,13 +3,33 @@ import { useDispatch, useSelector } from "react-redux";
 import { Services, apiUrl } from "../config/services";
 import { httpClient } from "../http/client";
 import { RootState } from "../store";
-import { setAuth, setLoading } from "../store/auth.store";
+import { setAuth, setFcmTokenIsSet, setLoading } from "../store/auth.store";
 import { useAlert } from "./alert";
 
 const useAuth = (): void => {
   const isFetched = useSelector((state: RootState) => state.auth.isFetched);
-  const dispatch = useDispatch();
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.auth.isAuthenticated
+  );
+  const fcmIsSet = useSelector((state: RootState) => state.auth.fcmIsSet);
+  const fcmToken = useSelector((state: RootState) => state.auth.fcmToken);
   const alert = useAlert();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (fcmToken == "" || fcmIsSet == true || isAuthenticated == false) return;
+    httpClient
+      .patch(apiUrl(Services.Auth, "/fcm"), {
+        token: fcmToken,
+      })
+      .then((res) => {
+        dispatch(setFcmTokenIsSet(true));
+      })
+      .catch((err) => {
+        alert.alert(JSON.stringify(err.response.data));
+      })
+      .finally(() => {});
+  }, [fcmIsSet, fcmToken, isAuthenticated]);
 
   useEffect(() => {
     if (isFetched) return;
