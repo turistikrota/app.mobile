@@ -92,7 +92,7 @@ export default function ActivatePage() {
       <VStack space="md" p="$2">
         <Turnstile onVerify={setToken} key={turnstileKey} />
         <Button onPress={onSubmit} isDisabled={loading || !token}>
-          <Loading value={loading}>
+          <Loading value={loading} color="$white">
             <ButtonText color="$white" fontWeight="$medium" fontSize="$sm">
               {!token
                 ? t("captcha.loading")

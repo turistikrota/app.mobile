@@ -71,7 +71,7 @@ export default function RegisterPage() {
           }
         )
         .then((res) => {
-          alert.alert(res.data.message);
+          alert.alert(t("register.success"));
           router.back();
         })
         .catch((res) => {

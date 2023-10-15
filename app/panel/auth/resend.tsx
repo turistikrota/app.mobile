@@ -132,7 +132,7 @@ export default function ResendTokenPage() {
           onPress={() => form.handleSubmit()}
           isDisabled={loading || !token}
         >
-          <Loading value={loading}>
+          <Loading value={loading} color="$white">
             <ButtonText color="$white" fontWeight="$medium" fontSize="$sm">
               {!token
                 ? t("captcha.loading")

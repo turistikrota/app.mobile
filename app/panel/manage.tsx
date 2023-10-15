@@ -78,6 +78,7 @@ export default function ManageAccountPage() {
             action="negative"
             disabled={loading || token == ""}
             onPress={deleteAccount}
+            
           >
             <Loading value={loading} color="$white">
               <Text color="$white">
