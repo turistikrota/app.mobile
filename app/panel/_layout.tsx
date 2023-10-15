@@ -15,8 +15,6 @@ export default function PanelLayout() {
         <View
           sx={{
             flex: 1,
-            paddingTop: insets.top,
-            paddingBottom: insets.bottom,
             bg: "$white",
           }}
         >

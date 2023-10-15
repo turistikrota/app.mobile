@@ -24,11 +24,13 @@ import { Link, useLocalSearchParams, useRouter } from "expo-router";
 import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 import Turnstile from "~components/shared/Turnstile";
 import { Config } from "~config/config";
 import { Services, apiUrl } from "~config/services";
 import { useAlert } from "~hooks/alert";
 import { httpClient } from "~http/client";
+import { reset } from "~store/auth.store";
 import { parseApiError } from "~utils/api-error";
 
 type SearchParams = {
@@ -44,6 +46,7 @@ export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
   const alert = useAlert();
   const router = useRouter();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     router.setParams({
@@ -75,6 +78,7 @@ export default function RegisterPage() {
           if (params.redirect) {
             to = params.redirect;
           }
+          dispatch(reset());
           router.replace(to);
         })
         .catch((res) => {

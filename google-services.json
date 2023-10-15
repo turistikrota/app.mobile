@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "824579019696",
+    "project_id": "turistikrota",
+    "storage_bucket": "turistikrota.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824579019696:android:3f497032127a863bf2fc75",
+        "android_client_info": {
+          "package_name": "com.turistikrota.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824579019696-b178lt8aaille9fngdmovb5jj3h82mae.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwrK14y3Offe6MiVW0EyIpsy7PeR8p_eg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "824579019696-b178lt8aaille9fngdmovb5jj3h82mae.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
