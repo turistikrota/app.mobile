@@ -1,14 +1,12 @@
 import { View } from "@gluestack-ui/themed";
 import { Stack } from "expo-router";
 import React from "react";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import AccountGuard from "~guards/account";
 import AuthGuard from "~guards/auth";
 import HeaderLeft from "~partials/layout/HeaderLeft";
 import HeaderTitle from "~partials/layout/HeaderTitle";
 
 export default function PanelLayout() {
-  const insets = useSafeAreaInsets();
   return (
     <AuthGuard.Optional>
       <AccountGuard.Optional>

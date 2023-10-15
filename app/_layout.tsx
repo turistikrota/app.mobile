@@ -55,6 +55,10 @@ function HomeLayout() {
           headerLeftContainerStyle: {
             paddingLeft: 8,
           },
+          tabBarStyle: {
+            display: "none",
+            opacity: 0,
+          },
           headerRightContainerStyle: {
             paddingRight: 8,
           },
@@ -74,6 +78,10 @@ function HomeLayout() {
             href: null,
           }}
         />
+        <Tabs.Screen name="index" options={{}} />
+        <Tabs.Screen name="place/places" options={{}} />
+        <Tabs.Screen name="place/[slug]" options={{}} />
+        {/*
         <Tabs.Screen
           name="index"
           options={{
@@ -104,6 +112,7 @@ function HomeLayout() {
             ),
           }}
         />
+        */}
         <Tabs.Screen
           name="panel"
           options={{
