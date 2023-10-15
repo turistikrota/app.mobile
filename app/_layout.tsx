@@ -4,7 +4,7 @@ import { Tabs } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { View } from "react-native";
+import { AppRegistry, View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { Provider } from "react-redux";
 import BoxIcon from "~assets/Icons/BoxIcon";
@@ -123,7 +123,7 @@ function HomeLayout() {
   );
 }
 
-export default function RootLayout() {
+function RootLayout() {
   return (
     <SafeAreaProvider>
       <SafeAreaView edges={["bottom"]}>
@@ -138,3 +138,7 @@ export default function RootLayout() {
     </SafeAreaProvider>
   );
 }
+
+AppRegistry.registerComponent("Turistikrota", () => RootLayout);
+
+export default RootLayout;
