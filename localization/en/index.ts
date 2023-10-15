@@ -1,3 +1,4 @@
+import aboutEN from './about.json';
 import accountEN from './account.json';
 import alertEN from './alert.json';
 import appsEN from './apps.json';
@@ -19,5 +20,6 @@ export default {
     account: accountEN,
     validation: validationEN,
     devices: devicesEN,
-    manage: manageEN
+    manage: manageEN,
+    about: aboutEN
 }

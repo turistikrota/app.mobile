@@ -187,6 +187,11 @@ const PublicItems: React.FC = () => {
 
   const items = [
     {
+      name: "about",
+      icon: "info",
+      href: "/panel/about",
+    },
+    {
       name: "help",
       icon: "question",
       href: "/panel/help",
