@@ -47,7 +47,7 @@ const AccountHeadButton: React.FC = () => {
                 alignItems: "center",
               }}
             >
-              <BoxIcon name="user" width={30} height={30} />
+              <BoxIcon name="user" width={26} height={26} />
             </Avatar>
           )}
         </Pressable>
