@@ -1,9 +1,10 @@
 import { createStyle } from '@gluestack-style/react';
+import { StyleSheet } from 'react-native';
 
 export const Textarea = createStyle({
   'w': '100%',
-  'borderWidth': 1,
-  'borderColor': '$backgroundLight300',
+  'borderWidth': StyleSheet.hairlineWidth,
+  'borderColor': '$borderDark400',
   'borderRadius': '$sm',
   'h': 100,
   '_input': {

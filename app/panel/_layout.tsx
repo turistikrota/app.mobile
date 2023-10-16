@@ -21,6 +21,7 @@ export default function PanelLayout() {
               contentStyle: {
                 backgroundColor: "$white",
               },
+              headerShadowVisible: true,
               headerLeft: (props) => <HeaderLeft {...props} />,
               headerTitle: (props) => <HeaderTitle {...props} />,
               headerRight: () => null,

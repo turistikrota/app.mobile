@@ -1,8 +1,9 @@
 import { createStyle } from '@gluestack-style/react';
+import { StyleSheet } from 'react-native';
 
 export const Input = createStyle({
-  'borderWidth': 1,
-  'borderColor': '$backgroundLight300',
+  'borderWidth': StyleSheet.hairlineWidth,
+  'borderColor': '$borderDark400',
   'borderRadius': '$sm',
   'flexDirection': 'row',
   'overflow': 'hidden',

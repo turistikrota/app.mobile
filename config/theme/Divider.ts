@@ -1,18 +1,19 @@
 import { createStyle } from '@gluestack-style/react';
+import { StyleSheet } from 'react-native';
 
 export const Divider = createStyle({
-  bg: '$backgroundLight200',
+  bg: '$borderDark400',
   _dark: {
     bg: '$backgroundLight800',
   },
   variants: {
     orientation: {
       vertical: {
-        width: '$px',
+        width: StyleSheet.hairlineWidth,
         height: '$full',
       },
       horizontal: {
-        height: '$px',
+        height: StyleSheet.hairlineWidth,
         width: '$full',
       },
     },

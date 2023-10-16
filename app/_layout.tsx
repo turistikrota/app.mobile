@@ -23,6 +23,7 @@ function HomeLayout() {
   });
   const { t } = useTranslation("menu");
   const secondaryColor = useToken("colors", "secondary500");
+  const shadowColor = useToken("colors", "borderDark400");
 
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
@@ -58,6 +59,9 @@ function HomeLayout() {
           tabBarStyle: {
             display: "none",
             opacity: 0,
+          },
+          headerStyle: {
+            shadowColor: shadowColor,
           },
           headerRightContainerStyle: {
             paddingRight: 8,

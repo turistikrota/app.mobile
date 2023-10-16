@@ -216,7 +216,7 @@ const AccountEditProfileForm: React.FC<Props> = ({
             <Button
               variant="outline"
               width="100%"
-              borderColor={"$backgroundLight300"}
+              borderColor={"$borderDark400"}
               onPress={showPicker}
             >
               <Text>

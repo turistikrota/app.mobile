@@ -314,7 +314,7 @@ export const gluestackUIConfig = createConfig({
       primary0: '#E5F1FB',
       primary50: '#F0F8FF',
       primary100: '#C7E1F7',
-      primary200: '#87CEEB',
+      primary200: '#C7E1F7',
       primary300: '#5CAFE7',
       primary400: '#3397E6',
       primary500: '#0077CC',

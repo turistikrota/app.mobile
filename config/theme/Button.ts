@@ -1,4 +1,5 @@
 import { createStyle } from '@gluestack-style/react';
+import { StyleSheet } from 'react-native';
 
 export const Button = createStyle({
   'borderRadius': '$sm',
@@ -435,7 +436,7 @@ export const Button = createStyle({
       outline: {
         'bg': 'transparent',
         'color': '$textLight0',
-        'borderWidth': '$1',
+        'borderWidth':  StyleSheet.hairlineWidth,
         ':hover': {
           bg: '$backgroundLight50',
         },

@@ -1,6 +1,6 @@
 import { Button, useToken } from "@gluestack-ui/themed";
 import React from "react";
-import { Share } from "react-native";
+import { Share, StyleSheet } from "react-native";
 import BoxIcon from "~assets/Icons/BoxIcon";
 
 const PlaceFilterShareContent: React.FC = () => {
@@ -21,10 +21,11 @@ const PlaceFilterShareContent: React.FC = () => {
       variant="outline"
       sx={{
         w: "$full",
-        borderColor: "$textLight300",
+        borderColor: "$borderDark400",
         borderTopRightRadius: 0,
         borderBottomRightRadius: 0,
         borderRightWidth: 0,
+        borderWidth: StyleSheet.hairlineWidth,
       }}
       onPress={onShare}
     >

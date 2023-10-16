@@ -1,5 +1,6 @@
 import { Box, Pressable, Text } from "@gluestack-ui/themed";
 import React from "react";
+import { StyleSheet } from "react-native";
 import BoxIcon from "~assets/Icons/BoxIcon";
 
 type Props = {
@@ -14,8 +15,8 @@ const ModalHeader: React.FC<Props> = ({ title, onClose }) => {
         width: "100%",
         height: 44,
         flexDirection: "row",
-        borderBottomWidth: 1,
-        borderBottomColor: "$borderDark50",
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        borderBottomColor: "$borderDark400",
       }}
     >
       <Box
