@@ -66,18 +66,6 @@ function HomeLayout() {
           headerRight: () => <AccountHeadButton />,
         }}
       >
-        <Tabs.Screen
-          name="search/index"
-          options={{
-            href: null,
-          }}
-        />
-        <Tabs.Screen
-          name="profile/[userName]"
-          options={{
-            href: null,
-          }}
-        />
         <Tabs.Screen name="index" options={{}} />
         <Tabs.Screen name="place/places" options={{}} />
         <Tabs.Screen name="place/[slug]" options={{}} />

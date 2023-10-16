@@ -11,8 +11,13 @@ const HeaderLeft: React.FC<HeaderBackButtonProps> = () => {
 
   if (Platform.OS === "android") return null;
 
+  const onPress = () => {
+    if (router.canGoBack()) return router.back();
+    return router.push("/");
+  };
+
   return (
-    <Button variant="link" onPress={() => router.back()}>
+    <Button variant="link" onPress={onPress}>
       <BoxIcon name="arrow-back" color="black" />
     </Button>
   );

@@ -23,6 +23,8 @@ export default function PlaceListPage() {
         isVisible={showModal}
         onBackdropPress={() => setShowModal(false)}
         onSwipeComplete={() => setShowModal(false)}
+        useNativeDriverForBackdrop
+        swipeDirection={["down"]}
         style={{
           width: "100%",
           margin: 0,
