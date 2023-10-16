@@ -23,6 +23,7 @@ module.exports = function (api) {
             "~http": "./http",
             "~types": "./types",
             "~schemas": "./schemas",
+            "~contexts": "./contexts",
           },
           extensions: [
             ".svg",
