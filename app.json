@@ -8,23 +8,22 @@
     "icon": "./assets/minilogo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/mobile.png",
+      "image": "./assets/chirstmast.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.turistikrota.app",
       "googleServicesFile": "./GoogleService-Info.plist",
       "infoPlist": {
-        "UIBackgroundModes": [
-          "fetch",
-          "remote-notification"
-        ]
-      }
+        "UIBackgroundModes": ["fetch", "remote-notification"]
+      },
+      "associatedDomains": [
+        "applinks:turistikrota.com",
+        "applinks:places.turistikrota.com"
+      ]
     },
     "android": {
       "googleServicesFile": "./google-services.json",
@@ -32,9 +31,7 @@
         "foregroundImage": "./assets/minilogo.png",
         "backgroundColor": "#ffffff"
       },
-      "permissions": [
-        "android.permission.RECORD_AUDIO"
-      ],
+      "permissions": ["android.permission.RECORD_AUDIO"],
       "package": "com.turistikrota.app"
     },
     "web": {
