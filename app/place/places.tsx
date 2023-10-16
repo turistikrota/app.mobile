@@ -1,6 +1,6 @@
 import { Box, Button, ButtonText, Text, View } from "@gluestack-ui/themed";
 import React, { useState } from "react";
-import { Modal } from "react-native";
+import Modal from "react-native-modal";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ModalHeader from "~partials/layout/ModalHeader";
 
@@ -19,7 +19,16 @@ export default function PlaceListPage() {
       <Button onPress={() => setShowModal(true)} ref={ref}>
         <ButtonText>Show Modal</ButtonText>
       </Button>
-      <Modal animationType="slide" visible={showModal} transparent>
+      <Modal
+        isVisible={showModal}
+        onBackdropPress={() => setShowModal(false)}
+        onSwipeComplete={() => setShowModal(false)}
+        style={{
+          width: "100%",
+          margin: 0,
+          padding: 0,
+        }}
+      >
         <View
           sx={{
             justifyContent: "center",
@@ -27,6 +36,7 @@ export default function PlaceListPage() {
             bg: "$white",
             height: "100%",
             width: "100%",
+            flex: 1,
             position: "absolute",
             bottom: 0,
             pt: insets.top,
