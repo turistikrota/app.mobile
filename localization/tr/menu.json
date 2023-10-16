@@ -5,7 +5,12 @@
   "board": "Kontrol Paneli",
   "auth": "Giriş Yap",
   "register": "Kayıt Ol",
+  "resend": "Yeni Kod Gönder",
+  "activate": "Hesabı Aktive Et",
   "help/index": "Yardım",
   "account": "Hesap",
-  "manage": "Hesabını Yönet"
+  "manage": "Hesabını Yönet",
+  "about": "Uygulama Hakkında",
+  "change-password": "Şifre Değiştir",
+  "vision": "Vizyonumuz"
 }

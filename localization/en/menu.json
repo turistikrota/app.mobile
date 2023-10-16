@@ -7,5 +7,10 @@
   "register": "Register",
   "help/index": "Help",
   "account": "Account",
-  "manage": "Manage Account"
+  "resend": "Send New Code",
+  "activate": "Activate Account",
+  "about": "About Application",
+  "manage": "Manage Account",
+  "vision": "Our Vision",
+  "change-password": "Change Password"
 }

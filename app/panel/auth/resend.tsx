@@ -1,8 +1,9 @@
 import {
+  Alert,
   AlertCircleIcon,
-  Box,
+  AlertIcon,
+  AlertText,
   Button,
-  ButtonSpinner,
   ButtonText,
   FormControl,
   FormControlError,
@@ -10,75 +11,76 @@ import {
   FormControlErrorText,
   FormControlLabel,
   FormControlLabelText,
+  InfoIcon,
   Input,
   InputField,
   VStack,
+  View,
 } from "@gluestack-ui/themed";
-import { router, useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { useFormik } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
 import Turnstile from "~components/shared/Turnstile";
 import { Config } from "~config/config";
 import { Services, apiUrl } from "~config/services";
 import { useAlert } from "~hooks/alert";
-import { httpClient } from "~http/client";
-import { loggedIn } from "~store/auth.store";
-import { isVerifyRequiredForLoginResponse } from "~types/auth";
+import { useHttpClient } from "~http/client";
+import Loading from "~partials/state/Loading";
+import { useReSendVerifySchema } from "~schemas/auth/resend.schema";
 import { parseApiError } from "~utils/api-error";
 
 type SearchParams = {
   email?: string;
-  redirect?: string;
 };
 
-export default function LoginPage() {
+export default function ResendTokenPage() {
   const params = useLocalSearchParams<SearchParams>();
-  const { t, i18n } = useTranslation("auth");
+  const { t } = useTranslation("auth");
   const [token, setToken] = useState("");
   const [turnstileKey, setTurnstileKey] = useState(0);
   const [loading, setLoading] = useState(false);
   const alert = useAlert();
-  const dispatch = useDispatch();
+  const schema = useReSendVerifySchema();
+  const http = useHttpClient();
+  const router = useRouter();
+
+  useEffect(() => {
+    router.setParams({
+      title: t("resend.title"),
+    });
+  }, []);
 
   const form = useFormik({
     initialValues: {
-      email: params.email || "",
-      password: "",
+      email: params.email ?? "",
     },
-    onSubmit: ({ email, password }) => {
+    validationSchema: schema,
+    onSubmit: (values) => {
       setLoading(true);
-      httpClient
+      http
         .post(
-          apiUrl(Services.Auth, "/login"),
-          { email, password },
+          apiUrl(Services.Auth, "/re-verify"),
+          {
+            email: values.email,
+          },
           {
             headers: {
               [Config.headers.TurnstileToken]: token,
-              [Config.headers.AcceptLang]: i18n.language,
             },
           }
         )
         .then((res) => {
-          dispatch(loggedIn());
-          router.back();
-        })
-        .catch((res) => {
-          setTurnstileKey(turnstileKey + 1);
-          if (isVerifyRequiredForLoginResponse(res?.response?.data)) {
-            return router.push({
-              pathname: "/panel/auth/resend",
-              params: {
-                email,
-              },
-            });
+          if (res.status === 200) {
+            alert.alert(t("resend.success"));
+            router.back();
           }
+        })
+        .catch((error) => {
+          setTurnstileKey(turnstileKey + 1);
           parseApiError({
-            error: res?.response?.data,
-            toast: (msg: string) => {
-              alert.alert(msg, false);
-            },
+            error: error?.response?.data,
+            toast: (msg) => alert.alert(msg),
             form,
           });
         })
@@ -88,8 +90,18 @@ export default function LoginPage() {
     },
   });
   return (
-    <Box h="$full" w="$full" bg="$white">
+    <View
+      sx={{
+        bg: "$white",
+        height: "100%",
+        flex: 1,
+      }}
+    >
       <VStack space="md" p="$2">
+        <Alert mt="$2" action="info" variant="accent">
+          <AlertIcon as={InfoIcon} mr="$3" />
+          <AlertText>{t("resend.alert")}</AlertText>
+        </Alert>
         <FormControl
           size="md"
           isInvalid={!!form.errors.email && form.touched.email}
@@ -115,44 +127,20 @@ export default function LoginPage() {
             <FormControlErrorText>{form.errors.email}</FormControlErrorText>
           </FormControlError>
         </FormControl>
-        <FormControl
-          size="md"
-          isInvalid={!!form.errors.password && form.touched.password}
-          isRequired={true}
-          id="password"
-          nativeID="password"
-        >
-          <FormControlLabel mb="$1">
-            <FormControlLabelText>{t("password.label")}</FormControlLabelText>
-          </FormControlLabel>
-          <Input nativeID="password">
-            <InputField
-              type="password"
-              value={form.values.password}
-              onChangeText={form.handleChange("password")}
-              onBlur={form.handleBlur("password")}
-              nativeID="password"
-              placeholder={t("password.placeholder")}
-            />
-          </Input>
-          <FormControlError>
-            <FormControlErrorIcon as={AlertCircleIcon} />
-            <FormControlErrorText>{form.errors.password}</FormControlErrorText>
-          </FormControlError>
-        </FormControl>
         <Turnstile onVerify={setToken} key={turnstileKey} />
         <Button
           onPress={() => form.handleSubmit()}
           isDisabled={loading || !token}
         >
-          {loading && <ButtonSpinner mr="$1" />}
-          <ButtonText color="$white" fontWeight="$medium" fontSize="$sm">
-            {!token
-              ? t("captcha.loading")
-              : t(`login.${loading ? "loading" : "submit"}`)}
-          </ButtonText>
+          <Loading value={loading} color="$white">
+            <ButtonText color="$white" fontWeight="$medium" fontSize="$sm">
+              {!token
+                ? t("captcha.loading")
+                : t(`resend.${loading ? "loading" : "submit"}`)}
+            </ButtonText>
+          </Loading>
         </Button>
       </VStack>
-    </Box>
+    </View>
   );
 }

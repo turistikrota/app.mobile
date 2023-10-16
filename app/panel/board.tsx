@@ -41,7 +41,6 @@ const AuthProtectedItems: React.FC = () => {
         if (res.status === 200) {
           dispatch(resetAuthStore());
           dispatch(resetAccountStore());
-          alert.alert(t("logout.success"));
         }
       })
       .catch((err) => {
@@ -59,6 +58,12 @@ const AuthProtectedItems: React.FC = () => {
       </ListLinkItem>
       <ListLinkItem href="/panel/manage" icon={<BoxIcon name="lock" />}>
         <Text>{t("manage")}</Text>
+      </ListLinkItem>
+      <ListLinkItem
+        href="/panel/change-password"
+        icon={<BoxIcon name="shield" />}
+      >
+        <Text>{t("change-password")}</Text>
       </ListLinkItem>
       <ListLinkItem
         href="/panel/auth"
@@ -187,23 +192,34 @@ const PublicItems: React.FC = () => {
 
   const items = [
     {
-      name: "help",
-      icon: "question",
-      href: "/panel/help",
+      name: "vision",
+      href: "/panel/vision",
+    },
+    {
+      name: "terms-of-use",
+      href: "/panel/help/termsOfUse",
+    },
+    {
+      name: "privacy-note",
+      href: "/panel/help/privacyNote",
+    },
+    {
+      name: "personal-data",
+      href: "/panel/help/privacyAndPersonalData",
+    },
+    {
+      name: "about",
+      href: "/panel/about",
     },
   ];
   return (
-    <>
+    <Box sx={{ px: "$2" }}>
       {items.map((i) => (
-        <ListLinkItem
-          key={i.name}
-          href={i.href}
-          icon={<BoxIcon name={i.icon} />}
-        >
+        <ListLinkItem key={i.name} href={i.href}>
           <Text>{t(i.name)}</Text>
         </ListLinkItem>
       ))}
-    </>
+    </Box>
   );
 };
 
@@ -222,7 +238,6 @@ export default function PanelPage() {
       sx={{
         backgroundColor: "$white",
         h: "$full",
-        px: "$2",
       }}
     >
       <ScrollView>

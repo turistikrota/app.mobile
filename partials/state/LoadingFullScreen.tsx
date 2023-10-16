@@ -3,7 +3,13 @@ import React from "react";
 
 const LoadingFullScreen: React.FC = () => {
   return (
-    <Center h="$full" w="$full">
+    <Center
+      sx={{
+        bg: "$white",
+        h: "$full",
+        w: "$full",
+      }}
+    >
       <View>
         <Spinner />
       </View>
