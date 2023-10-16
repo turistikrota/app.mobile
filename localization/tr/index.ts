@@ -8,6 +8,7 @@ import devicesTR from './devices.json';
 import manageTR from './manage.json';
 import menuTR from './menu.json';
 import panelTR from './panel.json';
+import placeTR from './place.json';
 import validationTR from './validation.json';
 import visionTR from './vision.json';
 
@@ -23,5 +24,6 @@ export default {
     devices: devicesTR,
     manage: manageTR,
     changePassword: changePasswordTR,
-    vision: visionTR
+    vision: visionTR,
+    place: placeTR,
 }

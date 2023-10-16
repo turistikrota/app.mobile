@@ -9,6 +9,7 @@ import devicesEN from './devices.json';
 import manageEN from './manage.json';
 import menuEN from './menu.json';
 import panelEN from './panel.json';
+import placeEN from './place.json';
 import validationEN from './validation.json';
 import visionEN from './vision.json';
 
@@ -25,5 +26,6 @@ export default {
     manage: manageEN,
     about: aboutEN,
     changePassword: changePasswordEN,
-    vision: visionEN
+    vision: visionEN,
+    place: placeEN,
 }

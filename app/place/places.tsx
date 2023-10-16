@@ -1,10 +1,41 @@
-import { Box, Button, ButtonText, Text, View } from "@gluestack-ui/themed";
+import { Box, ScrollView, View } from "@gluestack-ui/themed";
 import React, { useState } from "react";
-import Modal from "react-native-modal";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import ModalHeader from "~partials/layout/ModalHeader";
+import { PlaceFilterProvider } from "~contexts/place-filter.context";
+import PlaceFilterContent from "~partials/place/PlaceFilterContent";
+import PlaceFilterShareContent from "~partials/place/PlaceFilterShareContent";
+import PlaceSortContent from "~partials/place/PlaceSortContent";
 
-export default function PlaceListPage() {
+const PlaceFilterSection: React.FC = () => {
+  return (
+    <Box
+      sx={{
+        width: "100%",
+        p: "$2",
+        flexDirection: "row",
+      }}
+    >
+      <Box
+        sx={{
+          w: "$1/6",
+        }}
+      >
+        <PlaceFilterShareContent />
+      </Box>
+      <Box
+        sx={{
+          w: "$5/6",
+          flexDirection: "row",
+        }}
+      >
+        <PlaceSortContent />
+        <PlaceFilterContent />
+      </Box>
+    </Box>
+  );
+};
+
+function PlaceListPage() {
   const [showModal, setShowModal] = useState(false);
   const ref = React.useRef(null);
   const insets = useSafeAreaInsets();
@@ -15,49 +46,17 @@ export default function PlaceListPage() {
         bg: "$white",
       }}
     >
-      <Text>Place list view</Text>
-      <Button onPress={() => setShowModal(true)} ref={ref}>
-        <ButtonText>Show Modal</ButtonText>
-      </Button>
-      <Modal
-        isVisible={showModal}
-        onBackdropPress={() => setShowModal(false)}
-        onSwipeComplete={() => setShowModal(false)}
-        useNativeDriverForBackdrop
-        swipeDirection={["down"]}
-        style={{
-          width: "100%",
-          margin: 0,
-          padding: 0,
-        }}
-      >
-        <View
-          sx={{
-            justifyContent: "center",
-            alignItems: "center",
-            bg: "$white",
-            height: "100%",
-            width: "100%",
-            flex: 1,
-            position: "absolute",
-            bottom: 0,
-            pt: insets.top,
-            pb: insets.bottom,
-          }}
-        >
-          <Box
-            sx={{
-              height: "100%",
-              width: "100%",
-            }}
-          >
-            <ModalHeader title="Filtrele" onClose={() => setShowModal(false)} />
-            <Button onPress={() => setShowModal(false)} mt="$5">
-              <ButtonText>Hide Modal</ButtonText>
-            </Button>
-          </Box>
-        </View>
-      </Modal>
+      <ScrollView>
+        <PlaceFilterSection />
+      </ScrollView>
     </View>
+  );
+}
+
+export default function PlaceListPageWithProvider() {
+  return (
+    <PlaceFilterProvider>
+      <PlaceListPage />
+    </PlaceFilterProvider>
   );
 }
