@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallbackText, AvatarImage } from "@gluestack-ui/themed";
-import { Link, router } from "expo-router";
+import { router } from "expo-router";
 import React from "react";
 import { Pressable } from "react-native";
 import { useSelector } from "react-redux";
@@ -13,31 +13,44 @@ const AccountHeadButton: React.FC = () => {
   return (
     <AuthGuard.Optional>
       <AccountGuard.Optional>
-        <Link href="/panel">
-          <Pressable onPress={() => router.push("/panel")}>
-            {!!profile ? (
-              <Avatar size="sm" borderRadius="$full" bgColor="$coolGray200">
-                <AvatarFallbackText
-                  sx={{
-                    color: "$trueGray600",
-                  }}
-                >
-                  {profile.fullName}
-                </AvatarFallbackText>
-                <AvatarImage
-                  source={{
-                    uri: profile.avatarUrl,
-                  }}
-                  sx={{
-                    borderRadius: "$full",
-                  }}
-                />
-              </Avatar>
-            ) : (
-              <BoxIcon name="user" />
-            )}
-          </Pressable>
-        </Link>
+        <Pressable
+          onPress={() => router.push("/panel")}
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          {!!profile ? (
+            <Avatar size="sm" borderRadius="$full" bgColor="$coolGray200">
+              <AvatarFallbackText
+                sx={{
+                  color: "$trueGray600",
+                }}
+              >
+                {profile.fullName}
+              </AvatarFallbackText>
+              <AvatarImage
+                source={{
+                  uri: profile.avatarUrl,
+                }}
+                sx={{
+                  borderRadius: "$full",
+                }}
+              />
+            </Avatar>
+          ) : (
+            <Avatar
+              size="sm"
+              bgColor="transparent"
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <BoxIcon name="user" width={30} height={30} />
+            </Avatar>
+          )}
+        </Pressable>
       </AccountGuard.Optional>
     </AuthGuard.Optional>
   );

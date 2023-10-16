@@ -1,5 +1,8 @@
+import { Avatar, AvatarImage } from "@gluestack-ui/themed";
 import React from "react";
 import { G, Svg, TSpan, Text } from "react-native-svg";
+// @ts-ignore
+import MiniLogo from "../minilogo.png";
 
 const Logo = () => {
   return (
@@ -27,6 +30,34 @@ const Logo = () => {
         </Text>
       </G>
     </Svg>
+  );
+};
+
+type Props = {
+  size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+  borderRadius?:
+    | "$full"
+    | "$none"
+    | "$xs"
+    | "$sm"
+    | "$md"
+    | "$lg"
+    | "$xl"
+    | "$2xl"
+    | "$3xl"
+    | undefined;
+};
+
+const LogoImage: React.FC<Props> = ({ size = "sm", borderRadius = "$sm" }) => {
+  return (
+    <Avatar size={size} borderRadius={borderRadius}>
+      <AvatarImage
+        source={MiniLogo}
+        sx={{
+          borderRadius: borderRadius,
+        }}
+      />
+    </Avatar>
   );
 };
 
@@ -59,4 +90,4 @@ const LogoMini = () => {
   );
 };
 
-export default Logo;
+export default LogoImage;

@@ -17,12 +17,8 @@ export default function AboutPage() {
       }}
     >
       <Center>
-        <Box
-          sx={{
-            p: "$3",
-          }}
-        >
-          <Logo />
+        <Box sx={{}}>
+          <Logo size="2xl" borderRadius="$full" />
         </Box>
       </Center>
       <Text sx={{ mt: "$2", textAlign: "center" }}>{appVersion}</Text>

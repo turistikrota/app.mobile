@@ -2,14 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const authSlice = createSlice({
     name: 'auth',
-    initialState: {
+    initialState: () => ({
         isFetched: false,
         isAuthenticated: false,
         loading: false,
         isError: false,
         fcmToken: "",
         fcmIsSet: false,
-    },
+    }),
     reducers: {
         setAuth: (state, action) => {
             state.isAuthenticated = action.payload.isAuthenticated;
