@@ -29,7 +29,7 @@ const PlaceFilterSection: React.FC = () => {
           flexDirection: "row",
         }}
       >
-        <PlaceSortContent />
+        <PlaceSortContent loading={false} />
         <PlaceFilterContent
           data={{
             filteredTotal: 0,

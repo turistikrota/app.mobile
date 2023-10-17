@@ -3,6 +3,9 @@
     "sort": "Sort",
     "filter": "Filter"
   },
+  "share": {
+    "message": "Share your filter settings"
+  },
   "sort-by": {
     "title": "Sort By",
     "most_popular": "Popularity",
@@ -54,7 +57,7 @@
     "is-payed": {
       "title": "Paid Venues",
       "text": "Paid Locations",
-      "description": "Check this option if you want to see paid/free venues.",
+      "description": "Choose whether entry to places is paid or free.",
       "label": "Paying Places"
     },
     "is-free": {
@@ -66,14 +69,7 @@
     "types": {
       "title": "Select Type",
       "text": "Types",
-      "description": "Choose which types of venues you want to see.",
-      "translation": {
-        "eating": "Eating",
-        "coffee": "Coffee",
-        "bar": "bar",
-        "beach": "beach",
-        "amaze": "entertainment"
-      }
+      "description": "Choose which types of venues you want to see."
     },
     "review": {
       "title": "Review Score",

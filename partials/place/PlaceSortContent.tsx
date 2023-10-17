@@ -15,11 +15,16 @@ import BoxIcon from "~assets/Icons/BoxIcon";
 import ScrollableModal from "~components/ScrollableModal";
 import { usePlaceFilter } from "~contexts/place-filter";
 import { usePlaceSort } from "~hooks/place";
+import Loading from "~partials/state/Loading";
 import { deepMerge } from "~utils/object";
 import PlaceSortOrderGroup from "./sort/PlaceOrderGroup";
 import PlaceSortGroup from "./sort/PlaceSortGorup";
 
-const PlaceSortContent: React.FC = () => {
+type Props = {
+  loading: boolean;
+};
+
+const PlaceSortContent: React.FC<Props> = ({ loading }) => {
   const color = useToken("colors", "textLight500");
   const [sortModalVisible, setSortModalVisible] = React.useState(false);
   const { defaultOrder, defaultSort } = usePlaceSort();
@@ -27,8 +32,12 @@ const PlaceSortContent: React.FC = () => {
   const { t } = useTranslation("place");
 
   const isDefault = useMemo(() => {
-    const isSortDefault = query.filter.sort ? query.filter.sort == defaultSort : true;
-    const isOrderDefault = query.filter.order ? query.filter.order == defaultOrder : true;
+    const isSortDefault = query.filter.sort
+      ? query.filter.sort == defaultSort
+      : true;
+    const isOrderDefault = query.filter.order
+      ? query.filter.order == defaultOrder
+      : true;
     return isSortDefault && isOrderDefault;
   }, [query.filter.sort, query.filter.order]);
 
@@ -93,6 +102,15 @@ const PlaceSortContent: React.FC = () => {
         >
           <PlaceSortGroup />
           <PlaceSortOrderGroup />
+          <Button
+            disabled={loading}
+            onPress={() => setSortModalVisible(false)}
+            mt="$4"
+          >
+            <Loading value={loading} color="$white">
+              <Text color="$white">{t("filter.apply")}</Text>
+            </Loading>
+          </Button>
         </VStack>
       </ScrollableModal>
     </>

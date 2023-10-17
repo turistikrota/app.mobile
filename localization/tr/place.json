@@ -3,6 +3,9 @@
     "sort": "Sırala",
     "filter": "Filtrele"
   },
+  "share": {
+    "message": "Filtreleme sonuçlarınızı paylaşın"
+  },
   "sort-by": {
     "title": "Sıralama Ölçütü",
     "most_popular": "Popülerlik",
@@ -18,5 +21,81 @@
     "asc": "Artan",
     "clear-text": "Temizle",
     "clear-aria-label": "Sıralama Yöntemini Temizle"
+  },
+  "tools": {
+    "min": "En az {{time}} dakika",
+    "max": "maks {{time}} dakika",
+    "range": "{{min}} - {{max}} dakika",
+    "paid": "Ücretli",
+    "free": "Ücretsiz"
+  },
+  "filter": {
+    "city-select": {
+      "title": "Şehir Seçin",
+      "text": "Şehir",
+      "placeholder": "Şehirlerde ara"
+    },
+    "distance": {
+      "title": "Mesafe",
+      "text": "Mesafe",
+      "description": "Görmek istediğiniz yerlerin şehir merkezine kaç kilometre uzaklıkta olacağını belirleyin.",
+      "label": "Mesafe (km)"
+    },
+    "features": {
+      "title": "Özellik Seçin",
+      "text": "Özellikler",
+      "select": "Özellik Seçin",
+      "description": "Yerlerde görmek istediğiniz özellikleri seçin."
+    },
+    "time-spent": {
+      "title": "Ort. Geçirilen Zaman",
+      "text": "Ortalama Geçirilen Zaman",
+      "description": "Yerlerde geçireceğiniz ortalama zaman aralığını belirleyin. Zaman aralığı dakika olarak hesaplanmaktadır.",
+      "minText": "En az",
+      "maxText": "En çok"
+    },
+    "query": {
+      "title": "Kelime ile Ara",
+      "text": "Kelime ile Ara",
+      "description": "Yer adı, açıklama veya etiketlerle arama yapın.",
+      "placeholder": "Kelime ile Ara",
+      "label": "Kelime"
+    },
+    "is-payed": {
+      "title": "Ücretli Yerler",
+      "text": "Ücretli Yerler",
+      "description": "Yerlere girişin ücretli veya ücretsiz olmasını seçin.",
+      "label": "Ücretli Yerler"
+    },
+    "is-free": {
+      "title": "Ücretsiz Yerler",
+      "text": "Ücretsiz Yerler",
+      "description": "Ücretsiz yerleri görmek istiyorsanız bu seçeneği işaretleyin.",
+      "label": "Ücretsiz Yerler"
+    },
+    "types": {
+      "title": "Tür Seçin",
+      "text": "Türler",
+      "description": "Görmek istediğiniz yer türlerini seçin."
+    },
+    "clean": "Temizle",
+    "apply": "Uygula",
+    "see-results": "Sonuçları Gör ({{count}})",
+    "results": "{{count}} sonuç bulundu"
+  },
+  "types": {
+    "eating": "Yemek",
+    "coffee": "Kahve",
+    "bar": "Bar",
+    "beach": "Plaj",
+    "amaze": "Eğlence",
+    "shopping": "Alışveriş",
+    "transport": "Ulaşım",
+    "culture": "Kültür",
+    "nature": "Doğa",
+    "health": "Sağlık",
+    "sport": "Spor",
+    "nightlife": "Gece Hayatı",
+    "other": "Diğer"
   }
 }
