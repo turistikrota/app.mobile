@@ -155,17 +155,16 @@ const PlaceFilterContent: React.FC<Props> = ({ data, loading }) => {
           ) : (
             <>
               <PlaceFilterMenu onOpen={onOpenFilter} />
-              {isFiltered && (
-                <Button disabled={loading} onPress={closeAll} mt="$4">
-                  <Loading value={loading} color="$white">
-                    <Text color="$white">
-                      {t("filter.see-results", {
-                        count: data?.filteredTotal ?? 0,
-                      })}
-                    </Text>
-                  </Loading>
-                </Button>
-              )}
+
+              <Button disabled={loading} onPress={closeAll} mt="$4">
+                <Loading value={loading} color="$white">
+                  <Text color="$white">
+                    {t("filter.see-results", {
+                      count: data?.filteredTotal ?? 0,
+                    })}
+                  </Text>
+                </Loading>
+              </Button>
             </>
           )}
         </View>

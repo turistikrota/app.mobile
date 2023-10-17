@@ -14,7 +14,6 @@ import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import BoxIcon from "~assets/Icons/BoxIcon";
 import { usePlaceFilter } from "~contexts/place-filter";
-import { useAlert } from "~hooks/alert";
 import { Type } from "~types/place";
 
 const types = Object.values(Type);
@@ -22,7 +21,6 @@ const types = Object.values(Type);
 function PlaceFilterTypeGroup() {
   const { query, setQuery } = usePlaceFilter();
   const { t } = useTranslation("place");
-  const alert = useAlert();
 
   const currentTypes = useMemo(() => {
     return query.filter.types ? [...new Set(query.filter.types)] : [];
