@@ -40,7 +40,7 @@ function PlaceFilterDistanceGroup() {
         <AlertText>{t("filter.distance.description")}</AlertText>
       </Alert>
       <RadioGroup value={`${currentDistance}`} onChange={onSelect}>
-        <VStack space="md">
+        <VStack space="lg">
           {Object.entries(DistanceLabels).map(([dist, label]) => (
             <Radio
               value={dist}

@@ -49,7 +49,7 @@ function PlaceFilterFeaturesGroup() {
       {isLoading && <LoadingListItem />}
       <ScrollView>
         <CheckboxGroup value={currentFeatures} onChange={onChange}>
-          <VStack space="md">
+          <VStack space="lg">
             {(list ?? []).map((feature, idx) => (
               <Checkbox
                 value={feature.uuid}

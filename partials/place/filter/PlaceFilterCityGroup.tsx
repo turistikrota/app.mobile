@@ -62,7 +62,7 @@ function PlaceFilterCityGroup() {
       >
         <ScrollView>
           <RadioGroup value={currentCity ?? ""} onChange={onSelect}>
-            <VStack space="md">
+            <VStack space="lg">
               {cities.map((city, idx) => (
                 <Radio
                   value={city.name}

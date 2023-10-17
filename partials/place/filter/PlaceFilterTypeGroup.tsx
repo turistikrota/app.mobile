@@ -15,6 +15,7 @@ import { useTranslation } from "react-i18next";
 import BoxIcon from "~assets/Icons/BoxIcon";
 import { usePlaceFilter } from "~contexts/place-filter";
 import { Type } from "~types/place";
+import { deepMerge } from "~utils/object";
 
 const types = Object.values(Type);
 
@@ -27,7 +28,7 @@ function PlaceFilterTypeGroup() {
   }, [query.filter.types]);
 
   const onChange = (types: Type[]) => {
-    setQuery({ filter: { types } });
+    setQuery(deepMerge(query, { filter: { types } }));
   };
 
   return (
@@ -38,7 +39,7 @@ function PlaceFilterTypeGroup() {
       </Alert>
       <ScrollView>
         <CheckboxGroup value={currentTypes} onChange={onChange}>
-          <VStack space="md">
+          <VStack space="lg">
             {types.map((type, idx) => (
               <Checkbox
                 value={type}
