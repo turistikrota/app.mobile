@@ -1,13 +1,13 @@
 import { Box, View } from "@gluestack-ui/themed";
 import React from "react";
 import Modal from "react-native-modal";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ModalHeader from "~partials/layout/ModalHeader";
 
 type Props = {
   title: string;
   isVisible: boolean;
   setVisible: (isVisible: boolean) => void;
+  right?: React.ReactNode;
 };
 
 const ScrollableModal: React.FC<React.PropsWithChildren<Props>> = ({
@@ -15,8 +15,8 @@ const ScrollableModal: React.FC<React.PropsWithChildren<Props>> = ({
   isVisible,
   setVisible,
   children,
+  right,
 }) => {
-  const insets = useSafeAreaInsets();
   return (
     <Modal
       isVisible={isVisible}
@@ -35,13 +35,21 @@ const ScrollableModal: React.FC<React.PropsWithChildren<Props>> = ({
           justifyContent: "center",
           alignItems: "center",
           bg: "$white",
-          height: "100%",
           width: "100%",
+          height: "87%",
           flex: 1,
           position: "absolute",
           bottom: 0,
-          pt: insets.top,
-          pb: insets.bottom,
+          borderTopLeftRadius: "$sm",
+          borderTopRightRadius: "$sm",
+          shadowColor: "#000",
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.23,
+          shadowRadius: 2.62,
+          elevation: 4,
         }}
       >
         <Box
@@ -50,7 +58,11 @@ const ScrollableModal: React.FC<React.PropsWithChildren<Props>> = ({
             width: "100%",
           }}
         >
-          <ModalHeader title={title} onClose={() => setVisible(false)} />
+          <ModalHeader
+            title={title}
+            onClose={() => setVisible(false)}
+            right={right}
+          />
           {children}
         </Box>
       </View>

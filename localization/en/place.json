@@ -2,5 +2,21 @@
   "titles": {
     "sort": "Sort",
     "filter": "Filter"
+  },
+  "sort-by": {
+    "title": "Sort By",
+    "most_popular": "Popularity",
+    "most_liked": "Liked",
+    "most_recent": "Date Added",
+    "nearest": "Nearness",
+    "clear-text": "Clear",
+    "clear-aria-label": "Clear Sort By"
+  },
+  "order-by": {
+    "title": "Sort Method",
+    "desc": "Descending",
+    "asc": "Ascending",
+    "clear-text": "Clear",
+    "clear-aria-label": "Clear Sort Method"
   }
 }

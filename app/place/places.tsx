@@ -1,7 +1,7 @@
 import { Box, ScrollView, View } from "@gluestack-ui/themed";
 import React, { useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { PlaceFilterProvider } from "~contexts/place-filter.context";
+import { PlaceFilterProvider } from "~contexts/place-filter";
 import PlaceFilterContent from "~partials/place/PlaceFilterContent";
 import PlaceFilterShareContent from "~partials/place/PlaceFilterShareContent";
 import PlaceSortContent from "~partials/place/PlaceSortContent";

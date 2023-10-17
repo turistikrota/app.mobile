@@ -2,5 +2,21 @@
   "titles": {
     "sort": "Sırala",
     "filter": "Filtrele"
+  },
+  "sort-by": {
+    "title": "Sıralama Ölçütü",
+    "most_popular": "Popülerlik",
+    "most_liked": "Beğeni",
+    "most_recent": "Eklenme Tarihi",
+    "nearest": "Yakınlık",
+    "clear-text": "Temizle",
+    "clear-aria-label": "Sıralama Ölçütünü Temizle"
+  },
+  "order-by": {
+    "title": "Sıralama Yöntemi",
+    "desc": "Azalan",
+    "asc": "Artan",
+    "clear-text": "Temizle",
+    "clear-aria-label": "Sıralama Yöntemini Temizle"
   }
 }

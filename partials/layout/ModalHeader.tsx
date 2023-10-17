@@ -6,9 +6,10 @@ import BoxIcon from "~assets/Icons/BoxIcon";
 type Props = {
   title: string;
   onClose: () => void;
+  right?: React.ReactNode;
 };
 
-const ModalHeader: React.FC<Props> = ({ title, onClose }) => {
+const ModalHeader: React.FC<Props> = ({ title, onClose, right }) => {
   return (
     <Box
       sx={{
@@ -17,14 +18,18 @@ const ModalHeader: React.FC<Props> = ({ title, onClose }) => {
         flexDirection: "row",
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderBottomColor: "$borderDark400",
+        bgColor: "$white",
+        borderTopLeftRadius: 8,
+        borderTopRightRadius: 8,
       }}
     >
       <Box
         sx={{
           w: "$1/6",
           h: "100%",
+          pl: "$2",
           justifyContent: "center",
-          alignItems: "center",
+          alignItems: "flex-start",
         }}
       >
         <Pressable onPress={onClose}>
@@ -45,8 +50,13 @@ const ModalHeader: React.FC<Props> = ({ title, onClose }) => {
         sx={{
           w: "$1/6",
           h: "100%",
+          pr: "$2",
+          justifyContent: "center",
+          alignItems: "flex-end",
         }}
-      ></Box>
+      >
+        {right}
+      </Box>
     </Box>
   );
 };

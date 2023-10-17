@@ -1,7 +1,6 @@
 import { useLocalSearchParams } from "expo-router";
 import React, {
   createContext,
-  useCallback,
   useContext,
   useEffect,
   useMemo,
@@ -14,9 +13,7 @@ import { getQueryByKeyBindings, toQueryString } from "~utils/place";
 
 type PlaceFilterContextType = {
   query: PaginationRequest<PlaceFilterRequest>;
-  setQuery: React.Dispatch<
-    React.SetStateAction<PaginationRequest<PlaceFilterRequest>>
-  >;
+  setQuery: (q: PaginationRequest<PlaceFilterRequest>) => void;
   isQueryChanged: boolean;
   isOnlyPageChanged: boolean;
 };
@@ -43,28 +40,25 @@ export const PlaceFilterProvider: React.FC<React.PropsWithChildren> = ({
   const [isOnlyPageChanged, setIsOnlyPageChanged] = useState(false);
   const searchParams = useLocalSearchParams<PlaceSearchParams>();
 
-  const setAllQueries = useCallback(
-    (newQuery: PaginationRequest<PlaceFilterRequest>) => {
-      const oldQuery = { ...query };
-      setQuery(newQuery);
-      if (deepEqual(oldQuery, newQuery)) {
-        return;
-      }
-      const diff = Object.keys(findDiff(oldQuery, newQuery));
-      if (diff.length === 1 && diff.includes("page")) {
-        setIsOnlyPageChanged(true);
-        setIsQueryChanged(false);
-        return;
-      } else if (diff.length === 0 && !deepEqual(oldQuery, newQuery)) {
-        setIsOnlyPageChanged(false);
-        setIsQueryChanged(false);
-        return;
-      }
+  const onQueryChange = (newQuery: PaginationRequest<PlaceFilterRequest>) => {
+    const oldQuery = { ...query };
+    if (deepEqual(oldQuery, newQuery)) {
+      return;
+    }
+    setQuery(newQuery);
+    const diff = Object.keys(findDiff(oldQuery, newQuery));
+    if (diff.length === 1 && diff.includes("page")) {
+      setIsOnlyPageChanged(true);
+      setIsQueryChanged(false);
+      return;
+    } else if (diff.length === 0 && !deepEqual(oldQuery, newQuery)) {
       setIsOnlyPageChanged(false);
-      setIsQueryChanged(true);
-    },
-    []
-  );
+      setIsQueryChanged(false);
+      return;
+    }
+    setIsOnlyPageChanged(false);
+    setIsQueryChanged(true);
+  };
 
   useEffect(() => {
     const newQuery = getQueryByKeyBindings(searchParams);
@@ -75,13 +69,12 @@ export const PlaceFilterProvider: React.FC<React.PropsWithChildren> = ({
       newQuery.page = 1;
     }
     if (query && toQueryString(query) === toQueryString(newQuery)) return;
-    setAllQueries(newQuery);
   }, [searchParams]);
 
   const contextValue = useMemo(() => {
     return {
       query,
-      setQuery,
+      setQuery: onQueryChange,
       isQueryChanged,
       isOnlyPageChanged,
     };
