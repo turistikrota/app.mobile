@@ -22,7 +22,6 @@ import {
   PlaceFeatureListItemTranslations,
   getTranslations,
 } from "~types/place";
-import { deepMerge } from "~utils/object";
 
 function PlaceFilterFeaturesGroup() {
   const { query, setQuery } = usePlaceFilter();
@@ -33,11 +32,18 @@ function PlaceFilterFeaturesGroup() {
   const { t, i18n } = useTranslation("place");
 
   const currentFeatures = useMemo(() => {
-    return query.filter.featureUUIDs ?? [];
+    return query.filter.featureUUIDs
+      ? [...new Set(query.filter.featureUUIDs)]
+      : [];
   }, [query.filter.featureUUIDs]);
 
   const onChange = (featureUUIDs: string[]) => {
-    setQuery(deepMerge(query, { filter: { featureUUIDs } }));
+    const uniqueTypes = [...new Set(featureUUIDs)];
+    const newQuery = {
+      ...query,
+      filter: { ...query.filter, featureUUIDs: uniqueTypes },
+    };
+    setQuery(newQuery);
   };
 
   return (

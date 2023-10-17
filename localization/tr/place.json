@@ -73,6 +73,15 @@
       "description": "Ücretsiz yerleri görmek istiyorsanız bu seçeneği işaretleyin.",
       "label": "Ücretsiz Yerler"
     },
+    "review": {
+      "title": "Yorum Puanı",
+      "text": "Yorum Puanı",
+      "description": "Yerlerin yorum aralığını belirleyin.",
+      "labels": {
+        "x": "{{star}} Yıldız ve Üzeri",
+        "last": "Sadece {{star}} yıldız"
+      }
+    },
     "types": {
       "title": "Tür Seçin",
       "text": "Türler",

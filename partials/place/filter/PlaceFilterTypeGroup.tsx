@@ -14,21 +14,27 @@ import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import BoxIcon from "~assets/Icons/BoxIcon";
 import { usePlaceFilter } from "~contexts/place-filter";
+import { useAlert } from "~hooks/alert";
 import { Type } from "~types/place";
-import { deepMerge } from "~utils/object";
 
 const types = Object.values(Type);
 
 function PlaceFilterTypeGroup() {
   const { query, setQuery } = usePlaceFilter();
   const { t } = useTranslation("place");
+  const alert = useAlert();
 
   const currentTypes = useMemo(() => {
-    return query.filter.types ?? [];
+    return query.filter.types ? [...new Set(query.filter.types)] : [];
   }, [query.filter.types]);
 
   const onChange = (types: Type[]) => {
-    setQuery(deepMerge(query, { filter: { types } }));
+    const uniqueTypes = [...new Set(types)];
+    const newQuery = {
+      ...query,
+      filter: { ...query.filter, types: uniqueTypes },
+    };
+    setQuery(newQuery);
   };
 
   return (
