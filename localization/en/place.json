@@ -18,5 +18,97 @@
     "asc": "Ascending",
     "clear-text": "Clear",
     "clear-aria-label": "Clear Sort Method"
+  },
+  "filter": {
+    "city-select": {
+      "title": "Select a city",
+      "text": "City",
+      "placeholder": "Search for a city"
+    },
+    "distance": {
+      "title": "Distance",
+      "text": "Distance",
+      "description": "Choose how many kilometers/meters away from the city center you want to see.",
+      "label": "Distance (km)"
+    },
+    "features": {
+      "title": "Select Feature",
+      "text": "Features",
+      "select": "Select",
+      "description": "Choose which features you want to see the venues."
+    },
+    "time-spent": {
+      "title": "Avg. Elapsed Time",
+      "text": "Average Elapsed Time",
+      "description": "Determine the average time interval you will spend in venues. The time interval is calculated in minutes.",
+      "minText": "Min",
+      "maxText": "Max"
+    },
+    "query": {
+      "title": "Word Search",
+      "text": "Word Search",
+      "description": "Search venue name, description, or tags.",
+      "placeholder": "Search for a word",
+      "label": "Word"
+    },
+    "is-payed": {
+      "title": "Paid Venues",
+      "text": "Paid Locations",
+      "description": "Check this option if you want to see paid/free venues.",
+      "label": "Paying Places"
+    },
+    "is-free": {
+      "title": "Free Venues",
+      "text": "Free Locations",
+      "description": "Check this option if you want to see free venues.",
+      "label": "Free Places"
+    },
+    "types": {
+      "title": "Select Type",
+      "text": "Types",
+      "description": "Choose which types of venues you want to see.",
+      "translation": {
+        "eating": "Eating",
+        "coffee": "Coffee",
+        "bar": "bar",
+        "beach": "beach",
+        "amaze": "entertainment"
+      }
+    },
+    "review": {
+      "title": "Review Score",
+      "text": "Review Score",
+      "description": "Determine the review range of venues.",
+      "labels": {
+        "x": "{{star}} Stars and Up",
+        "last": "{{star}} stars only"
+      }
+    },
+    "see-results": "See Results ({{count}})",
+    "results": "{{count}} results found",
+    "clean": "Clear",
+    "apply": "Apply"
+  },
+  "tools": {
+    "min": "At least {{time}} minutes",
+    "max": "max {{time}} minutes",
+    "range": "{{min}} - {{max}} minutes",
+    "paid": "Paid",
+    "free": "Free"
+  },
+  "types": {
+    "eating": "Eat",
+    "coffee": "Coffee",
+    "bar": "Bar",
+    "beach": "Beach",
+    "amaze": "Amaze",
+    "shopping": "Shopping",
+    "transport": "Transport",
+    "culture": "Culture",
+    "nature": "Nature",
+    "health": "Health",
+    "sport": "Sport",
+    "nightlife": "Nightlife",
+    "other": "Other"
   }
 }

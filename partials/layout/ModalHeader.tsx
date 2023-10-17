@@ -7,9 +7,15 @@ type Props = {
   title: string;
   onClose: () => void;
   right?: React.ReactNode;
+  leftIconName?: string;
 };
 
-const ModalHeader: React.FC<Props> = ({ title, onClose, right }) => {
+const ModalHeader: React.FC<Props> = ({
+  title,
+  leftIconName = "x",
+  onClose,
+  right,
+}) => {
   return (
     <Box
       sx={{
@@ -33,7 +39,7 @@ const ModalHeader: React.FC<Props> = ({ title, onClose, right }) => {
         }}
       >
         <Pressable onPress={onClose}>
-          <BoxIcon name="x" />
+          <BoxIcon name={leftIconName} />
         </Pressable>
       </Box>
       <Box

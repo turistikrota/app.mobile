@@ -8,6 +8,8 @@ type Props = {
   isVisible: boolean;
   setVisible: (isVisible: boolean) => void;
   right?: React.ReactNode;
+  leftIconName?: string;
+  backGuard?: () => boolean;
 };
 
 const ScrollableModal: React.FC<React.PropsWithChildren<Props>> = ({
@@ -16,11 +18,21 @@ const ScrollableModal: React.FC<React.PropsWithChildren<Props>> = ({
   setVisible,
   children,
   right,
+  leftIconName,
+  backGuard,
 }) => {
+  const checkClose = () => {
+    let closeable = true;
+    if (backGuard) {
+      closeable = backGuard();
+    }
+    if (!closeable) return;
+    setVisible(false);
+  };
   return (
     <Modal
       isVisible={isVisible}
-      onBackdropPress={() => setVisible(false)}
+      onBackdropPress={checkClose}
       onSwipeComplete={() => setVisible(false)}
       useNativeDriverForBackdrop
       swipeDirection={["down"]}
@@ -29,6 +41,7 @@ const ScrollableModal: React.FC<React.PropsWithChildren<Props>> = ({
         margin: 0,
         padding: 0,
       }}
+      propagateSwipe
     >
       <View
         sx={{
@@ -60,8 +73,9 @@ const ScrollableModal: React.FC<React.PropsWithChildren<Props>> = ({
         >
           <ModalHeader
             title={title}
-            onClose={() => setVisible(false)}
+            onClose={checkClose}
             right={right}
+            leftIconName={leftIconName}
           />
           {children}
         </Box>

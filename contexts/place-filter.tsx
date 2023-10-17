@@ -16,6 +16,7 @@ type PlaceFilterContextType = {
   setQuery: (q: PaginationRequest<PlaceFilterRequest>) => void;
   isQueryChanged: boolean;
   isOnlyPageChanged: boolean;
+  isFiltered: boolean;
 };
 
 const PlaceFilterContext = createContext<PlaceFilterContextType | undefined>(
@@ -42,9 +43,7 @@ export const PlaceFilterProvider: React.FC<React.PropsWithChildren> = ({
 
   const onQueryChange = (newQuery: PaginationRequest<PlaceFilterRequest>) => {
     const oldQuery = { ...query };
-    if (deepEqual(oldQuery, newQuery)) {
-      return;
-    }
+    if (deepEqual(oldQuery, newQuery)) return;
     setQuery(newQuery);
     const diff = Object.keys(findDiff(oldQuery, newQuery));
     if (diff.length === 1 && diff.includes("page")) {
@@ -69,7 +68,8 @@ export const PlaceFilterProvider: React.FC<React.PropsWithChildren> = ({
       newQuery.page = 1;
     }
     if (query && toQueryString(query) === toQueryString(newQuery)) return;
-  }, [searchParams]);
+    setQuery(newQuery);
+  }, []);
 
   const contextValue = useMemo(() => {
     return {
@@ -77,6 +77,9 @@ export const PlaceFilterProvider: React.FC<React.PropsWithChildren> = ({
       setQuery: onQueryChange,
       isQueryChanged,
       isOnlyPageChanged,
+      isFiltered:
+        Object.keys(query.filter).filter((q) => !["sort", "order"].includes(q))
+          .length > 0,
     };
   }, [query, setQuery, isQueryChanged, isOnlyPageChanged]);
 

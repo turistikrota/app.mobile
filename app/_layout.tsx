@@ -1,8 +1,6 @@
 import { GluestackUIProvider, useToken } from "@gluestack-ui/themed";
-import { useFonts } from "expo-font";
 import { Tabs } from "expo-router";
-import * as SplashScreen from "expo-splash-screen";
-import React, { useCallback } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { AppRegistry, View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
@@ -15,32 +13,16 @@ import "~localization/i18n";
 import AccountHeadButton from "~partials/account/AccountHeadButton";
 import { store } from "~store";
 
-SplashScreen.preventAutoHideAsync();
-
 function HomeLayout() {
-  const [fontsLoaded] = useFonts({
-    Verdana: require("../assets/fonts/verdana.ttf"),
-  });
   const { t } = useTranslation("menu");
   const secondaryColor = useToken("colors", "secondary500");
   const shadowColor = useToken("colors", "borderDark400");
-
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
-
-  if (!fontsLoaded) {
-    return null;
-  }
 
   return (
     <View
       style={{
         height: "100%",
       }}
-      onLayout={onLayoutRootView}
     >
       <Tabs
         safeAreaInsets={{

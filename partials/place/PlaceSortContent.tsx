@@ -27,9 +27,9 @@ const PlaceSortContent: React.FC = () => {
   const { t } = useTranslation("place");
 
   const isDefault = useMemo(() => {
-    return (
-      query.filter.sort == defaultSort && query.filter.order == defaultOrder
-    );
+    const isSortDefault = query.filter.sort ? query.filter.sort == defaultSort : true;
+    const isOrderDefault = query.filter.order ? query.filter.order == defaultOrder : true;
+    return isSortDefault && isOrderDefault;
   }, [query.filter.sort, query.filter.order]);
 
   const clear = () => {
