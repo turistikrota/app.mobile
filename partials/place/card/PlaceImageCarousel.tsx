@@ -1,21 +1,44 @@
-import { View } from "@gluestack-ui/themed";
+import { Image, Pressable, View } from "@gluestack-ui/themed";
 import React from "react";
-import { Dimensions, Image, StyleSheet } from "react-native";
+import { Dimensions } from "react-native";
 import Carousel, { Pagination } from "~components/carousel";
 import { PlaceImage } from "~types/place";
 
 const { width } = Dimensions.get("window");
 
 type Props = {
+  title: string;
   list: PlaceImage[];
+  onPress?: () => void;
 };
 
-const PlaceImageCarousel: React.FC<Props> = ({ list }) => {
+const PlaceImageCarousel: React.FC<Props> = ({ list, title, onPress }) => {
   const renderItem = ({ order, url }: PlaceImage) => (
-    <View key={url} style={styles.cardContainer}>
-      <View style={styles.cardWrapper}>
-        <Image style={styles.card} source={{ uri: url }} />
-      </View>
+    <View
+      key={url}
+      sx={{
+        width: width,
+        alignItems: "center",
+        justifyContent: "center",
+        px: "$2",
+      }}
+    >
+      <Pressable
+        sx={{
+          overflow: "hidden",
+          borderRadius: "$sm",
+        }}
+        onPress={onPress}
+      >
+        <Image
+          sx={{
+            width: width,
+            height: width * 0.5,
+          }}
+          alt={title}
+          source={{ uri: url }}
+        />
+      </Pressable>
     </View>
   );
   return (
@@ -27,42 +50,5 @@ const PlaceImageCarousel: React.FC<Props> = ({ list }) => {
     />
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  cardContainer: {
-    alignItems: "center",
-    justifyContent: "center",
-    width,
-  },
-  cardWrapper: {
-    borderRadius: 8,
-    overflow: "hidden",
-  },
-  card: {
-    width: width * 0.9,
-    height: width * 0.5,
-  },
-  cornerLabel: {
-    position: "absolute",
-    bottom: 0,
-    right: 0,
-    borderTopLeftRadius: 8,
-  },
-  cornerLabelText: {
-    fontSize: 12,
-    color: "#fff",
-    fontWeight: "600",
-    paddingLeft: 5,
-    paddingRight: 5,
-    paddingTop: 2,
-    paddingBottom: 2,
-  },
-});
 
 export default PlaceImageCarousel;

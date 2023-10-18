@@ -68,8 +68,10 @@ function Carousel<T = any>({
     if (isLooped) {
       loopOffset = data.length >= NUM_OF_DUP ? NUM_OF_DUP : data.length;
     }
+    let _childWith =
+      childWidth === 0 ? event.nativeEvent.layoutMeasurement.width : childWidth;
     const prevPage = currentPage;
-    const rawCurrentPage = event.nativeEvent.contentOffset.x / childWidth;
+    const rawCurrentPage = event.nativeEvent.contentOffset.x / _childWith;
     const roundCurrentPage = Math.round(rawCurrentPage);
     const normalizedPage = roundCurrentPage - loopOffset;
     let _currentPage = normalizedPage + 1;
@@ -85,7 +87,7 @@ function Carousel<T = any>({
       (normalizedPage < 0 || normalizedPage >= data.length)
     ) {
       scrollView.current?.scrollTo({
-        x: (_currentPage - 1 + loopOffset) * childWidth,
+        x: (_currentPage - 1 + loopOffset) * _childWith,
         animated: false,
       });
     }

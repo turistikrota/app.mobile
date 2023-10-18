@@ -53,8 +53,13 @@ function HomeLayout() {
         }}
       >
         <Tabs.Screen name="index" options={{}} />
-        <Tabs.Screen name="place/places" options={{}} />
-        <Tabs.Screen name="place/[slug]" options={{}} />
+        <Tabs.Screen
+          name="place"
+          options={{
+            href: null,
+            headerShown: false,
+          }}
+        />
         {/*
         <Tabs.Screen
           name="index"

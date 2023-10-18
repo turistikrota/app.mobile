@@ -104,8 +104,11 @@ export type FeatureTranslation = {
   description: string;
 };
 
-export type PlaceImage = {
+export type PlaceImage = Orderable & {
   url: string;
+};
+
+export type Orderable = {
   order: number;
 };
 

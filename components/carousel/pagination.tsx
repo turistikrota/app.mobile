@@ -14,28 +14,23 @@ const Pagination: React.FC<Props> = ({
 }) => {
   const opacities = theme === "dark" ? [0.5, 0.2] : [0.8, 0.4];
 
-  const renderDots = () => {
-    const Dots = [];
-    for (let i = 0; i < total; i += 1) {
-      const isActive = currentPage === i + 1;
-
-      const additionalStyle = {
-        opacity: isActive ? opacities[0] : opacities[1],
-        marginLeft: i === 0 ? 0 : 8,
-        backgroundColor: theme === "dark" ? "#000" : "#fff",
-      };
-
-      Dots.push(
+  return (
+    <View style={styles.container}>
+      {Array.from({ length: total }).map((_, index) => (
         <View
-          key={`pagination-dot-${i}`}
-          style={[styles.dot, additionalStyle]}
+          key={`pagination-dot-${index}`}
+          style={[
+            styles.dot,
+            {
+              opacity: currentPage === index + 1 ? opacities[0] : opacities[1],
+              marginLeft: index === 0 ? 0 : 8,
+              backgroundColor: theme === "dark" ? "#000" : "#fff",
+            },
+          ]}
         />
-      );
-    }
-    return Dots;
-  };
-
-  return <View style={styles.container}>{renderDots()}</View>;
+      ))}
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
