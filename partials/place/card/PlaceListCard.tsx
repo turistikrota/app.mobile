@@ -5,6 +5,8 @@ import { useTranslation } from "react-i18next";
 
 import { GestureResponderEvent } from "react-native";
 import { useAlert } from "~hooks/alert";
+import { useStringMerger } from "~hooks/string";
+import { findBestOfBestNearestCities } from "~static/location/cities";
 import { PlaceListItem, getTranslations } from "~types/place";
 import { imageSort } from "~utils/sort";
 import PlaceImageCarousel from "./PlaceImageCarousel";
@@ -28,6 +30,12 @@ const PlaceListCard: React.FC<Props> = ({
 }) => {
   const { t, i18n } = useTranslation("place");
   const alert = useAlert();
+  const cities = useMemo(
+    () => findBestOfBestNearestCities(coordinates, 3),
+    [coordinates]
+  );
+  const cityText = useStringMerger(cities.map((c) => c.name));
+
   const translation = useMemo(() => {
     return getTranslations(translations, i18n.language, {
       description: "",
@@ -71,7 +79,9 @@ const PlaceListCard: React.FC<Props> = ({
             {translation.title}
           </Heading>
           <Text color="$textLight600" mt="$0.5">
-            Bu yer Sakarya ve cart curt'a yakındır
+            {t("features.location.subtext", {
+              location: cityText,
+            })}
           </Text>
         </Pressable>
         <Pressable

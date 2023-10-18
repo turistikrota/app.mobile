@@ -99,6 +99,24 @@
     "free": "ücretsiz giriş",
     "paid": "ücretli giriş"
   },
+  "features": {
+    "location": {
+      "text": "Location",
+      "subtext": "This place nearest to {{location}}."
+    },
+    "time": {
+      "text": "Average time spent",
+      "subtext": "You will spend {{min}} - {{max}} {{unit}} here."
+    },
+    "payed": {
+      "text": "Admission",
+      "subtext": "You have to pay for this place."
+    },
+    "free": {
+      "text": "Admission",
+      "subtext": "You can visit this place for free."
+    }
+  },
   "types": {
     "eating": "Yemek",
     "coffee": "Kahve",

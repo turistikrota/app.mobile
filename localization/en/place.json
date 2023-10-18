@@ -97,7 +97,25 @@
     "hour": "hour",
     "time-spent": "{{min}} - {{max}} {{unit}}",
     "free": "free entry",
-    "payed": "payed entry"
+    "paid": "payed entry"
+  },
+  "features": {
+    "location": {
+      "text": "Location",
+      "subtext": "This place nearest to {{location}}."
+    },
+    "time": {
+      "text": "Average time spent",
+      "subtext": "You will spend {{min}} - {{max}} {{unit}} here."
+    },
+    "payed": {
+      "text": "Entry",
+      "subtext": "You have to pay for this place."
+    },
+    "free": {
+      "text": "Entry",
+      "subtext": "You can visit this place for free."
+    }
   },
   "types": {
     "eating": "Eat",
