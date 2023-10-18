@@ -92,6 +92,13 @@
     "paid": "Paid",
     "free": "Free"
   },
+  "card": {
+    "minute": "min",
+    "hour": "hour",
+    "time-spent": "{{min}} - {{max}} {{unit}}",
+    "free": "free entry",
+    "payed": "payed entry"
+  },
   "types": {
     "eating": "Eat",
     "coffee": "Coffee",

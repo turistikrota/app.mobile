@@ -1,4 +1,4 @@
-import { Box, ScrollView, View } from "@gluestack-ui/themed";
+import { Box, ScrollView, VStack, View } from "@gluestack-ui/themed";
 import React, { useEffect } from "react";
 import { Services, apiUrl } from "~config/services";
 import { PlaceFilterProvider, usePlaceFilter } from "~contexts/place-filter";
@@ -114,9 +114,11 @@ function PlaceListPage() {
     >
       <ScrollView>
         <PlaceFilterSection data={data} loading={loading} />
-        {data.list.map((li, index) => (
-          <PlaceListCard key={index} {...li} />
-        ))}
+        <VStack space="2xl">
+          {data.list.map((li, index) => (
+            <PlaceListCard key={index} {...li} />
+          ))}
+        </VStack>
       </ScrollView>
     </View>
   );

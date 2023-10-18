@@ -1,4 +1,4 @@
-import { Box, Heading, Text } from "@gluestack-ui/themed";
+import { Box, Heading, Text, VStack } from "@gluestack-ui/themed";
 import { router } from "expo-router";
 import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
@@ -8,6 +8,12 @@ import { useAlert } from "~hooks/alert";
 import { PlaceListItem, getTranslations } from "~types/place";
 import { imageSort } from "~utils/sort";
 import PlaceImageCarousel from "./PlaceImageCarousel";
+import {
+  IsPayedCard,
+  PlaceTypeCard,
+  ReviewCard,
+  TimeSpentCard,
+} from "./Shared";
 
 type Props = {} & PlaceListItem;
 
@@ -44,12 +50,50 @@ const PlaceListCard: React.FC<Props> = ({
         title={translation.title}
         onPress={openDetail}
       />
-      <Box sx={{}}>
-        <Heading>{translation.title}</Heading>
-        <Text>Bu yer Sakarya ve cart curt'a yakındır</Text>
-      </Box>
-      <Box sx={{}}></Box>
-      <Box sx={{}}></Box>
+      <VStack
+        sx={{
+          px: "$2",
+          pt: "$2",
+        }}
+        space="sm"
+      >
+        <Box>
+          <Heading
+            sx={{
+              color: "$textLight700",
+            }}
+            size="md"
+          >
+            {translation.title}
+          </Heading>
+          <Text color="$textLight600" mt="$0.5">
+            Bu yer Sakarya ve cart curt'a yakındır
+          </Text>
+        </Box>
+        <Box
+          sx={{
+            flexDirection: "row",
+            w: "100%",
+            justifyContent: "space-between",
+          }}
+        >
+          <ReviewCard star={review.averagePoint} total={review.total} />
+          <TimeSpentCard
+            max={averageTimeSpent.max}
+            min={averageTimeSpent.min}
+          />
+        </Box>
+        <Box
+          sx={{
+            flexDirection: "row",
+            w: "100%",
+            justifyContent: "space-between",
+          }}
+        >
+          <IsPayedCard isPayed={isPayed} />
+          <PlaceTypeCard type={type} />
+        </Box>
+      </VStack>
     </Box>
   );
 };

@@ -1,0 +1,18 @@
+export type BadgeAction =
+  | "error"
+  | "rose"
+  | "pink"
+  | "fuchsia"
+  | "purple"
+  | "violet"
+  | "indigo"
+  | "cyan"
+  | "teal"
+  | "emerald"
+  | "lime"
+  | "yellow"
+  | "amber"
+  | "warning"
+  | "success"
+  | "info"
+  | "muted";

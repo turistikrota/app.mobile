@@ -1,5 +1,7 @@
+import { IconName } from "~assets/Icons/BoxIcon";
 import { I18nTranslation, isLocale } from "./i18n";
 import { ListResponse } from "./response";
+import { BadgeAction } from "./theme";
 
 export type PlaceSearchParams = {
   page?: string;
@@ -159,86 +161,86 @@ export enum Type {
 }
 
 export type PlaceTypeItems = {
-  icon: string;
+  icon: IconName;
   text: string;
   color: string;
-  variant?: string;
+  variant?: BadgeAction;
 };
 
 export const PlaceTypes: Record<Type, PlaceTypeItems> = {
   [Type.Eating]: {
-    icon: "bx bx-food-menu",
+    icon: "food-menu",
     text: "types.eating",
     color: "bg-secondary-100 dark:bg-secondary-900",
-    variant: "secondary",
+    variant: "warning",
   },
   [Type.Coffee]: {
-    icon: "bx bx-coffee",
+    icon: "coffee",
     text: "types.coffee",
     color: "bg-yellow-100 dark:bg-yellow-900",
     variant: "yellow",
   },
   [Type.Bar]: {
-    icon: "bx bx-drink",
+    icon: "drink",
     text: "types.bar",
     color: "bg-blue-100 dark:bg-blue-900",
-    variant: "blue",
+    variant: "cyan",
   },
   [Type.Beach]: {
-    icon: "bx bx-swim",
+    icon: "swim",
     text: "types.beach",
     color: "bg-green-100 dark:bg-green-900",
-    variant: "green",
+    variant: "emerald",
   },
   [Type.Amaze]: {
-    icon: "bx bx-cycling",
+    icon: "cycling",
     text: "types.amaze",
     color: "bg-purple-100 dark:bg-purple-900",
     variant: "purple",
   },
   [Type.Shopping]: {
-    icon: "bx bx-shopping-bag",
+    icon: "shopping-bag",
     text: "types.shopping",
     color: "bg-orange-100 dark:bg-orange-900",
-    variant: "orange",
+    variant: "amber",
   },
   [Type.Transport]: {
-    icon: "bx bx-bus",
+    icon: "bus",
     text: "types.transport",
     color: "bg-indigo-100 dark:bg-indigo-900",
     variant: "indigo",
   },
   [Type.Culture]: {
-    icon: "bx bxs-landmark",
+    icon: "landmark",
     text: "types.culture",
     color: "bg-gray-100 dark:bg-gray-900",
   },
   [Type.Nature]: {
-    icon: "bx bxs-tree",
+    icon: "tree",
     text: "types.nature",
     color: "bg-teal-100 dark:bg-teal-900",
     variant: "teal",
   },
   [Type.Health]: {
-    icon: "bx bx-heart",
+    icon: "heart",
     text: "types.health",
     color: "bg-blue-100 dark:bg-blue-900",
-    variant: "blue",
+    variant: "cyan",
   },
   [Type.Sport]: {
-    icon: "bx bx-football",
+    icon: "football",
     text: "types.sport",
     color: "bg-green-100 dark:bg-green-900",
-    variant: "green",
+    variant: "emerald",
   },
   [Type.Nightlife]: {
-    icon: "bx bx-moon",
+    icon: "moon",
     text: "types.nightlife",
     color: "bg-indigo-100 dark:bg-indigo-900",
     variant: "indigo",
   },
   [Type.Other]: {
-    icon: "bx bx-plus",
+    icon: "plus",
     text: "types.other",
     color: "bg-gray-100 dark:bg-gray-900",
   },

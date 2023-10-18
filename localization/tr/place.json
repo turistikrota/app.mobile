@@ -92,6 +92,13 @@
     "see-results": "Sonuçları Gör ({{count}})",
     "results": "{{count}} sonuç bulundu"
   },
+  "card": {
+    "minute": "dk",
+    "hour": "saat",
+    "time-spent": "{{min}} - {{max}} {{unit}}",
+    "free": "ücretsiz giriş",
+    "paid": "ücretli giriş"
+  },
   "types": {
     "eating": "Yemek",
     "coffee": "Kahve",
