@@ -1,5 +1,4 @@
 import { Box, Heading, Pressable, Text, VStack } from "@gluestack-ui/themed";
-import { router } from "expo-router";
 import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -17,7 +16,9 @@ import {
   TimeSpentCard,
 } from "./Shared";
 
-type Props = {} & PlaceListItem;
+type Props = {
+  onSelect: () => void;
+} & PlaceListItem;
 
 const PlaceListCard: React.FC<Props> = ({
   averageTimeSpent,
@@ -27,6 +28,7 @@ const PlaceListCard: React.FC<Props> = ({
   review,
   translations,
   type,
+  onSelect,
 }) => {
   const { t, i18n } = useTranslation("place");
   const alert = useAlert();
@@ -45,14 +47,7 @@ const PlaceListCard: React.FC<Props> = ({
   }, [i18n.language, translations]);
 
   const openDetail = () => {
-    router.push({
-      pathname: `/place/[slug]`,
-      params: {
-        slug: translation.slug,
-        images: JSON.stringify(images),
-        translations: JSON.stringify(translations),
-      },
-    });
+    onSelect();
   };
 
   const onPress = (event: GestureResponderEvent) => {

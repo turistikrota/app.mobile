@@ -8,7 +8,7 @@ import {
   NativeSyntheticEvent,
   Share,
 } from "react-native";
-import DynamicHeader from "~components/DynamicHeader";
+import DynamicHeader from "~components/ScrollHeader";
 import { Sites, getSiteByLocale } from "~config/sites";
 import PlaceImageCarousel from "~partials/place/card/PlaceImageCarousel";
 import { getLocale } from "~types/i18n";

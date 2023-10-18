@@ -1,16 +1,19 @@
 import { Box, View } from "@gluestack-ui/themed";
 import React from "react";
-import Modal from "react-native-modal";
+import Modal, { Direction } from "react-native-modal";
 import { IconName } from "~assets/Icons/BoxIcon";
 import ModalHeader from "~partials/layout/ModalHeader";
 
 type Props = {
-  title: string;
   isVisible: boolean;
   setVisible: (isVisible: boolean) => void;
+  title?: string;
   right?: React.ReactNode;
   leftIconName?: IconName;
   backGuard?: () => boolean;
+  customHead?: boolean;
+  swipeDirection?: Direction | Direction[];
+  height?: number;
 };
 
 const ScrollableModal: React.FC<React.PropsWithChildren<Props>> = ({
@@ -20,7 +23,10 @@ const ScrollableModal: React.FC<React.PropsWithChildren<Props>> = ({
   children,
   right,
   leftIconName,
+  swipeDirection = ["down", "left", "right", "up"],
   backGuard,
+  height = 87,
+  customHead = false,
 }) => {
   const checkClose = () => {
     let closeable = true;
@@ -36,7 +42,8 @@ const ScrollableModal: React.FC<React.PropsWithChildren<Props>> = ({
       onBackdropPress={checkClose}
       onSwipeComplete={() => setVisible(false)}
       useNativeDriverForBackdrop
-      swipeDirection={["down", "left", "right", "up"]}
+      useNativeDriver
+      swipeDirection={swipeDirection}
       style={{
         width: "100%",
         margin: 0,
@@ -50,7 +57,7 @@ const ScrollableModal: React.FC<React.PropsWithChildren<Props>> = ({
           alignItems: "center",
           bg: "$white",
           width: "100%",
-          height: "87%",
+          height: `${height}%`,
           flex: 1,
           position: "absolute",
           bottom: 0,
@@ -72,12 +79,14 @@ const ScrollableModal: React.FC<React.PropsWithChildren<Props>> = ({
             width: "100%",
           }}
         >
-          <ModalHeader
-            title={title}
-            onClose={checkClose}
-            right={right}
-            leftIconName={leftIconName}
-          />
+          {!customHead && (
+            <ModalHeader
+              title={title!}
+              onClose={checkClose}
+              right={right}
+              leftIconName={leftIconName}
+            />
+          )}
           {children}
         </Box>
       </View>

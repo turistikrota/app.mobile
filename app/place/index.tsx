@@ -1,16 +1,16 @@
-import { Box, Text, View } from "@gluestack-ui/themed";
-import { Link } from "expo-router";
-import React, { useEffect, useRef } from "react";
+import { Box, View } from "@gluestack-ui/themed";
+import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FlatList } from "react-native";
 import { Services, apiUrl } from "~config/services";
 import { PlaceFilterProvider, usePlaceFilter } from "~contexts/place-filter";
-import { useAlert } from "~hooks/alert";
 import { usePlaceFeatures } from "~hooks/place-feature";
 import { useHttpClient } from "~http/client";
 import PlaceFilterContent from "~partials/place/PlaceFilterContent";
 import PlaceFilterShareContent from "~partials/place/PlaceFilterShareContent";
 import PlaceSortContent from "~partials/place/PlaceSortContent";
 import PlaceListCard from "~partials/place/card/PlaceListCard";
+import PlaceDetail from "~partials/place/detail/PlaceDetail";
 import { PlaceListItem, isPlaceListResponse } from "~types/place";
 import { ListResponse } from "~types/response";
 import debounce from "~utils/debounce";
@@ -54,6 +54,7 @@ type ContentType = "map" | "list";
 
 function PlaceListPage() {
   const flatRef = useRef<any>();
+  const { t, i18n } = useTranslation("place");
   const [contentType, setContentType] = React.useState<ContentType>("list");
   const { query, isOnlyPageChanged, isQueryChanged, setQuery } =
     usePlaceFilter();
@@ -66,8 +67,10 @@ function PlaceListPage() {
     list: [],
     page: 0,
   });
+  const [selected, setSelected] = useState<PlaceListItem | undefined>(
+    undefined
+  );
   const http = useHttpClient();
-  const alert = useAlert();
   usePlaceFeatures();
 
   useEffect(() => {
@@ -106,6 +109,14 @@ function PlaceListPage() {
       });
   };
 
+  const onSelect = (item: PlaceListItem) => {
+    setSelected(item);
+  };
+
+  const onDeselect = () => {
+    setSelected(undefined);
+  };
+
   const debouncedFetch = debounce(() => {
     if (loading) return;
     fetch(!isQueryChanged && isOnlyPageChanged);
@@ -126,14 +137,21 @@ function PlaceListPage() {
         bg: "$white",
       }}
     >
-      <Link href="/place">
-        <Text>Evine dön homie</Text>
-      </Link>
+      <PlaceDetail
+        isVisible={!!selected}
+        setVisible={() => onDeselect()}
+        locale={i18n.language}
+        images={selected?.images}
+        title={selected?.translations.en.title}
+        slug={selected?.translations.en.title}
+      />
       <PlaceFilterSection data={data} loading={loading} />
       <FlatList
         ref={flatRef}
         data={data.list}
-        renderItem={({ item }) => <PlaceListCard {...item} />}
+        renderItem={({ item }) => (
+          <PlaceListCard {...item} onSelect={() => onSelect(item)} />
+        )}
         onEndReached={nextPage}
       />
     </View>

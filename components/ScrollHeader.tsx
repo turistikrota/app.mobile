@@ -11,7 +11,7 @@ type Props = ScrollHeadProps & {
   title: string;
 };
 
-const DynamicHeader: React.FC<React.PropsWithChildren<Props>> = ({
+const ScrollHeader: React.FC<React.PropsWithChildren<Props>> = ({
   animHeaderValue,
   children,
   title,
@@ -139,12 +139,6 @@ const styles = StyleSheet.create({
     right: 0,
     paddingTop: 10,
   },
-  headerText: {
-    color: "#fff",
-    fontSize: 25,
-    fontWeight: "bold",
-    textAlign: "center",
-  },
 });
 
-export default DynamicHeader;
+export default ScrollHeader;
