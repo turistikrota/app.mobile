@@ -1,4 +1,4 @@
-import { Box, ScrollView, View } from "@gluestack-ui/themed";
+import { Box, ScrollView, Text, View } from "@gluestack-ui/themed";
 import React, { useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { PlaceFilterProvider } from "~contexts/place-filter";
@@ -60,6 +60,8 @@ function PlaceListPage() {
     >
       <ScrollView>
         <PlaceFilterSection />
+        <Text>as</Text>
+        <Text>sa</Text>
       </ScrollView>
     </View>
   );
