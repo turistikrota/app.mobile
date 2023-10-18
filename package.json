@@ -13,7 +13,9 @@
     "build:android": "expo build:android",
     "build:web": "expo build:web",
     "build:all": "expo build:all",
-    "clear:cache": "expo r -c"
+    "clear:cache": "expo r -c",
+    "run:ios": "npx expo run:ios --configuration Release -d",
+    "run:android": "npx expo run:android --variant release -d"
   },
   "dependencies": {
     "@expo/html-elements": "latest",

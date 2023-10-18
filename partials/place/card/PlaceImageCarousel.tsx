@@ -50,8 +50,9 @@ const PlaceImageCarousel: React.FC<Props> = ({
           aria-label={title}
           source={{
             uri: url,
-            priority:
-              order === 0 ? FastImage.priority.high : FastImage.priority.low,
+            priority: [0, 1].includes(order)
+              ? FastImage.priority.high
+              : FastImage.priority.low,
           }}
         />
       </Pressable>
