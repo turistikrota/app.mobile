@@ -45,7 +45,14 @@ const PlaceListCard: React.FC<Props> = ({
   }, [i18n.language, translations]);
 
   const openDetail = () => {
-    router.push(`/place/${translation.slug}`);
+    router.push({
+      pathname: `/place/[slug]`,
+      params: {
+        slug: translation.slug,
+        images: JSON.stringify(images),
+        translations: JSON.stringify(translations),
+      },
+    });
   };
 
   const onPress = (event: GestureResponderEvent) => {

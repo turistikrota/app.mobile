@@ -16,8 +16,12 @@ export default function PlaceLayout() {
         headerRight: () => null,
         presentation: "modal",
         headerTransparent: true,
+        headerShown: false,
+        animation: "slide_from_right",
+        animationDuration: 300,
       }}
     >
+      <Stack.Screen name="index" />
       <Stack.Screen
         name="[slug]"
         options={{

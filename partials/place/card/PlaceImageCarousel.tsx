@@ -11,9 +11,19 @@ type Props = {
   title: string;
   list: PlaceImage[];
   onPress?: () => void;
+  calcWidth?: (width: number) => number;
+  calcHeight?: (height: number) => number;
+  rounded?: boolean;
 };
 
-const PlaceImageCarousel: React.FC<Props> = ({ list, title, onPress }) => {
+const PlaceImageCarousel: React.FC<Props> = ({
+  list,
+  title,
+  onPress,
+  calcHeight,
+  calcWidth,
+  rounded = true,
+}) => {
   const space = useToken("space", "2");
   const renderItem = ({ order, url }: PlaceImage) => (
     <View
@@ -28,14 +38,14 @@ const PlaceImageCarousel: React.FC<Props> = ({ list, title, onPress }) => {
       <Pressable
         sx={{
           overflow: "hidden",
-          borderRadius: "$sm",
+          borderRadius: rounded ? "$sm" : undefined,
         }}
         onPress={onPress}
       >
         <FastImage
           style={{
-            width: width - 2 * space,
-            height: width * 0.7,
+            width: calcWidth ? calcWidth(width) : width - 2 * space,
+            height: calcHeight ? calcHeight(width) : width * 0.7,
           }}
           aria-label={title}
           source={{

@@ -1,3 +1,3 @@
-import PlaceListPage from "./place/places";
+import PlaceListPage from "./place";
 
 export default PlaceListPage;

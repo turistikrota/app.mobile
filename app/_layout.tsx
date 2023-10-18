@@ -53,14 +53,14 @@ function HomeLayout() {
         }}
       >
         <Tabs.Screen name="index" options={{}} />
+        {/*
+
         <Tabs.Screen
           name="place"
           options={{
             href: null,
-            headerShown: false,
           }}
         />
-        {/*
         <Tabs.Screen
           name="index"
           options={{

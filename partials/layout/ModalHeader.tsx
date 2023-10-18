@@ -1,13 +1,13 @@
 import { Box, Pressable, Text } from "@gluestack-ui/themed";
 import React from "react";
 import { StyleSheet } from "react-native";
-import BoxIcon from "~assets/Icons/BoxIcon";
+import BoxIcon, { IconName } from "~assets/Icons/BoxIcon";
 
 type Props = {
   title: string;
   onClose: () => void;
   right?: React.ReactNode;
-  leftIconName?: string;
+  leftIconName?: IconName;
 };
 
 const ModalHeader: React.FC<Props> = ({

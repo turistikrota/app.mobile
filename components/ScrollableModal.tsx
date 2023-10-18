@@ -1,6 +1,7 @@
 import { Box, View } from "@gluestack-ui/themed";
 import React from "react";
 import Modal from "react-native-modal";
+import { IconName } from "~assets/Icons/BoxIcon";
 import ModalHeader from "~partials/layout/ModalHeader";
 
 type Props = {
@@ -8,7 +9,7 @@ type Props = {
   isVisible: boolean;
   setVisible: (isVisible: boolean) => void;
   right?: React.ReactNode;
-  leftIconName?: string;
+  leftIconName?: IconName;
   backGuard?: () => boolean;
 };
 

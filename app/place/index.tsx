@@ -1,4 +1,5 @@
-import { Box, View } from "@gluestack-ui/themed";
+import { Box, Text, View } from "@gluestack-ui/themed";
+import { Link } from "expo-router";
 import React, { useEffect, useRef } from "react";
 import { FlatList } from "react-native";
 import { Services, apiUrl } from "~config/services";
@@ -125,6 +126,9 @@ function PlaceListPage() {
         bg: "$white",
       }}
     >
+      <Link href="/place">
+        <Text>Evine dön homie</Text>
+      </Link>
       <PlaceFilterSection data={data} loading={loading} />
       <FlatList
         ref={flatRef}
