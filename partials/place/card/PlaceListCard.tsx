@@ -1,4 +1,4 @@
-import { Box, Heading, Text, VStack } from "@gluestack-ui/themed";
+import { Box, Heading, Pressable, Text, VStack } from "@gluestack-ui/themed";
 import { router } from "expo-router";
 import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
@@ -44,7 +44,11 @@ const PlaceListCard: React.FC<Props> = ({
     if (event.target !== event.currentTarget) return;
   };
   return (
-    <Box>
+    <Box
+      sx={{
+        mb: "$8",
+      }}
+    >
       <PlaceImageCarousel
         list={imageSort(images)}
         title={translation.title}
@@ -55,9 +59,9 @@ const PlaceListCard: React.FC<Props> = ({
           px: "$2",
           pt: "$2",
         }}
-        space="sm"
+        space="md"
       >
-        <Box>
+        <Pressable onPress={openDetail}>
           <Heading
             sx={{
               color: "$textLight700",
@@ -69,30 +73,32 @@ const PlaceListCard: React.FC<Props> = ({
           <Text color="$textLight600" mt="$0.5">
             Bu yer Sakarya ve cart curt'a yakındır
           </Text>
-        </Box>
-        <Box
+        </Pressable>
+        <Pressable
           sx={{
             flexDirection: "row",
             w: "100%",
             justifyContent: "space-between",
           }}
+          onPress={openDetail}
         >
           <ReviewCard star={review.averagePoint} total={review.total} />
           <TimeSpentCard
             max={averageTimeSpent.max}
             min={averageTimeSpent.min}
           />
-        </Box>
-        <Box
+        </Pressable>
+        <Pressable
           sx={{
             flexDirection: "row",
             w: "100%",
             justifyContent: "space-between",
           }}
+          onPress={openDetail}
         >
           <IsPayedCard isPayed={isPayed} />
           <PlaceTypeCard type={type} />
-        </Box>
+        </Pressable>
       </VStack>
     </Box>
   );

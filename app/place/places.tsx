@@ -1,5 +1,6 @@
-import { Box, ScrollView, VStack, View } from "@gluestack-ui/themed";
-import React, { useEffect } from "react";
+import { Box, View } from "@gluestack-ui/themed";
+import React, { useEffect, useRef } from "react";
+import { FlatList } from "react-native";
 import { Services, apiUrl } from "~config/services";
 import { PlaceFilterProvider, usePlaceFilter } from "~contexts/place-filter";
 import { useAlert } from "~hooks/alert";
@@ -12,6 +13,7 @@ import PlaceListCard from "~partials/place/card/PlaceListCard";
 import { PlaceListItem, isPlaceListResponse } from "~types/place";
 import { ListResponse } from "~types/response";
 import debounce from "~utils/debounce";
+import { deepMerge } from "~utils/object";
 
 type Props = {
   data: ListResponse<PlaceListItem>;
@@ -50,8 +52,10 @@ const PlaceFilterSection: React.FC<Props> = ({ data, loading }) => {
 type ContentType = "map" | "list";
 
 function PlaceListPage() {
+  const flatRef = useRef<any>();
   const [contentType, setContentType] = React.useState<ContentType>("list");
-  const { query } = usePlaceFilter();
+  const { query, isOnlyPageChanged, isQueryChanged, setQuery } =
+    usePlaceFilter();
   const [loading, setLoading] = React.useState<boolean>(false);
   const [data, setData] = React.useState<ListResponse<PlaceListItem>>({
     filteredTotal: 0,
@@ -70,32 +74,32 @@ function PlaceListPage() {
     debouncedFetch();
   }, [query]);
 
-  const fetch = () => {
+  const fetch = (isNextFetch = false) => {
     setLoading(true);
     http
       .post(
         apiUrl(
           Services.Place,
-          `/?page=${query.page ?? 1}&limit=${query.page ?? 10}`
+          `/?page=${isNextFetch && query.page ? query.page : 1}&limit=${
+            query.limit ?? 10
+          }`
         ),
         query.filter
       )
       .then((res) => {
         if (isPlaceListResponse(res.data)) {
-          if (!query.page || query.page === 1) {
+          if (!isNextFetch) {
+            flatRef.current?.scrollToOffset({ offset: 0 });
             setData(res.data);
           } else {
-            setData((prev) => ({
+            setData({
               ...res.data,
-              list: [...prev.list, ...res.data.list],
-            }));
+              list: [...data.list, ...res.data.list],
+            });
           }
         }
       })
-      .catch((err) => {
-        // debuggg
-        alert.alert(JSON.stringify(err));
-      })
+      .catch((err) => {})
       .finally(() => {
         setLoading(false);
       });
@@ -103,8 +107,17 @@ function PlaceListPage() {
 
   const debouncedFetch = debounce(() => {
     if (loading) return;
-    fetch();
+    fetch(!isQueryChanged && isOnlyPageChanged);
   }, 500);
+
+  const nextPage = () => {
+    if (!data.isNext) return;
+    setQuery(
+      deepMerge(query, {
+        page: query.page ? query.page + 1 : 2,
+      })
+    );
+  };
   return (
     <View
       sx={{
@@ -112,14 +125,13 @@ function PlaceListPage() {
         bg: "$white",
       }}
     >
-      <ScrollView>
-        <PlaceFilterSection data={data} loading={loading} />
-        <VStack space="2xl">
-          {data.list.map((li, index) => (
-            <PlaceListCard key={index} {...li} />
-          ))}
-        </VStack>
-      </ScrollView>
+      <PlaceFilterSection data={data} loading={loading} />
+      <FlatList
+        ref={flatRef}
+        data={data.list}
+        renderItem={({ item }) => <PlaceListCard {...item} />}
+        onEndReached={nextPage}
+      />
     </View>
   );
 }

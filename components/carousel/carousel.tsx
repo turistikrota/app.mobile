@@ -6,6 +6,7 @@ import {
   StyleSheet,
   View,
 } from "react-native";
+import { useAlert } from "~hooks/alert";
 import { Props as PaginationProps } from "./pagination";
 
 const NUM_OF_DUP = 3;
@@ -37,6 +38,7 @@ function Carousel<T = any>({
     useState<NodeJS.Timeout | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [childWidth, setChildWidth] = useState(0);
+  const alert = useAlert();
 
   const isLooped = useMemo(() => loop && data.length > 1, [loop, data]);
 

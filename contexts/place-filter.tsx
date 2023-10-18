@@ -8,12 +8,14 @@ import React, {
 } from "react";
 import { PaginationRequest } from "~types/pagination";
 import { PlaceFilterRequest, PlaceSearchParams } from "~types/place";
-import { deepEqual } from "~utils/object";
+import { deepEqual, findDiff } from "~utils/object";
 import { getQueryByKeyBindings, toQueryString } from "~utils/place";
 
 type PlaceFilterContextType = {
   query: PaginationRequest<PlaceFilterRequest>;
   setQuery: (q: PaginationRequest<PlaceFilterRequest>) => void;
+  isQueryChanged: boolean;
+  isOnlyPageChanged: boolean;
   isFiltered: boolean;
 };
 
@@ -35,7 +37,29 @@ export const PlaceFilterProvider: React.FC<React.PropsWithChildren> = ({
   const [query, setQuery] = useState<PaginationRequest<PlaceFilterRequest>>({
     filter: {},
   });
+  const [isQueryChanged, setIsQueryChanged] = useState(false);
+  const [isOnlyPageChanged, setIsOnlyPageChanged] = useState(false);
   const searchParams = useLocalSearchParams<PlaceSearchParams>();
+
+  const onQueryChange = (newQuery: PaginationRequest<PlaceFilterRequest>) => {
+    const oldQuery = { ...query };
+    if (deepEqual(oldQuery, newQuery)) return;
+    let resetPage = false;
+    const diff = Object.keys(findDiff(oldQuery, newQuery));
+    if (diff.length === 1 && diff.includes("page")) {
+      setIsOnlyPageChanged(true);
+      setIsQueryChanged(false);
+    } else if (diff.length === 0 && !deepEqual(oldQuery, newQuery)) {
+      setIsOnlyPageChanged(false);
+      setIsQueryChanged(false);
+    } else {
+      resetPage = true;
+      setIsOnlyPageChanged(false);
+      setIsQueryChanged(true);
+    }
+    if (resetPage) newQuery.page = 1;
+    setQuery(newQuery);
+  };
 
   useEffect(() => {
     const newQuery = getQueryByKeyBindings(searchParams);
@@ -52,12 +76,14 @@ export const PlaceFilterProvider: React.FC<React.PropsWithChildren> = ({
   const contextValue = useMemo(() => {
     return {
       query,
-      setQuery,
+      setQuery: onQueryChange,
+      isQueryChanged,
+      isOnlyPageChanged,
       isFiltered:
         Object.keys(query.filter).filter((q) => !["sort", "order"].includes(q))
           .length > 0,
     };
-  }, [query, setQuery]);
+  }, [query, setQuery, isQueryChanged, isOnlyPageChanged]);
 
   return (
     <PlaceFilterContext.Provider value={contextValue}>
