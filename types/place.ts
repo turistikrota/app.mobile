@@ -259,6 +259,19 @@ export function isPlaceFeatureList(
   return Array.isArray(response) && response.length > 0;
 }
 
+export function isPlaceDetail(response: any): response is PlaceDetail {
+  return (
+    typeof response !== "undefined" &&
+    response !== null &&
+    typeof response.translations !== "undefined" &&
+    typeof response.images !== "undefined" &&
+    typeof response.coordinates !== "undefined" &&
+    typeof response.isPayed !== "undefined" &&
+    typeof response.type !== "undefined" &&
+    typeof response.updatedAt !== "undefined"
+  );
+}
+
 export function isPlaceType(type: string): type is Type {
   return Object.values(Type).includes(type as Type);
 }

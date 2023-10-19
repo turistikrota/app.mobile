@@ -1,5 +1,5 @@
 import { Box, View } from "@gluestack-ui/themed";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FlatList } from "react-native";
 import { Services, apiUrl } from "~config/services";
@@ -11,7 +11,13 @@ import PlaceFilterShareContent from "~partials/place/PlaceFilterShareContent";
 import PlaceSortContent from "~partials/place/PlaceSortContent";
 import PlaceListCard from "~partials/place/card/PlaceListCard";
 import PlaceDetail from "~partials/place/detail/PlaceDetail";
-import { PlaceListItem, isPlaceListResponse } from "~types/place";
+import { getLocale } from "~types/i18n";
+import {
+  PlaceListItem,
+  TranslationItem,
+  getTranslations,
+  isPlaceListResponse,
+} from "~types/place";
 import { ListResponse } from "~types/response";
 import debounce from "~utils/debounce";
 import { deepMerge } from "~utils/object";
@@ -78,6 +84,19 @@ function PlaceListPage() {
     debouncedFetch();
   }, [query]);
 
+  const selectedTranslations = useMemo<TranslationItem | undefined>(() => {
+    if (!selected) return undefined;
+    return getTranslations<TranslationItem>(
+      selected.translations,
+      getLocale(i18n.language),
+      {
+        description: "",
+        slug: "",
+        title: "",
+      }
+    );
+  }, [selected, i18n.language]);
+
   const fetch = (isNextFetch = false) => {
     setLoading(true);
     http
@@ -142,8 +161,8 @@ function PlaceListPage() {
         setVisible={() => onDeselect()}
         locale={i18n.language}
         images={selected?.images}
-        title={selected?.translations.en.title}
-        slug={selected?.translations.en.title}
+        title={selectedTranslations?.title}
+        slug={selectedTranslations?.slug}
       />
       <PlaceFilterSection data={data} loading={loading} />
       <FlatList

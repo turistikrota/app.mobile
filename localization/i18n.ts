@@ -17,6 +17,7 @@ const deviceLanguage =
     : NativeModules.I18nManager.localeIdentifier;
 
 const fixLanguageCode = (code: string, fallback: string): string => {
+  code = code.toLowerCase();
   if (code.includes("-")) {
     const [language, region] = code.split("-");
     return isLocale(language) ? code : fallback;

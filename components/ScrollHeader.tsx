@@ -1,9 +1,9 @@
 import * as React from "react";
-import { Animated, StyleSheet } from "react-native";
+import { Animated, Dimensions, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ScrollModalHeader, { ScrollHeadProps } from "./scroll/ScrollModalHeader";
 
-const Header_Max_Height = 350;
+const { width: Header_Max_Height } = Dimensions.get("window");
 const Header_Min_Height = 44;
 
 type Props = ScrollHeadProps & {
