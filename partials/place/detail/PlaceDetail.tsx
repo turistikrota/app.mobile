@@ -124,13 +124,18 @@ const PlaceDetail: React.FC<Props> = ({
       customHead
     >
       <PlaceDetailContent
-        onBack={() => setVisible(false)}
-        onShare={onShare}
+        loading={loading}
+        images={images}
         translations={translations}
         markdownContent={mdContent}
-        images={images}
+        features={placeDetail?.features}
         review={placeDetail?.review}
-        loading={loading}
+        coordinates={placeDetail?.coordinates}
+        isPayed={placeDetail?.isPayed}
+        timeSpent={placeDetail?.averageTimeSpent}
+        type={placeDetail?.type}
+        onBack={() => setVisible(false)}
+        onShare={onShare}
       />
     </ScrollableModal>
   );

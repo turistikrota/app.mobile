@@ -1,4 +1,4 @@
-import { Heading, Text } from "@gluestack-ui/themed";
+import { Box, Heading, Text } from "@gluestack-ui/themed";
 import React from "react";
 
 type Props = {
@@ -8,10 +8,14 @@ type Props = {
 
 const PlaceDetailTitleSection: React.FC<Props> = ({ title, description }) => {
   return (
-    <>
-      <Heading>{title}</Heading>
-      <Text>{description}</Text>
-    </>
+    <Box>
+      <Heading color="$textLight700" size="lg">
+        {title}
+      </Heading>
+      <Text mt="$0.5" color="$textLight600">
+        {description}
+      </Text>
+    </Box>
   );
 };
 

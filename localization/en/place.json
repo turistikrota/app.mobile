@@ -133,6 +133,21 @@
     "health": "Health",
     "sport": "Sport",
     "nightlife": "Nightlife",
-    "other": "Other"
+    "other": "Other",
+    "desc": {
+      "eating": "This is a place where you can eat.",
+      "coffee": "This is a place where you can drink coffee.",
+      "bar": "This is a place where you can drink alcohol.",
+      "beach": "This is a beach.",
+      "amaze": "This is a place where you can have fun.",
+      "shopping": "This is a place where you can shop.",
+      "transport": "This is a place where you can use public transport.",
+      "culture": "This is a place where you can learn something.",
+      "nature": "This is a place where you can enjoy nature.",
+      "health": "This is a place where you can get medical help.",
+      "sport": "This is a place where you can do sports.",
+      "nightlife": "This is a place where you can have fun at night.",
+      "other": "This is a place where you can do something else."
+    }
   }
 }

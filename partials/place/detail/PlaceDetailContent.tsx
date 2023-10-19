@@ -15,9 +15,18 @@ import {
 } from "react-native";
 import ScrollHeader from "~components/ScrollHeader";
 import LoadingListItem from "~partials/state/LoadingListItem";
-import { FullTranslation, PlaceImage, Review } from "~types/place";
+import {
+  Coordinates,
+  FeatureItem,
+  FullTranslation,
+  PlaceImage,
+  Review,
+  TimeSpent,
+  Type,
+} from "~types/place";
 import { imageSort } from "~utils/sort";
 import PlaceImageCarousel from "../card/PlaceImageCarousel";
+import PlaceDetailFeatureSection from "./PlaceDetailFeatureSection";
 import PlaceDetailMarkdownContentSection from "./PlaceDetailMarkdownContentSection";
 import PlaceDetailReviewSection from "./PlaceDetailReviewSection";
 import PlaceDetailTitleSection from "./PlaceDetailTitleSection";
@@ -27,9 +36,14 @@ type Props = {
   translations: FullTranslation;
   markdownContent: string;
   review?: Review;
+  timeSpent?: TimeSpent;
+  isPayed?: boolean;
+  coordinates?: Coordinates;
+  type?: Type;
+  features?: FeatureItem[];
+  images?: PlaceImage[];
   onShare: () => Promise<any>;
   onBack: () => void;
-  images?: PlaceImage[];
 };
 
 const PlaceDetailContent: React.FC<Props> = ({
@@ -37,6 +51,11 @@ const PlaceDetailContent: React.FC<Props> = ({
   translations,
   markdownContent,
   review,
+  features,
+  timeSpent,
+  coordinates,
+  type,
+  isPayed,
   images,
   onShare,
   onBack,
@@ -109,7 +128,7 @@ const PlaceDetailContent: React.FC<Props> = ({
               <LoadingListItem />
             </Center>
           ) : (
-            <VStack space="sm" px="$2" py="$2">
+            <VStack space="md" px="$2" py="$2">
               <PlaceDetailTitleSection
                 description={translations.description}
                 title={translations.title}
@@ -117,6 +136,13 @@ const PlaceDetailContent: React.FC<Props> = ({
               <PlaceDetailReviewSection
                 averagePoint={review?.averagePoint ?? 0}
                 total={review?.total ?? 0}
+              />
+              <PlaceDetailFeatureSection
+                features={features ?? []}
+                coordinates={coordinates ?? [0, 0]}
+                isPayed={isPayed!}
+                timeSpent={timeSpent ?? { min: 0, max: 0 }}
+                type={type!}
               />
               <PlaceDetailMarkdownContentSection content={markdownContent} />
               <Box
