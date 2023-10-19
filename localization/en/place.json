@@ -6,6 +6,9 @@
   "share": {
     "message": "Share your filter settings"
   },
+  "review": {
+    "label": "review"
+  },
   "sort-by": {
     "title": "Sort By",
     "most_popular": "Popularity",

@@ -116,6 +116,7 @@ const PlaceDetail: React.FC<Props> = ({
         onShare={onShare}
         translations={translations}
         images={images}
+        review={placeDetail?.review}
         loading={loading}
       />
     </ScrollableModal>

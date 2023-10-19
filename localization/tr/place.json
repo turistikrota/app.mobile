@@ -15,6 +15,9 @@
     "clear-text": "Temizle",
     "clear-aria-label": "Sıralama Ölçütünü Temizle"
   },
+  "review": {
+    "label": "değerlendirme"
+  },
   "order-by": {
     "title": "Sıralama Yöntemi",
     "desc": "Azalan",

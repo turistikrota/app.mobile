@@ -1,9 +1,8 @@
 import {
   Center,
-  Heading,
   ScrollView,
   StatusBar,
-  Text,
+  VStack,
   View,
 } from "@gluestack-ui/themed";
 import React, { useRef, useState } from "react";
@@ -15,13 +14,16 @@ import {
 } from "react-native";
 import ScrollHeader from "~components/ScrollHeader";
 import LoadingListItem from "~partials/state/LoadingListItem";
-import { FullTranslation, PlaceImage } from "~types/place";
+import { FullTranslation, PlaceImage, Review } from "~types/place";
 import { imageSort } from "~utils/sort";
 import PlaceImageCarousel from "../card/PlaceImageCarousel";
+import PlaceDetailReviewSection from "./PlaceDetailReviewSection";
+import PlaceDetailTitleSection from "./PlaceDetailTitleSection";
 
 type Props = {
   loading: boolean;
   translations: FullTranslation;
+  review?: Review;
   onShare: () => Promise<any>;
   onBack: () => void;
   images?: PlaceImage[];
@@ -30,6 +32,7 @@ type Props = {
 const PlaceDetailContent: React.FC<Props> = ({
   loading,
   translations,
+  review,
   images,
   onShare,
   onBack,
@@ -102,10 +105,16 @@ const PlaceDetailContent: React.FC<Props> = ({
               <LoadingListItem />
             </Center>
           ) : (
-            <>
-              <Heading>{translations.title}</Heading>
-              <Text>{translations.description}</Text>
-            </>
+            <VStack space="sm" px="$2" py="$2">
+              <PlaceDetailTitleSection
+                description={translations.description}
+                title={translations.title}
+              />
+              <PlaceDetailReviewSection
+                averagePoint={review?.averagePoint ?? 0}
+                total={review?.total ?? 0}
+              />
+            </VStack>
           )}
         </TouchableOpacity>
       </ScrollView>
