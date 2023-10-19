@@ -41,8 +41,6 @@ const ScrollableModal: React.FC<React.PropsWithChildren<Props>> = ({
       isVisible={isVisible}
       onBackdropPress={checkClose}
       onSwipeComplete={() => setVisible(false)}
-      useNativeDriverForBackdrop
-      useNativeDriver
       swipeDirection={swipeDirection}
       style={{
         width: "100%",

@@ -13,6 +13,7 @@ import {
   getTranslations,
   isPlaceDetail,
 } from "~types/place";
+import { getMdContent } from "~utils/md";
 import PlaceDetailContent from "./PlaceDetailContent";
 
 type Props = {
@@ -47,6 +48,7 @@ const PlaceDetail: React.FC<Props> = ({
   const { t, i18n } = useTranslation("place");
   const [loading, setLoading] = useState<boolean>(false);
   const [isNotFound, setIsNotFound] = useState<boolean>(false);
+  const [mdContent, setMdContent] = useState<string>("");
   const [placeDetail, setPlaceDetail] = useState<PlaceDetailType | null>(null);
   const http = useHttpClient();
 
@@ -88,6 +90,16 @@ const PlaceDetail: React.FC<Props> = ({
     );
   }, [placeDetail?.translations, i18n.language]);
 
+  useEffect(() => {
+    getMdContent(translations.markdownUrl)
+      .then((res) => {
+        setMdContent(res);
+      })
+      .catch((err) => {
+        setMdContent("");
+      });
+  }, [placeDetail?.translations]);
+
   const images = useMemo<PlaceImage[]>(() => {
     if (placeDetail == null) return listImages ?? [];
     return placeDetail.images;
@@ -115,6 +127,7 @@ const PlaceDetail: React.FC<Props> = ({
         onBack={() => setVisible(false)}
         onShare={onShare}
         translations={translations}
+        markdownContent={mdContent}
         images={images}
         review={placeDetail?.review}
         loading={loading}

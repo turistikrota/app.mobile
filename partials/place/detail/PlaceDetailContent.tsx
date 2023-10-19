@@ -1,4 +1,5 @@
 import {
+  Box,
   Center,
   ScrollView,
   StatusBar,
@@ -17,12 +18,14 @@ import LoadingListItem from "~partials/state/LoadingListItem";
 import { FullTranslation, PlaceImage, Review } from "~types/place";
 import { imageSort } from "~utils/sort";
 import PlaceImageCarousel from "../card/PlaceImageCarousel";
+import PlaceDetailMarkdownContentSection from "./PlaceDetailMarkdownContentSection";
 import PlaceDetailReviewSection from "./PlaceDetailReviewSection";
 import PlaceDetailTitleSection from "./PlaceDetailTitleSection";
 
 type Props = {
   loading: boolean;
   translations: FullTranslation;
+  markdownContent: string;
   review?: Review;
   onShare: () => Promise<any>;
   onBack: () => void;
@@ -32,6 +35,7 @@ type Props = {
 const PlaceDetailContent: React.FC<Props> = ({
   loading,
   translations,
+  markdownContent,
   review,
   images,
   onShare,
@@ -95,7 +99,7 @@ const PlaceDetailContent: React.FC<Props> = ({
           height: "100%",
         }}
       >
-        <TouchableOpacity>
+        <TouchableOpacity activeOpacity={1}>
           {loading ? (
             <Center
               sx={{
@@ -113,6 +117,12 @@ const PlaceDetailContent: React.FC<Props> = ({
               <PlaceDetailReviewSection
                 averagePoint={review?.averagePoint ?? 0}
                 total={review?.total ?? 0}
+              />
+              <PlaceDetailMarkdownContentSection content={markdownContent} />
+              <Box
+                sx={{
+                  h: "$32",
+                }}
               />
             </VStack>
           )}
