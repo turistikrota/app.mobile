@@ -110,7 +110,7 @@ const PlaceDetailFeatureSection: React.FC<Props> = ({
           text: t("features.free.subtext"),
         },
       ].filter((f) => f.condition) as MainFeatureItem[],
-    [features, cityText, currentType, timeSpent, isPayed, i18n.language]
+    [features, cityText, currentType, timeSpent, isPayed, i18n.language, t]
   );
   return (
     <>

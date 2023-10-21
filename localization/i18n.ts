@@ -17,12 +17,16 @@ const deviceLanguage =
     : NativeModules.I18nManager.localeIdentifier;
 
 const fixLanguageCode = (code: string, fallback: string): string => {
-  code = code.toLowerCase();
-  if (code.includes("-")) {
-    const [language, region] = code.split("_");
-    return isLocale(language) ? code : fallback;
+  const _code = code.toLowerCase();
+  if (_code.includes("_")) {
+    const [language, region] = _code.split("_");
+    return isLocale(language) ? language : fallback;
   }
-  return isLocale(code) ? code : fallback;
+  if (_code.includes("-")) {
+    const [language, region] = _code.split("-");
+    return isLocale(language) ? language : fallback;
+  }
+  return isLocale(_code) ? _code : fallback;
 };
 
 i18n.use(initReactI18next).init({

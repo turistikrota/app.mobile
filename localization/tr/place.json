@@ -111,20 +111,20 @@
   },
   "features": {
     "location": {
-      "text": "Location",
-      "subtext": "This place nearest to {{location}}."
+      "text": "Konum",
+      "subtext": "Bu yer {{location}} konumuna yakındır."
     },
     "time": {
-      "text": "Average time spent",
-      "subtext": "You will spend {{min}} - {{max}} {{unit}} here."
+      "text": "Harcanan ortalama sürei",
+      "subtext": "Burada {{min}} - {{max}} {{unit}} geçireceksiniz."
     },
     "payed": {
-      "text": "Admission",
-      "subtext": "You have to pay for this place."
+      "text": "Giriş",
+      "subtext": "Bu yere giriş için ödeme yapmanız gerekiyor."
     },
     "free": {
       "text": "Admission",
-      "subtext": "You can visit this place for free."
+      "subtext": "Bu yere giriş ücretsizdir."
     }
   },
   "types": {
