@@ -1,6 +1,8 @@
 import * as Location from "expo-location";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import cities, { City } from "~static/location/cities";
+import { setLoading, setLocation } from "~store/location.store";
 import { Coordinates } from "~types/place";
 
 export const useCities = (filter: string | null): City[] => {
@@ -15,27 +17,32 @@ export const useCities = (filter: string | null): City[] => {
 };
 
 type LocationHookResult = {
-  loading: boolean;
-  location?: Coordinates;
+  askPermission: () => Promise<Coordinates | undefined>;
 };
 
-export const useLocation = (): LocationHookResult => {
-  const [loading, setLoading] = useState(false);
-  const [location, setLocation] = useState<Coordinates | undefined>(undefined);
+export const useLocation = (askInit?: boolean): LocationHookResult => {
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    if (!askInit) return;
     askPermission();
-  }, []);
+  }, [askInit]);
 
   const askPermission = async () => {
     const { status } = await Location.requestForegroundPermissionsAsync();
-    if (status !== "granted") return setLoading(false);
+    if (status !== "granted") {
+      dispatch(setLoading(false));
+      return;
+    }
     const location = await Location.getCurrentPositionAsync({});
-    setLocation([location.coords.latitude, location.coords.longitude]);
+    dispatch(
+      setLocation([location.coords.longitude, location.coords.latitude])
+    );
+    dispatch(setLoading(false));
+    return [location.coords.longitude, location.coords.latitude] as Coordinates;
   };
 
   return {
-    loading,
-    location,
+    askPermission,
   };
 };

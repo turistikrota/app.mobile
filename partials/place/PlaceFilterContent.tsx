@@ -138,7 +138,9 @@ const PlaceFilterContent: React.FC<Props> = ({ data, loading }) => {
             </Pressable>
           )
         }
-        title={title ? title : t("titles.filter")}
+        title={
+          isDetailOpen && ActiveComponent && title ? title : t("titles.filter")
+        }
       >
         <View sx={{ p: "$2" }}>
           {isDetailOpen && ActiveComponent ? (

@@ -1,10 +1,12 @@
 import { Box, Spinner, View, useToken } from "@gluestack-ui/themed";
 import React, { useMemo, useState } from "react";
 import MapView, { Marker, Region } from "react-native-maps";
+import { useSelector } from "react-redux";
 import BoxIcon from "~assets/Icons/BoxIcon";
 import { usePlaceFilter } from "~contexts/place-filter";
 import { useLocation } from "~hooks/location";
 import LoadingListItem from "~partials/state/LoadingListItem";
+import { RootState } from "~store";
 import {
   Coordinates,
   DistanceDeltas,
@@ -25,8 +27,9 @@ type Props = {
 
 const PlaceMap: React.FC<Props> = ({ loading, data, onSelect }) => {
   const { query, setQuery } = usePlaceFilter();
+  const locationStore = useSelector((state: RootState) => state.location);
   const [selected, setSelected] = useState<PlaceListItem | null>(null);
-  const { loading: locationLoading, location } = useLocation();
+  useLocation(locationStore.useForPlaceFilter);
   const markerColor = useToken("colors", "primary500");
 
   const region = useMemo(() => {
@@ -35,9 +38,15 @@ const PlaceMap: React.FC<Props> = ({ loading, data, onSelect }) => {
       : undefined;
     if (query.filter.coordinates)
       return makeRegion(query.filter.coordinates, zoom);
-    //if (location) return makeRegion(location, zoom);
+    if (locationStore.useForPlaceFilter && locationStore.location)
+      return makeRegion(locationStore.location, zoom);
     return makeRegion(IstanbulCoordinates, zoom);
-  }, [query.filter.coordinates, location, query.filter.distance]);
+  }, [
+    query.filter.coordinates,
+    locationStore.location,
+    locationStore.useForPlaceFilter,
+    query.filter.distance,
+  ]);
 
   const debouncedRegionSetter = debounce((newRegion: Region) => {
     if (
@@ -55,10 +64,10 @@ const PlaceMap: React.FC<Props> = ({ loading, data, onSelect }) => {
       },
     };
     setQuery(newQuery);
-  }, 300);
+  }, 600);
   return (
     <>
-      {locationLoading ? (
+      {locationStore.loading ? (
         <LoadingListItem />
       ) : (
         <>

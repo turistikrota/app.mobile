@@ -1,5 +1,12 @@
 import {
+  Alert,
+  AlertIcon,
+  AlertText,
   Box,
+  Checkbox,
+  CheckboxIndicator,
+  CheckboxLabel,
+  InfoIcon,
   Input,
   InputField,
   InputIcon,
@@ -14,16 +21,18 @@ import {
 import React, { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FlatList, ListRenderItem } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import BoxIcon from "~assets/Icons/BoxIcon";
 import { usePlaceFilter } from "~contexts/place-filter";
-import { useCities } from "~hooks/location";
+import { useCities, useLocation } from "~hooks/location";
 import {
   City,
   findCityByCoordinates,
   findCityByName,
 } from "~static/location/cities";
+import { RootState } from "~store";
+import { setUseForPlaceFilter } from "~store/location.store";
 import { Coordinates } from "~types/place";
-import { deepMerge } from "~utils/object";
 
 function PlaceFilterCityGroup() {
   const { t } = useTranslation("place");
@@ -31,12 +40,31 @@ function PlaceFilterCityGroup() {
   const cities = useCities(search);
   const [renderCount, setRenderCount] = useState(20);
   const { query, setQuery } = usePlaceFilter();
+  const dispatch = useDispatch();
+  const locationStore = useSelector((state: RootState) => state.location);
+  const { askPermission } = useLocation(false);
 
   const currentCity = useMemo<undefined | string>(() => {
     if (!query.filter.coordinates) return;
     const name = findCityByCoordinates(query.filter.coordinates)?.name;
     return name;
   }, [query.filter.coordinates]);
+
+  const onLocationChange = async (val: boolean) => {
+    dispatch(setUseForPlaceFilter(val));
+    let coordinates = undefined;
+    if (val) {
+      coordinates = await askPermission().catch(() => undefined);
+    }
+    const newQuery = {
+      ...query,
+      filter: {
+        ...query.filter,
+        coordinates: coordinates,
+      },
+    };
+    setQuery(newQuery);
+  };
 
   const onSelect = (cityName: string | undefined) => {
     let coordinates: Coordinates | undefined = undefined;
@@ -49,7 +77,7 @@ function PlaceFilterCityGroup() {
     const newQuery = {
       ...query,
       filter: { ...query.filter, coordinates },
-    }
+    };
     setQuery(newQuery);
   };
 
@@ -78,30 +106,58 @@ function PlaceFilterCityGroup() {
   );
   return (
     <VStack space="lg">
-      <Input>
-        <InputSlot pl="$3">
-          <InputIcon as={SearchIcon} />
-        </InputSlot>
-        <InputField
-          placeholder={t("filter.city-select.placeholder")}
-          onChangeText={(text) => setSearch(text)}
-          value={search}
-        />
-      </Input>
-      <Box
-        sx={{
-          h: "$96",
-        }}
+      <Alert mt="$2" action="info" variant="accent">
+        <AlertIcon as={InfoIcon} mr="$3" />
+        <AlertText>{t("filter.city-select.description")}</AlertText>
+      </Alert>
+      <Checkbox
+        size="md"
+        value={"1"}
+        isChecked={locationStore.location && locationStore.useForPlaceFilter}
+        justifyContent="space-between"
+        aria-label={t("filter.location.label")}
+        onChange={onLocationChange}
       >
-        <RadioGroup value={currentCity ?? ""} onChange={onSelect}>
-          <FlatList
-            data={cities.slice(0, renderCount)}
-            renderItem={renderItem}
-            onEndReached={renderMore}
-            keyExtractor={(item) => item.name}
-          ></FlatList>
-        </RadioGroup>
-      </Box>
+        <CheckboxLabel>{t("filter.location.label")}</CheckboxLabel>
+        <CheckboxIndicator
+          mr="$2"
+          bgColor={
+            locationStore.location && locationStore.useForPlaceFilter
+              ? "$primary500"
+              : undefined
+          }
+        >
+          <BoxIcon name="check" width={22} height={22} color={"white"} />
+        </CheckboxIndicator>
+      </Checkbox>
+      {(!locationStore.loading || !locationStore.useForPlaceFilter) && (
+        <>
+          <Input>
+            <InputSlot pl="$3">
+              <InputIcon as={SearchIcon} />
+            </InputSlot>
+            <InputField
+              placeholder={t("filter.city-select.placeholder")}
+              onChangeText={(text) => setSearch(text)}
+              value={search}
+            />
+          </Input>
+          <Box
+            sx={{
+              h: "$96",
+            }}
+          >
+            <RadioGroup value={currentCity ?? ""} onChange={onSelect}>
+              <FlatList
+                data={cities.slice(0, renderCount)}
+                renderItem={renderItem}
+                onEndReached={renderMore}
+                keyExtractor={(item) => item.name}
+              ></FlatList>
+            </RadioGroup>
+          </Box>
+        </>
+      )}
     </VStack>
   );
 }

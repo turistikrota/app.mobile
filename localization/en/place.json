@@ -26,10 +26,17 @@
     "clear-aria-label": "Clear Sort Method"
   },
   "filter": {
+    "location": {
+      "title": "Select Location",
+      "text": "Location",
+      "label": "Places Near My Location",
+      "current": "Current Location"
+    },
     "city-select": {
       "title": "Select a city",
       "text": "City",
-      "placeholder": "Search for a city"
+      "placeholder": "Search for a city",
+      "description": "If you want, you can list the places close to your device location, or you can choose a city and list the places close to that city."
     },
     "distance": {
       "title": "Distance",

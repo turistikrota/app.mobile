@@ -7,6 +7,7 @@ import { findCityByCoordinates } from "~static/location/cities";
 import { RootState } from "~store";
 import { Locales } from "~types/i18n";
 import {
+  Coordinates,
   PlaceFeatureListItem,
   PlaceFeatureListItemTranslations,
   PlaceFilterComponents,
@@ -69,13 +70,18 @@ type ParserOptions = {
   features: PlaceFeatureListItem[];
   locale: Locales;
   t: ReturnType<typeof useTranslation>["t"];
+  locationUseForPlace: boolean;
+  location?: Coordinates;
 };
 
 const componentValueParsers: Record<
   PlaceFilterComponents,
   (value: any, options: ParserOptions) => any
 > = {
-  "city-select": (value) => {
+  "city-select": (value, options) => {
+    if (options.locationUseForPlace && options.location) {
+      return options.t("filter.location.current");
+    }
     if (isCoordinates(value)) {
       const city = findCityByCoordinates(value);
       if (city) return city.name;
@@ -160,6 +166,7 @@ const componentValueParsers: Record<
 const PlaceFilterMenu: React.FC<Props> = ({ onOpen }) => {
   const { t, i18n } = useTranslation("place");
   const { query } = usePlaceFilter();
+  const locationStore = useSelector((state: RootState) => state.location);
   const features = useSelector((state: RootState) => state.place.features.list);
 
   return (
@@ -175,6 +182,8 @@ const PlaceFilterMenu: React.FC<Props> = ({ onOpen }) => {
               features,
               locale: i18n.language as Locales,
               t,
+              locationUseForPlace: locationStore.useForPlaceFilter,
+              location: locationStore.location,
             }
           )}
         ></FilterGroup>

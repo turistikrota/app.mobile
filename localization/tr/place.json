@@ -33,10 +33,17 @@
     "free": "Ücretsiz"
   },
   "filter": {
+    "location": {
+      "title": "Konum Seçin",
+      "text": "Konum",
+      "label": "Konumuma Yakın Yerler",
+      "current": "Mevcut Konum"
+    },
     "city-select": {
       "title": "Şehir Seçin",
       "text": "Şehir",
-      "placeholder": "Şehirlerde ara"
+      "placeholder": "Şehirlerde ara",
+      "description": "İsterseniz cihazınızın konumuna yakın yerleri listeleyebilir, isterseniz de bir şehir seçip o şehre yakın yerleri listeleyebilirsiniz."
     },
     "distance": {
       "title": "Mesafe",
