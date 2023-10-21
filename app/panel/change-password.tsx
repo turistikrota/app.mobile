@@ -17,6 +17,7 @@ import {
   VStack,
   View,
 } from "@gluestack-ui/themed";
+import * as Haptics from "expo-haptics";
 import { router } from "expo-router";
 import { useFormik } from "formik";
 import React, { useState } from "react";
@@ -58,9 +59,11 @@ export default function ChangePasswordPage() {
           }
         )
         .then((res) => {
+          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
           router.back();
         })
         .catch((res) => {
+          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
           setTurnstileKey(turnstileKey + 1);
           parseApiError({
             error: res?.response?.data,

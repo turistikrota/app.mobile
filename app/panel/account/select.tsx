@@ -6,6 +6,7 @@ import {
   View,
   useToken,
 } from "@gluestack-ui/themed";
+import * as Haptics from "expo-haptics";
 import { router } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -47,6 +48,7 @@ export default function SelectAccountPage() {
       .put(apiUrl(Services.Account, `/@${item.userName}/select`))
       .then((res) => {
         if (res.status === 200) {
+          Haptics.selectionAsync();
           dispatch(setProfile(item));
           router.push("/panel/board");
         }

@@ -20,6 +20,7 @@ import {
   Text,
   VStack,
 } from "@gluestack-ui/themed";
+import * as Haptics from "expo-haptics";
 import { Link, useLocalSearchParams, useRouter } from "expo-router";
 import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
@@ -73,10 +74,12 @@ export default function RegisterPage() {
           }
         )
         .then((res) => {
+          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
           alert.alert(t("register.success"));
           router.back();
         })
         .catch((res) => {
+          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
           setTurnstileKey(turnstileKey + 1);
           parseApiError({
             error: res?.response?.data,

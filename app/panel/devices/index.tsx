@@ -12,6 +12,7 @@ import {
   Text,
   View,
 } from "@gluestack-ui/themed";
+import * as Haptics from "expo-haptics";
 import { useNavigation } from "expo-router";
 import { useTranslation } from "react-i18next";
 import BoxIcon from "~assets/Icons/BoxIcon";
@@ -67,9 +68,11 @@ const DeviceControlPage: React.FC = () => {
     httpClient
       .delete(apiUrl(Services.Auth, `/session/others`))
       .then((res) => {
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
         fetch();
       })
       .catch((err) => {
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
         parseApiError({
           error: err?.response?.data,
           toast: (msg) => alert.alert(msg),

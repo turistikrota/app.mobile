@@ -6,6 +6,7 @@ import {
   View,
   useToken,
 } from "@gluestack-ui/themed";
+import * as Haptics from "expo-haptics";
 import { router, useLocalSearchParams } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
@@ -38,9 +39,11 @@ const DeviceDetailModal: React.FC = () => {
     httpClient
       .delete(apiUrl(Services.Auth, `/session/${device.device_uuid}`))
       .then((res) => {
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
         router.back();
       })
       .catch((err) => {
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
         parseApiError({
           error: err?.response?.data,
           toast: (msg) => alert.alert(msg),

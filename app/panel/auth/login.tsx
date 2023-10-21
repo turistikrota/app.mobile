@@ -14,6 +14,7 @@ import {
   InputField,
   VStack,
 } from "@gluestack-ui/themed";
+import * as Haptics from "expo-haptics";
 import { router, useLocalSearchParams } from "expo-router";
 import { useFormik } from "formik";
 import React, { useState } from "react";
@@ -61,10 +62,12 @@ export default function LoginPage() {
           }
         )
         .then((res) => {
+          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
           dispatch(loggedIn());
           router.back();
         })
         .catch((res) => {
+          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
           setTurnstileKey(turnstileKey + 1);
           if (isVerifyRequiredForLoginResponse(res?.response?.data)) {
             return router.push({

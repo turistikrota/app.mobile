@@ -1,4 +1,5 @@
 import { Box, Switch, Text } from "@gluestack-ui/themed";
+import * as Haptics from "expo-haptics";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
@@ -34,9 +35,11 @@ const EnableForm: React.FC<SubProps> = ({ onOk, userName }) => {
     httpClient
       .put(apiUrl(Services.Account, `/@${userName}/enable`), null)
       .then((res) => {
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
         if (res.status === 200) return onOk();
       })
       .catch((err) => {
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
         if (err && err.response && err.response.data) {
           setError(err.response.data);
           parseApiError({

@@ -8,6 +8,7 @@ import {
   VStack,
   View,
 } from "@gluestack-ui/themed";
+import * as Haptics from "expo-haptics";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -54,12 +55,14 @@ export default function ActivatePage() {
         }
       )
       .then((res) => {
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
         if (res.status === 200) {
           alert.alert(t("activate.success"));
           router.back();
         }
       })
       .catch((error) => {
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
         setTurnstileKey(turnstileKey + 1);
         if (
           isVerifyFailResponse(error?.response?.data) &&

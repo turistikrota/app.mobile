@@ -1,4 +1,5 @@
 import { Button, Text } from "@gluestack-ui/themed";
+import * as Haptics from "expo-haptics";
 import { router } from "expo-router";
 import React from "react";
 import { useTranslation } from "react-i18next";
@@ -27,6 +28,7 @@ const AccountEditProfileDeletionForm: React.FC<Props> = ({ userName }) => {
     httpClient
       .delete(apiUrl(Services.Account, `/@${userName}`))
       .then((res) => {
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
         if (res.status === 200) {
           dispatch(reset());
           router.replace("/panel/account/select");
@@ -34,6 +36,7 @@ const AccountEditProfileDeletionForm: React.FC<Props> = ({ userName }) => {
         }
       })
       .catch((err) => {
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
         if (err && err.response && err.response.data) {
           parseApiError({
             error: err.response.data,

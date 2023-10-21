@@ -19,6 +19,7 @@ import {
   VStack,
 } from "@gluestack-ui/themed";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import * as Haptics from "expo-haptics";
 import { useFormik } from "formik";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -80,6 +81,7 @@ const AccountEditProfileForm: React.FC<Props> = ({
             : undefined,
         })
         .then((res) => {
+          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
           if (res.status === 200) {
             alert.alert(t("general.success"));
             dispatch(
@@ -94,6 +96,7 @@ const AccountEditProfileForm: React.FC<Props> = ({
           }
         })
         .catch((err) => {
+          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
           if (err && err.response && err.response.data)
             return parseApiError({
               error: err.response.data,

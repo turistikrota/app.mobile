@@ -13,6 +13,7 @@ import {
   VStack,
   View,
 } from "@gluestack-ui/themed";
+import * as Haptics from "expo-haptics";
 import { router } from "expo-router";
 import { useFormik } from "formik";
 import React, { useState } from "react";
@@ -42,9 +43,11 @@ export default function CreateAccountPage() {
       httpClient
         .post(apiUrl(Services.Account, "/"), values)
         .then(() => {
+          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
           router.replace("/panel/account/select");
         })
         .catch((err) => {
+          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
           parseApiError({
             error: err.response.data,
             form,

@@ -17,6 +17,7 @@ import {
   VStack,
   View,
 } from "@gluestack-ui/themed";
+import * as Haptics from "expo-haptics";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
@@ -71,12 +72,14 @@ export default function ResendTokenPage() {
           }
         )
         .then((res) => {
+          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
           if (res.status === 200) {
             alert.alert(t("resend.success"));
             router.back();
           }
         })
         .catch((error) => {
+          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
           setTurnstileKey(turnstileKey + 1);
           parseApiError({
             error: error?.response?.data,

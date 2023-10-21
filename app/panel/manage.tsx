@@ -8,6 +8,7 @@ import {
   VStack,
   View,
 } from "@gluestack-ui/themed";
+import * as Haptics from "expo-haptics";
 import { router } from "expo-router";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -43,11 +44,13 @@ export default function ManageAccountPage() {
         },
       })
       .then((res) => {
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
         router.replace("/panel");
         dispatch(resetAuthStore());
         dispatch(resetAccountStore());
       })
       .catch((err) => {
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
         setTurnstileKey(turnstileKey + 1);
         parseApiError({
           error: err?.response?.data,
@@ -78,7 +81,6 @@ export default function ManageAccountPage() {
             action="negative"
             disabled={loading || token == ""}
             onPress={deleteAccount}
-            
           >
             <Loading value={loading} color="$white">
               <Text color="$white">
