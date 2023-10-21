@@ -30,10 +30,6 @@ const DeviceControlPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [devices, setDevices] = useState<DeviceItem[]>([]);
   const alert = useAlert();
-  const current = useMemo(
-    () => devices.find((item) => item.is_current),
-    [devices]
-  );
 
   const filteredItems = useMemo(
     () => devices.filter((d) => !d.is_current),
@@ -45,7 +41,13 @@ const DeviceControlPage: React.FC = () => {
       .get(apiUrl(Services.Auth, "/session"))
       .then((res) => {
         if (isDeviceItems(res.data)) {
-          setDevices(res.data);
+          setDevices(
+            res.data.map((d) => ({
+              ...d,
+              device_type:
+                d.device_name === "turistikrota" ? "mobile" : d.device_type,
+            }))
+          );
         }
       })
       .catch(() => {})

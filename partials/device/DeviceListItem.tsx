@@ -2,7 +2,8 @@ import { Box, Pressable, Text } from "@gluestack-ui/themed";
 import { router } from "expo-router";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import BoxIcon from "~assets/Icons/BoxIcon";
+import BoxIcon, { IconName } from "~assets/Icons/BoxIcon";
+import Logo from "~assets/Icons/Logo";
 import { useDeviceDate, useDeviceIcon } from "~hooks/device";
 import { DeviceItem } from "~types/device";
 
@@ -51,11 +52,19 @@ const DeviceListItem: React.FC<DeviceItem> = ({
           p: "$2",
         }}
       >
-        <BoxIcon
-          name={icon !== "question" ? icon : alternativeIcon}
-          width={30}
-          height={30}
-        />
+        {device_name === "turistikrota" ? (
+          <Logo borderRadius="$full" />
+        ) : (
+          <BoxIcon
+            name={
+              icon !== "question"
+                ? (icon as IconName)
+                : (alternativeIcon as IconName)
+            }
+            width={30}
+            height={30}
+          />
+        )}
       </Box>
       <Box
         sx={{
@@ -63,7 +72,8 @@ const DeviceListItem: React.FC<DeviceItem> = ({
         }}
       >
         <Text sx={{ fontWeight: "bold" }}>
-          {device_os} / {device_name}
+          {device_os ? `${device_os} / ` : undefined}
+          {device_name}
         </Text>
         <Text sx={{ fontSize: "$sm" }}>
           {t("lastSeen", {

@@ -10,7 +10,8 @@ import { router, useLocalSearchParams } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import BoxIcon from "~assets/Icons/BoxIcon";
+import BoxIcon, { IconName } from "~assets/Icons/BoxIcon";
+import Logo from "~assets/Icons/Logo";
 import LineTable from "~components/LineTable";
 import { Services, apiUrl } from "~config/services";
 import { useAlert } from "~hooks/alert";
@@ -62,12 +63,21 @@ const DeviceDetailModal: React.FC = () => {
           mb: "$4",
         }}
       >
-        <BoxIcon
-          name={icon !== "question" ? icon : alternativeIcon}
-          color={iconColor}
-          width={120}
-          height={120}
-        ></BoxIcon>
+        {device.device_name === "turistikrota" ? (
+          <Logo size="2xl" borderRadius="$full" />
+        ) : (
+          <BoxIcon
+            name={
+              icon !== "question"
+                ? (icon as IconName)
+                : (alternativeIcon as IconName)
+            }
+            color={iconColor}
+            width={120}
+            height={120}
+          ></BoxIcon>
+        )}
+
         <Text sx={{ fontSize: "$lg", fontWeight: "bold" }}>
           {device.device_name}
         </Text>
