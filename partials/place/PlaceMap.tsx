@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import BoxIcon from "~assets/Icons/BoxIcon";
 import { usePlaceFilter } from "~contexts/place-filter";
 import { useLocation } from "~hooks/location";
-import LoadingListItem from "~partials/state/LoadingListItem";
 import { RootState } from "~store";
 import {
   Coordinates,
@@ -25,11 +24,13 @@ type Props = {
   onSelect: (item: PlaceListItem) => void;
 };
 
+const initialRegion = makeRegion(IstanbulCoordinates);
+
 const PlaceMap: React.FC<Props> = ({ loading, data, onSelect }) => {
   const { query, setQuery } = usePlaceFilter();
   const locationStore = useSelector((state: RootState) => state.location);
   const [selected, setSelected] = useState<PlaceListItem | null>(null);
-  useLocation(locationStore.useForPlaceFilter);
+  useLocation(true);
   const markerColor = useToken("colors", "primary500");
 
   const region = useMemo(() => {
@@ -42,16 +43,16 @@ const PlaceMap: React.FC<Props> = ({ loading, data, onSelect }) => {
       return makeRegion(locationStore.location, zoom);
     return makeRegion(IstanbulCoordinates, zoom);
   }, [
+    query.filter.distance,
     query.filter.coordinates,
     locationStore.location,
     locationStore.useForPlaceFilter,
-    query.filter.distance,
   ]);
 
   const debouncedRegionSetter = debounce((newRegion: Region) => {
     if (
-      region.latitude === newRegion.latitude &&
-      region.longitude === newRegion.longitude &&
+      Math.abs(region.latitude - newRegion.latitude) < 0.001 &&
+      Math.abs(region.longitude - newRegion.longitude) < 0.001 &&
       findClosestDistance(region) === findClosestDistance(newRegion)
     )
       return;
@@ -67,80 +68,77 @@ const PlaceMap: React.FC<Props> = ({ loading, data, onSelect }) => {
   }, 1000);
   return (
     <>
-      {locationStore.loading ? (
-        <LoadingListItem />
-      ) : (
-        <>
-          <MapView
-            style={{
-              width: "100%",
-              height: "100%",
+      {!locationStore.loading && (
+        <MapView
+          style={{
+            width: "100%",
+            height: "100%",
+          }}
+          initialRegion={initialRegion}
+          region={region}
+          onRegionChange={debouncedRegionSetter}
+        >
+          {data.map((item, idx) => (
+            <Marker
+              key={idx}
+              coordinate={{
+                latitude: item.coordinates[0],
+                longitude: item.coordinates[1],
+              }}
+              onSelect={() => setSelected(item)}
+              onDeselect={() => setSelected(null)}
+            >
+              <View>
+                <BoxIcon
+                  name="location"
+                  color={markerColor}
+                  width={30}
+                  height={30}
+                />
+              </View>
+            </Marker>
+          ))}
+        </MapView>
+      )}
+      {(loading || locationStore.loading) && (
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: 8,
+            right: 8,
+            justifyContent: "center",
+            alignItems: "center",
+            w: "$full",
+          }}
+        >
+          <Box
+            sx={{
+              backgroundColor: "$white",
+              borderRadius: "$sm",
+              p: "$1",
+              w: "$10",
             }}
-            region={region}
-            onRegionChange={debouncedRegionSetter}
           >
-            {data.map((item, idx) => (
-              <Marker
-                key={idx}
-                coordinate={{
-                  latitude: item.coordinates[0],
-                  longitude: item.coordinates[1],
-                }}
-                onSelect={() => setSelected(item)}
-                onDeselect={() => setSelected(null)}
-              >
-                <View>
-                  <BoxIcon
-                    name="location"
-                    color={markerColor}
-                    width={30}
-                    height={30}
-                  />
-                </View>
-              </Marker>
-            ))}
-          </MapView>
-          {loading && (
-            <Box
-              sx={{
-                position: "absolute",
-                top: "50%",
-                left: 8,
-                right: 8,
-                justifyContent: "center",
-                alignItems: "center",
-                w: "$full",
-              }}
-            >
-              <Box
-                sx={{
-                  backgroundColor: "$white",
-                  borderRadius: "$sm",
-                  p: "$1",
-                  w: "$10",
-                }}
-              >
-                <Spinner />
-              </Box>
-            </Box>
-          )}
-          {selected && (
-            <Box
-              sx={{
-                position: "absolute",
-                bottom: 8,
-                left: 8,
-                right: 8,
-              }}
-            >
-              <PlaceMapCard
-                {...selected}
-                onSelect={() => onSelect(selected)}
-                onClose={() => setSelected(null)}
-              />
-            </Box>
-          )}
-        </>
+            <Spinner />
+          </Box>
+        </Box>
+      )}
+      {selected && (
+        <Box
+          sx={{
+            position: "absolute",
+            bottom: 8,
+            left: 8,
+            right: 8,
+          }}
+        >
+          <PlaceMapCard
+            {...selected}
+            onSelect={() => onSelect(selected)}
+            onClose={() => setSelected(null)}
+          />
+        </Box>
       )}
     </>
   );

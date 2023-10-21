@@ -130,7 +130,7 @@ function PlaceFilterCityGroup() {
           <BoxIcon name="check" width={22} height={22} color={"white"} />
         </CheckboxIndicator>
       </Checkbox>
-      {(!locationStore.loading || !locationStore.useForPlaceFilter) && (
+      {(!locationStore.location || !locationStore.useForPlaceFilter) && (
         <>
           <Input>
             <InputSlot pl="$3">
@@ -144,7 +144,7 @@ function PlaceFilterCityGroup() {
           </Input>
           <Box
             sx={{
-              h: "$96",
+              h: "$56",
             }}
           >
             <RadioGroup value={currentCity ?? ""} onChange={onSelect}>

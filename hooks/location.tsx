@@ -36,10 +36,10 @@ export const useLocation = (askInit?: boolean): LocationHookResult => {
     }
     const location = await Location.getCurrentPositionAsync({});
     dispatch(
-      setLocation([location.coords.longitude, location.coords.latitude])
+      setLocation([location.coords.latitude, location.coords.longitude])
     );
     dispatch(setLoading(false));
-    return [location.coords.longitude, location.coords.latitude] as Coordinates;
+    return [location.coords.latitude, location.coords.longitude] as Coordinates;
   };
 
   return {

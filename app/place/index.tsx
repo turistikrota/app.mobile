@@ -76,7 +76,7 @@ function PlaceListPage() {
   const flatRef = useRef<any>();
   const { t, i18n } = useTranslation("place");
   const [refreshing, setRefreshing] = useState(false);
-  const [contentType, setContentType] = React.useState<ContentType>("map");
+  const [contentType, setContentType] = React.useState<ContentType>("list");
   const { query, isOnlyPageChanged, isQueryChanged, setQuery } =
     usePlaceFilter();
   const [loading, setLoading] = React.useState<boolean>(false);

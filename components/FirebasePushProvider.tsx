@@ -22,7 +22,7 @@ const FirebasePushProvider: React.FC<React.PropsWithChildren> = ({
       .then((token: string) => {
         dispatch(setFcmToken(token));
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {});
   };
   const requestPermissions = () => {
     firebase
@@ -30,13 +30,11 @@ const FirebasePushProvider: React.FC<React.PropsWithChildren> = ({
       .requestPermission()
       .then((status: FirebaseMessagingTypes.AuthorizationStatus) => {
         if (status === 1) {
-          console.log("Authorized");
           onMessage();
         } else {
-          console.log("Not authorized");
         }
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {});
   };
 
   /*
@@ -55,8 +53,6 @@ const FirebasePushProvider: React.FC<React.PropsWithChildren> = ({
       .messaging()
       .setBackgroundMessageHandler(
         async (res: FirebaseMessagingTypes.RemoteMessage) => {
-          console.log("Background message");
-          console.log(JSON.stringify(res));
           showNotification(res.notification!);
         }
       );
@@ -64,8 +60,6 @@ const FirebasePushProvider: React.FC<React.PropsWithChildren> = ({
   const showNotification = (
     notification: FirebaseMessagingTypes.Notification
   ) => {
-    console.log("Showing notification");
-    console.log(JSON.stringify(notification));
     PushNotification.localNotification({
       title: notification.title,
       message: notification.body!,
