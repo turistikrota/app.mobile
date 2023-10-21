@@ -7,12 +7,16 @@ type Props = {
   title: string;
   onClose: () => void;
   right?: React.ReactNode;
+  bgColor?: string;
+  iconColor?: string;
   leftIconName?: IconName;
 };
 
 const ModalHeader: React.FC<Props> = ({
   title,
   leftIconName = "x",
+  bgColor = "$white",
+  iconColor,
   onClose,
   right,
 }) => {
@@ -24,7 +28,7 @@ const ModalHeader: React.FC<Props> = ({
         flexDirection: "row",
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderBottomColor: "$borderDark400",
-        bgColor: "$white",
+        bgColor,
         borderTopLeftRadius: 8,
         borderTopRightRadius: 8,
       }}
@@ -39,7 +43,7 @@ const ModalHeader: React.FC<Props> = ({
         }}
       >
         <Pressable onPress={onClose}>
-          <BoxIcon name={leftIconName} />
+          <BoxIcon name={leftIconName} color={iconColor} />
         </Pressable>
       </Box>
       <Box

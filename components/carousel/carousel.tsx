@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   NativeScrollEvent,
   NativeSyntheticEvent,
@@ -6,7 +6,6 @@ import {
   StyleSheet,
   View,
 } from "react-native";
-import { useAlert } from "~hooks/alert";
 import { Props as PaginationProps } from "./pagination";
 
 const NUM_OF_DUP = 3;
@@ -19,6 +18,7 @@ type Props<T = any> = {
   data?: Array<T>;
   loop?: boolean;
   autoplay?: boolean;
+  initialPage?: number; // İlk sayfa başlangıcı için initialPage prop'u eklendi
   autoplayInterval?: number;
   Pagination?: React.FC<PaginationProps>;
   onPage?: (prev: number, current: number) => void;
@@ -28,6 +28,7 @@ function Carousel<T = any>({
   data = [],
   loop = false,
   autoplay = false,
+  initialPage, // Başlangıç sayfası için initialPage kullanılacak
   autoplayInterval = 2000,
   Pagination,
   renderItem,
@@ -38,9 +39,15 @@ function Carousel<T = any>({
     useState<NodeJS.Timeout | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [childWidth, setChildWidth] = useState(0);
-  const alert = useAlert();
 
   const isLooped = useMemo(() => loop && data.length > 1, [loop, data]);
+
+  useEffect(() => {
+    if (!initialPage) return;
+    // initialPage prop'u güncellendiğinde sayfayı ayarla
+    setCurrentPage(initialPage);
+    scrollToPage(initialPage);
+  }, [initialPage]);
 
   const setAutoPlay = (start: boolean) => {
     if (!start) return clearTimeout(autoplayTimeoutID as NodeJS.Timeout);
@@ -61,76 +68,60 @@ function Carousel<T = any>({
         });
       }, autoplayInterval)
     );
-    setAutoPlay(false);
   };
 
   const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     setAutoPlay(false);
-    let loopOffset = 0;
-    if (isLooped) {
-      loopOffset = data.length >= NUM_OF_DUP ? NUM_OF_DUP : data.length;
-    }
-    let _childWith =
+    const _childWidth =
       childWidth === 0 ? event.nativeEvent.layoutMeasurement.width : childWidth;
-    const prevPage = currentPage;
-    const rawCurrentPage = event.nativeEvent.contentOffset.x / _childWith;
+    const rawCurrentPage = event.nativeEvent.contentOffset.x / _childWidth;
     const roundCurrentPage = Math.round(rawCurrentPage);
-    const normalizedPage = roundCurrentPage - loopOffset;
-    let _currentPage = normalizedPage + 1;
-    if (normalizedPage < 0) {
-      _currentPage = data.length + normalizedPage + 1;
-    } else if (normalizedPage >= data.length) {
-      _currentPage = (normalizedPage % data.length) + 1;
-    }
-    const isScrollEnd = approximatelyEqualTo(rawCurrentPage, roundCurrentPage);
-    if (
-      isLooped &&
-      isScrollEnd &&
-      (normalizedPage < 0 || normalizedPage >= data.length)
-    ) {
-      scrollView.current?.scrollTo({
-        x: (_currentPage - 1 + loopOffset) * _childWith,
-        animated: false,
-      });
-    }
-    if (isScrollEnd && autoplay) {
-      setAutoPlay(true);
-    }
-    if (_currentPage !== prevPage) {
+    const _currentPage = roundCurrentPage + 1;
+
+    if (_currentPage !== currentPage) {
       setCurrentPage(_currentPage);
-      if (onPage) onPage(prevPage, _currentPage);
+      if (onPage) onPage(currentPage, _currentPage);
     }
   };
 
-  const onContentSizeChange = (w: number, h: number) => {
+  const onContentSizeChange = (contentWidth: number, contentHeight: number) => {
     const loopOffset = data.length >= NUM_OF_DUP ? NUM_OF_DUP : data.length;
     const childrenNum = isLooped ? data.length + loopOffset * 2 : data.length;
-    setChildWidth(w / childrenNum);
-    if (isLooped) {
-      scrollView.current?.scrollTo({
-        x: childWidth * loopOffset,
-        animated: false,
-      });
-    }
+    const newChildWidth = contentWidth / childrenNum;
+    setChildWidth(newChildWidth);
     if (autoplay) {
       setAutoPlay(true);
     }
+    if (initialPage) scrollToPage(initialPage, newChildWidth);
+  };
+
+  const scrollToPage = (page: number, _childWidth?: number) => {
+    const cWidth = _childWidth || childWidth;
+    if (page < 1) {
+      page = 1;
+    } else if (page > data.length) {
+      page = data.length;
+    }
+
+    const loopOffset = isLooped
+      ? data.length >= NUM_OF_DUP
+        ? NUM_OF_DUP
+        : data.length
+      : 0;
+    const scrollX = cWidth * (page + loopOffset - 1);
+
+    scrollView.current?.scrollTo({
+      x: scrollX,
+      animated: false,
+    });
+
+    setCurrentPage(page);
   };
 
   const renderItems = () => {
     let normalizedData = data;
-    let loopOffset = 0;
-    if (isLooped) {
-      const frontDup = data.slice(-NUM_OF_DUP);
-      const endDup = data.slice(0, NUM_OF_DUP);
-      loopOffset = frontDup.length;
-      normalizedData = frontDup.concat(data, endDup);
-    }
-
     return normalizedData.map((item, index) => {
-      const normalizedIndex = index - loopOffset;
-      let renderIndex = normalizedIndex % data.length;
-      renderIndex = renderIndex < 0 ? data.length + renderIndex : renderIndex;
+      const normalizedIndex = index;
       const renderedItem = renderItem(item);
       let { key } = renderedItem;
       if (normalizedIndex < 0) {

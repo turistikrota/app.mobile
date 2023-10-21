@@ -27,6 +27,7 @@ import {
 import { imageSort } from "~utils/sort";
 import PlaceImageCarousel from "../card/PlaceImageCarousel";
 import PlaceDetailFeatureSection from "./PlaceDetailFeatureSection";
+import PlaceDetailGalleryModal from "./PlaceDetailGalleryModal";
 import PlaceDetailMarkdownContentSection from "./PlaceDetailMarkdownContentSection";
 import PlaceDetailReviewSection from "./PlaceDetailReviewSection";
 import PlaceDetailTitleSection from "./PlaceDetailTitleSection";
@@ -63,6 +64,7 @@ const PlaceDetailContent: React.FC<Props> = ({
   let scrollOffsetY = useRef(new Animated.Value(0)).current;
   const [statusBarIsLight, setStatusBarIsLight] = useState(true);
   const [shareLoading, setShareLoading] = useState(false);
+  const [galleryVisible, setGalleryVisible] = useState(false);
 
   const onScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
     Animated.event([{ nativeEvent: { contentOffset: { y: scrollOffsetY } } }], {
@@ -88,6 +90,11 @@ const PlaceDetailContent: React.FC<Props> = ({
         bg: "$white",
       }}
     >
+      <PlaceDetailGalleryModal
+        isVisible={galleryVisible}
+        setVisible={setGalleryVisible}
+        images={imageSort(images ?? [])}
+      />
       <StatusBar
         backgroundColor="transparent"
         barStyle={statusBarIsLight ? "light-content" : "dark-content"}
@@ -108,6 +115,7 @@ const PlaceDetailContent: React.FC<Props> = ({
             calcWidth={(w) => w}
             calcHeight={(w) => w}
             rounded={false}
+            onPress={() => setGalleryVisible(true)}
           />
         )}
       </ScrollHeader>

@@ -12,9 +12,78 @@ type Props = {
   leftIconName?: IconName;
   backGuard?: () => boolean;
   customHead?: boolean;
+  bg?: string;
   swipeDirection?: Direction | Direction[];
   height?: number;
+  propagateSwipe?: boolean;
+  scrollHorizontal?: boolean;
+  animationIn?: AnimationDirection;
+  animationOut?: AnimationDirection;
 };
+
+type AnimationDirection =
+  | "bounce"
+  | "flash"
+  | "jello"
+  | "pulse"
+  | "rotate"
+  | "rubberBand"
+  | "shake"
+  | "swing"
+  | "tada"
+  | "wobble"
+  | "bounceIn"
+  | "bounceInDown"
+  | "bounceInUp"
+  | "bounceInLeft"
+  | "bounceInRight"
+  | "bounceOut"
+  | "bounceOutDown"
+  | "bounceOutUp"
+  | "bounceOutLeft"
+  | "bounceOutRight"
+  | "fadeIn"
+  | "fadeInDown"
+  | "fadeInDownBig"
+  | "fadeInUp"
+  | "fadeInUpBig"
+  | "fadeInLeft"
+  | "fadeInLeftBig"
+  | "fadeInRight"
+  | "fadeInRightBig"
+  | "fadeOut"
+  | "fadeOutDown"
+  | "fadeOutDownBig"
+  | "fadeOutUp"
+  | "fadeOutUpBig"
+  | "fadeOutLeft"
+  | "fadeOutLeftBig"
+  | "fadeOutRight"
+  | "fadeOutRightBig"
+  | "flipInX"
+  | "flipInY"
+  | "flipOutX"
+  | "flipOutY"
+  | "lightSpeedIn"
+  | "lightSpeedOut"
+  | "slideInDown"
+  | "slideInUp"
+  | "slideInLeft"
+  | "slideInRight"
+  | "slideOutDown"
+  | "slideOutUp"
+  | "slideOutLeft"
+  | "slideOutRight"
+  | "zoomIn"
+  | "zoomInDown"
+  | "zoomInUp"
+  | "zoomInLeft"
+  | "zoomInRight"
+  | "zoomOut"
+  | "zoomOutDown"
+  | "zoomOutUp"
+  | "zoomOutLeft"
+  | "zoomOutRight";
 
 const ScrollableModal: React.FC<React.PropsWithChildren<Props>> = ({
   title,
@@ -23,9 +92,14 @@ const ScrollableModal: React.FC<React.PropsWithChildren<Props>> = ({
   children,
   right,
   leftIconName,
+  animationIn,
+  animationOut,
+  bg = "$white",
   swipeDirection = ["down", "left", "right", "up"],
   backGuard,
   height = 87,
+  propagateSwipe = true,
+  scrollHorizontal = true,
   customHead = false,
 }) => {
   const checkClose = () => {
@@ -47,13 +121,16 @@ const ScrollableModal: React.FC<React.PropsWithChildren<Props>> = ({
         margin: 0,
         padding: 0,
       }}
-      propagateSwipe
+      animationIn={animationIn}
+      animationOut={animationOut}
+      propagateSwipe={propagateSwipe}
+      scrollHorizontal={scrollHorizontal}
     >
       <View
         sx={{
           justifyContent: "center",
           alignItems: "center",
-          bg: "$white",
+          bg: bg,
           width: "100%",
           height: `${height}%`,
           flex: 1,
