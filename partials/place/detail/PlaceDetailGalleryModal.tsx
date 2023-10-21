@@ -67,7 +67,7 @@ const PlaceDetailGalleryModal: React.FC<Props> = ({
                 <Pressable
                   key={image.url}
                   sx={{
-                    w: idx % 3 === 0 ? "100%" : "48.93%",
+                    w: idx % 3 === 0 ? "100%" : "48%",
                   }}
                   onPress={() => {
                     setPreviewVisible(true);
