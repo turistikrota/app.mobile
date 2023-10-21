@@ -1,7 +1,7 @@
 import { Box, View } from "@gluestack-ui/themed";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FlatList } from "react-native";
+import { FlatList, RefreshControl } from "react-native";
 import { Services, apiUrl } from "~config/services";
 import { PlaceFilterProvider, usePlaceFilter } from "~contexts/place-filter";
 import { usePlaceFeatures } from "~hooks/place-feature";
@@ -61,6 +61,7 @@ type ContentType = "map" | "list";
 function PlaceListPage() {
   const flatRef = useRef<any>();
   const { t, i18n } = useTranslation("place");
+  const [refreshing, setRefreshing] = useState(false);
   const [contentType, setContentType] = React.useState<ContentType>("list");
   const { query, isOnlyPageChanged, isQueryChanged, setQuery } =
     usePlaceFilter();
@@ -97,6 +98,11 @@ function PlaceListPage() {
     );
   }, [selected, i18n.language]);
 
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    fetch();
+  }, []);
+
   const fetch = (isNextFetch = false) => {
     setLoading(true);
     http
@@ -125,6 +131,7 @@ function PlaceListPage() {
       .catch((err) => {})
       .finally(() => {
         setLoading(false);
+        setRefreshing(false);
       });
   };
 
@@ -168,6 +175,9 @@ function PlaceListPage() {
       <FlatList
         ref={flatRef}
         data={data.list}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
         renderItem={({ item }) => (
           <PlaceListCard {...item} onSelect={() => onSelect(item)} />
         )}
