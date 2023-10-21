@@ -42,7 +42,13 @@
       [
         "expo-image-picker",
         {
-          "photosPermission": "The app accesses your photos to let you share them with your friends."
+          "photosPermission": "The app optionally accesses your gallery to select your profile photo."
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "photosPermission": "The app optionally accesses your location to show places near your location."
         }
       ],
       "@react-native-firebase/app"

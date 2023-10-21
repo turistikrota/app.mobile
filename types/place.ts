@@ -1,3 +1,4 @@
+import { Region } from "react-native-maps";
 import { IconName } from "~assets/Icons/BoxIcon";
 import { I18nTranslation, isLocale } from "./i18n";
 import { ListResponse } from "./response";
@@ -247,6 +248,11 @@ export const PlaceTypes: Record<Type, PlaceTypeItems> = {
 };
 export type Distance = 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
 
+export type DistanceDelta = {
+  latitudeDelta: number;
+  longitudeDelta: number;
+};
+
 export function isPlaceListResponse(
   response: any
 ): response is ListResponse<PlaceListItem> {
@@ -331,3 +337,78 @@ export type PlaceFilterComponents =
   | "is-payed"
   | "types"
   | "review";
+
+export const DistanceDeltas: Record<Distance, DistanceDelta> = {
+  7: {
+    latitudeDelta: 0.09,
+    longitudeDelta: 0.09,
+  },
+  8: {
+    latitudeDelta: 0.1,
+    longitudeDelta: 0.1,
+  },
+  9: {
+    latitudeDelta: 0.5,
+    longitudeDelta: 0.5,
+  },
+  10: {
+    latitudeDelta: 0.7,
+    longitudeDelta: 0.7,
+  },
+  11: {
+    latitudeDelta: 1.1,
+    longitudeDelta: 1.1,
+  },
+  12: {
+    latitudeDelta: 1.3,
+    longitudeDelta: 1.3,
+  },
+  13: {
+    latitudeDelta: 1.6,
+    longitudeDelta: 1.6,
+  },
+  14: {
+    latitudeDelta: 1.9,
+    longitudeDelta: 1.9,
+  },
+  15: {
+    latitudeDelta: 2.5,
+    longitudeDelta: 2.5,
+  },
+};
+
+export const findClosestDistance = (delta: DistanceDelta): Distance => {
+  let closestDistance: Distance = 7;
+  let closestDistanceDelta: DistanceDelta = DistanceDeltas[7];
+
+  for (const distance in DistanceDeltas) {
+    const currentDistanceDelta = DistanceDeltas[+distance as Distance];
+
+    const distanceSquared =
+      Math.pow(currentDistanceDelta.latitudeDelta - delta.latitudeDelta, 2) +
+      Math.pow(currentDistanceDelta.longitudeDelta - delta.longitudeDelta, 2);
+
+    if (
+      distanceSquared <
+      Math.pow(closestDistanceDelta.latitudeDelta - delta.latitudeDelta, 2) +
+        Math.pow(closestDistanceDelta.longitudeDelta - delta.longitudeDelta, 2)
+    ) {
+      closestDistance = +distance as Distance;
+      closestDistanceDelta = currentDistanceDelta;
+    }
+  }
+
+  return closestDistance;
+};
+
+export const IstanbulCoordinates: Coordinates = [41.015137, 28.97953];
+
+export const makeRegion = (
+  coordinates: Coordinates,
+  delta?: DistanceDelta
+): Region => ({
+  latitude: coordinates[0],
+  longitude: coordinates[1],
+  latitudeDelta: delta?.latitudeDelta || DistanceDeltas[10].latitudeDelta,
+  longitudeDelta: delta?.longitudeDelta || DistanceDeltas[10].longitudeDelta,
+});

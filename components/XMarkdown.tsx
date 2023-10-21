@@ -9,6 +9,8 @@ type Props = {
 
 const { width } = Dimensions.get("window");
 
+const openUrl = (url: string) => {};
+
 const XMarkdown: React.FC<Props> = ({ content }) => {
   return (
     <Markdown

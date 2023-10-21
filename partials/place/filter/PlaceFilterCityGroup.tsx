@@ -46,7 +46,11 @@ function PlaceFilterCityGroup() {
         coordinates = city.coordinates as Coordinates;
       }
     }
-    setQuery(deepMerge(query, { filter: { coordinates } }));
+    const newQuery = {
+      ...query,
+      filter: { ...query.filter, coordinates },
+    }
+    setQuery(newQuery);
   };
 
   const renderMore = () => {
