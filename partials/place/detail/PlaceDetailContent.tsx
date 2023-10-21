@@ -152,7 +152,10 @@ const PlaceDetailContent: React.FC<Props> = ({
                 timeSpent={timeSpent ?? { min: 0, max: 0 }}
                 type={type!}
               />
-              <PlaceDetailMarkdownContentSection content={markdownContent} />
+              <PlaceDetailMarkdownContentSection
+                content={markdownContent}
+                onClose={onBack}
+              />
               <Box
                 sx={{
                   h: "$32",

@@ -1,10 +1,13 @@
 import { View } from "@gluestack-ui/themed";
+import { router } from "expo-router";
 import React from "react";
 import FitImage from "react-native-fit-image";
 import Markdown from "react-native-markdown-display";
+import { getDeepUrl } from "~utils/deep-link";
 
 type Props = {
   content: string;
+  onClose?: () => void;
 };
 
 const newRules = {
@@ -55,20 +58,18 @@ const newRules = {
   ),
 };
 
-const XMarkdown: React.FC<Props> = ({ content }) => {
+const XMarkdown: React.FC<Props> = ({ content, onClose }) => {
   const onLinkPress = (url: string) => {
-    if (url) {
-      // some custom logic
+    const local = getDeepUrl(url);
+    if (local) {
+      router.push(local);
+      onClose && onClose();
       return false;
     }
-
-    // return true to open with `Linking.openURL
-    // return false to handle it yourself
     return true;
   };
   // @ts-ignore
-  return (
-    <Markdown rules={newRules} onLinkPress={onLinkPress}>
+  return ( <Markdown rules={newRules} onLinkPress={onLinkPress}>
       {content}
     </Markdown>
   );
