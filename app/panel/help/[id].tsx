@@ -1,4 +1,4 @@
-import { ScrollView, Text, View } from "@gluestack-ui/themed";
+import { ScrollView, View } from "@gluestack-ui/themed";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
@@ -21,7 +21,7 @@ export default function AgreementDetail() {
   const { i18n } = useTranslation();
   const glob = useLocalSearchParams<GlobalParams>();
   if (!glob.id) {
-    return <Text>404</Text>;
+    return router.back();
   }
   const agreement: AgreementLocaleContent = agreements[glob.id];
   const details: AgreementDetail = useMemo(() => {

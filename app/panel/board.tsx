@@ -19,9 +19,11 @@ import { Services, apiUrl } from "~config/services";
 import { useAlert } from "~hooks/alert";
 import { httpClient } from "~http/client";
 import LoadingListItem from "~partials/state/LoadingListItem";
+import { getStaticRoute } from "~static/site";
 import { RootState } from "~store";
 import { reset as resetAccountStore } from "~store/account.store";
 import { reset as resetAuthStore } from "~store/auth.store";
+import { getLocale } from "~types/i18n";
 
 const AuthProtectedItems: React.FC = () => {
   const [logoutLoading, setLogoutLoading] = useState<boolean>(false);
@@ -190,30 +192,33 @@ const NoProfileSelectedItems: React.FC = () => {
 };
 
 const PublicItems: React.FC = () => {
-  const { t } = useTranslation("panel");
+  const { t, i18n } = useTranslation("panel");
 
-  const items = [
-    {
-      name: "vision",
-      href: "/panel/vision",
-    },
-    {
-      name: "terms-of-use",
-      href: "/panel/help/termsOfUse",
-    },
-    {
-      name: "privacy-note",
-      href: "/panel/help/privacyNote",
-    },
-    {
-      name: "personal-data",
-      href: "/panel/help/privacyAndPersonalData",
-    },
-    {
-      name: "about",
-      href: "/panel/about",
-    },
-  ];
+  const items = useMemo(
+    () => [
+      {
+        name: "about-us",
+        href: getStaticRoute(getLocale(i18n.language)).aboutUs,
+      },
+      {
+        name: "terms-of-use",
+        href: getStaticRoute(getLocale(i18n.language)).contracts.terms,
+      },
+      {
+        name: "privacy-note",
+        href: getStaticRoute(getLocale(i18n.language)).contracts.privacy,
+      },
+      {
+        name: "personal-data",
+        href: getStaticRoute(getLocale(i18n.language)).contracts.privacyNotify,
+      },
+      {
+        name: "about",
+        href: "/panel/about",
+      },
+    ],
+    [i18n.language]
+  );
   return (
     <Box sx={{ px: "$2" }}>
       {items.map((i) => (
