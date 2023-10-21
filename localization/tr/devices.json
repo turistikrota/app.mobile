@@ -22,6 +22,7 @@
       "unknown": "Bilinmiyor"
     }
   },
+  "noOtherDevices": "Başka cihaz bulunamadı",
   "confirm": {
     "others": "Diğer cihazları yok etmek istediğinize emin misiniz? Eğer onaylarsanız şu an giriş yaptığınız cihaz hariç tüm cihazlardan çıkış yapacaksınız.",
     "destroy": "Bu cihazı yok etmek istediğinize emin misiniz? Eğer onaylarsanız bu cihazdaki oturum kaldırılacak."
