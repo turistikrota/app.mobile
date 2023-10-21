@@ -1,115 +1,74 @@
-import { Heading, Image, Text } from "@gluestack-ui/themed";
+import { View } from "@gluestack-ui/themed";
 import React from "react";
-import { Dimensions } from "react-native";
-import Markdown from "react-native-markdown-renderer";
+import FitImage from "react-native-fit-image";
+import Markdown from "react-native-markdown-display";
 
 type Props = {
   content: string;
 };
 
-const { width } = Dimensions.get("window");
+const newRules = {
+  image: (
+    node: any,
+    children: any,
+    parent: any,
+    styles: any,
+    allowedImageHandlers: any,
+    defaultImageHandler: any
+  ) => {
+    const { src, alt } = node.attributes;
+    const show =
+      allowedImageHandlers.filter((value: any) => {
+        return src.toLowerCase().startsWith(value.toLowerCase());
+      }).length > 0;
 
-const openUrl = (url: string) => {};
+    if (show === false && defaultImageHandler === null) {
+      return null;
+    }
+
+    const imageProps: any = {
+      indicator: true,
+      key: node.key,
+      style: styles._VIEW_SAFE_image,
+      source: {
+        uri: show === true ? src : `${defaultImageHandler}${src}`,
+      },
+    };
+
+    if (alt) {
+      imageProps.accessible = true;
+      imageProps.accessibilityLabel = alt;
+    }
+
+    return <FitImage {...imageProps} borderRadius={4} />;
+  },
+  blockquote: (node: any, children: any, parent: any, styles: any) => (
+    <View
+      key={node.key}
+      style={{
+        ...styles._VIEW_SAFE_blockquote,
+      }}
+      my="$2"
+    >
+      {children}
+    </View>
+  ),
+};
 
 const XMarkdown: React.FC<Props> = ({ content }) => {
+  const onLinkPress = (url: string) => {
+    if (url) {
+      // some custom logic
+      return false;
+    }
+
+    // return true to open with `Linking.openURL
+    // return false to handle it yourself
+    return true;
+  };
+  // @ts-ignore
   return (
-    <Markdown
-      rules={{
-        heading1: (node: any, children: any, parent: any, styles: any) => (
-          <Heading key={node.key} color="$textLight800">
-            {children}
-          </Heading>
-        ),
-        heading2: (node: any, children: any, parent: any, styles: any) => (
-          <Heading key={node.key} size="md" color="$textLight800">
-            {children}
-          </Heading>
-        ),
-        heading3: (node: any, children: any, parent: any, styles: any) => (
-          <Heading key={node.key} size="md" color="$textLight700">
-            {children}
-          </Heading>
-        ),
-        heading4: (node: any, children: any, parent: any, styles: any) => (
-          <Heading key={node.key} size="md" color="$textLight600">
-            {children}
-          </Heading>
-        ),
-        heading5: (node: any, children: any, parent: any, styles: any) => (
-          <Heading key={node.key} size="md" color="$textLight500">
-            {children}
-          </Heading>
-        ),
-        heading6: (node: any, children: any, parent: any, styles: any) => (
-          <Heading key={node.key} size="md" color="$textLight500">
-            {children}
-          </Heading>
-        ),
-        image: (node: any, children: any, parent: any, styles: any) => (
-          <Image
-            key={node.key}
-            sx={{
-              w: width,
-              h: width * 0.7,
-              borderRadius: "$sm",
-              my: "$2",
-            }}
-            source={{
-              uri: node.attributes.src,
-            }}
-            alt={node.attributes.alt}
-            // add preview on click
-          ></Image>
-        ),
-        strong: (node: any, children: any, parent: any, styles: any) => (
-          <Text
-            key={node.key}
-            sx={{ fontWeight: "bold" }}
-            color="$textLight600"
-            size="md"
-          >
-            {children}
-          </Text>
-        ),
-        paragraph: (node: any, children: any, parent: any, styles: any) => (
-          <Text
-            key={node.key}
-            sx={{ fontWeight: "normal" }}
-            color="$textLight600"
-            size="md"
-          >
-            {children}
-          </Text>
-        ),
-        list_item: (node: any, children: any, parent: any, styles: any) => (
-          <Text
-            key={node.key}
-            sx={{
-              fontWeight: "normal",
-              ml: "$2",
-            }}
-            color="$textLight600"
-            size="md"
-          >
-            {children}
-          </Text>
-        ),
-        link: (node: any, children: any, parent: any, styles: any) => (
-          <Text
-            key={node.key}
-            sx={{
-              fontWeight: "normal",
-              color: "$primary600",
-            }}
-            color="$primary600"
-            size="md"
-            onPress={() => openUrl(node.attributes.href)}
-          >
-            {children}
-          </Text>
-        ),
-      }}
-    >
+    <Markdown rules={newRules} onLinkPress={onLinkPress}>
       {content}
     </Markdown>
   );
