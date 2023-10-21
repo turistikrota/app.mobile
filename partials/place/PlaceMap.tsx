@@ -64,7 +64,7 @@ const PlaceMap: React.FC<Props> = ({ loading, data, onSelect }) => {
       },
     };
     setQuery(newQuery);
-  }, 600);
+  }, 1500);
   return (
     <>
       {locationStore.loading ? (

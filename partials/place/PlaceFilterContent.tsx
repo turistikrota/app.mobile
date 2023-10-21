@@ -100,9 +100,9 @@ const PlaceFilterContent: React.FC<Props> = ({ data, loading }) => {
           w: "$1/2",
           borderColor: "$borderDark400",
           gap: "$2",
-          borderTopLeftRadius: 0,
-          borderBottomLeftRadius: 0,
+          borderRadius: 0,
           borderLeftWidth: 0,
+          borderRightWidth: 0,
           borderWidth: StyleSheet.hairlineWidth,
         }}
         onPress={() => setFilterModalVisible(true)}

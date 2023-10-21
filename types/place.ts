@@ -161,6 +161,8 @@ export enum Type {
   Other = "other",
 }
 
+export type ContentType = "map" | "list";
+
 export type PlaceTypeItems = {
   icon: IconName;
   text: string;

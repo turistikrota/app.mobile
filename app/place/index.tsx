@@ -7,12 +7,14 @@ import { usePlaceFeatures } from "~hooks/place-feature";
 import { useHttpClient } from "~http/client";
 import PlaceFilterContent from "~partials/place/PlaceFilterContent";
 import PlaceFilterShareContent from "~partials/place/PlaceFilterShareContent";
+import PlaceFilterToggleContent from "~partials/place/PlaceFilterToggleContent";
 import PlaceList from "~partials/place/PlaceList";
 import PlaceMap from "~partials/place/PlaceMap";
 import PlaceSortContent from "~partials/place/PlaceSortContent";
 import PlaceDetail from "~partials/place/detail/PlaceDetail";
 import { getLocale } from "~types/i18n";
 import {
+  ContentType,
   PlaceListItem,
   TranslationItem,
   getTranslations,
@@ -25,9 +27,16 @@ import { deepMerge } from "~utils/object";
 type Props = {
   data: ListResponse<PlaceListItem>;
   loading: boolean;
+  type: string;
+  onTypeChange: (type: ContentType) => void;
 };
 
-const PlaceFilterSection: React.FC<Props> = ({ data, loading }) => {
+const PlaceFilterSection: React.FC<Props> = ({
+  data,
+  loading,
+  type,
+  onTypeChange,
+}) => {
   return (
     <Box
       sx={{
@@ -45,18 +54,23 @@ const PlaceFilterSection: React.FC<Props> = ({ data, loading }) => {
       </Box>
       <Box
         sx={{
-          w: "$5/6",
+          w: "$4/6",
           flexDirection: "row",
         }}
       >
         <PlaceSortContent loading={loading} />
         <PlaceFilterContent data={data} loading={loading} />
       </Box>
+      <Box
+        sx={{
+          w: "$1/6",
+        }}
+      >
+        <PlaceFilterToggleContent type={type} onChange={onTypeChange} />
+      </Box>
     </Box>
   );
 };
-
-type ContentType = "map" | "list";
 
 function PlaceListPage() {
   const flatRef = useRef<any>();
@@ -171,7 +185,12 @@ function PlaceListPage() {
         title={selectedTranslations?.title}
         slug={selectedTranslations?.slug}
       />
-      <PlaceFilterSection data={data} loading={loading} />
+      <PlaceFilterSection
+        data={data}
+        loading={loading}
+        type={contentType}
+        onTypeChange={setContentType}
+      />
       {contentType === "list" && (
         <PlaceList
           data={data.list}
