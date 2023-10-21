@@ -31,6 +31,11 @@
         "foregroundImage": "./assets/minilogo.png",
         "backgroundColor": "#ffffff"
       },
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDi9aOuVYmkPZVwNKQGWz13nJY_AxRfWrE"
+        }
+      },
       "permissions": ["android.permission.RECORD_AUDIO"],
       "package": "com.turistikrota.app"
     },

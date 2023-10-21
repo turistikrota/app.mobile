@@ -19,7 +19,7 @@ const deviceLanguage =
 const fixLanguageCode = (code: string, fallback: string): string => {
   code = code.toLowerCase();
   if (code.includes("-")) {
-    const [language, region] = code.split("-");
+    const [language, region] = code.split("_");
     return isLocale(language) ? code : fallback;
   }
   return isLocale(code) ? code : fallback;

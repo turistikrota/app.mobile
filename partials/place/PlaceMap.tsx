@@ -1,6 +1,7 @@
 import { Box, Spinner, View, useToken } from "@gluestack-ui/themed";
 import React, { useMemo, useState } from "react";
-import MapView, { Marker, Region } from "react-native-maps";
+import { Platform } from "react-native";
+import MapView, { Marker, PROVIDER_GOOGLE, Region } from "react-native-maps";
 import { useSelector } from "react-redux";
 import BoxIcon from "~assets/Icons/BoxIcon";
 import { usePlaceFilter } from "~contexts/place-filter";
@@ -23,6 +24,8 @@ type Props = {
   data: PlaceListItem[];
   onSelect: (item: PlaceListItem) => void;
 };
+
+const Provider = Platform.OS === "android" ? PROVIDER_GOOGLE : undefined;
 
 const initialRegion = makeRegion(IstanbulCoordinates);
 
@@ -74,6 +77,7 @@ const PlaceMap: React.FC<Props> = ({ loading, data, onSelect }) => {
             width: "100%",
             height: "100%",
           }}
+          provider={Provider}
           initialRegion={initialRegion}
           region={region}
           onRegionChange={debouncedRegionSetter}
