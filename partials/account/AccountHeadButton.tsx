@@ -27,7 +27,7 @@ const AccountHeadButton: React.FC = () => {
                   color: "$trueGray600",
                 }}
               >
-                {profile.fullName}
+                {!!profile.fullName ? profile.fullName : profile.userName}
               </AvatarFallbackText>
               <AvatarImage
                 source={{

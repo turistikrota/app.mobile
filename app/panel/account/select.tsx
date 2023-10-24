@@ -82,7 +82,7 @@ export default function SelectAccountPage() {
                         color: "$trueGray600",
                       }}
                     >
-                      {account.fullName}
+                      {!!account.fullName ? account.fullName : account.userName}
                     </AvatarFallbackText>
                     <AvatarImage
                       source={{

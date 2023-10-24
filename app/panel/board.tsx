@@ -124,7 +124,9 @@ const ProfileSelectedItems: React.FC = () => {
         }}
       >
         <Avatar bgColor="$trueGray400" size="2xl" borderRadius="$full">
-          <AvatarFallbackText>{profile.fullName}</AvatarFallbackText>
+          <AvatarFallbackText>
+            {!!profile.fullName ? profile.fullName : profile.userName}
+          </AvatarFallbackText>
           <AvatarImage
             source={{
               uri: profile.avatarUrl,

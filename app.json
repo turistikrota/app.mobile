@@ -14,11 +14,17 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true,
+      "buildNumber": "0.0.3",
+      "supportsTablet": false,
       "bundleIdentifier": "com.turistikrota.app",
       "googleServicesFile": "./GoogleService-Info.plist",
       "infoPlist": {
-        "UIBackgroundModes": ["fetch", "remote-notification"]
+        "UIBackgroundModes": ["fetch", "remote-notification"],
+        "NSCameraUsageDescription": "Profil resminizi yüklemek için kameraya erişim izni isteriz. İzin vermezseniz sadece fotoğraf yükleyemezsiniz.",
+        "NSLocationWhenInUseUsageDescription": "Yakındaki turistik yerleri göstermek için konum izni isteriz. İzin vermezseniz varsayılan lokasyonlar kullanılır.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Yakındaki turistik yerleri göstermek için konum izni isteriz. İzin vermezseniz varsayılan lokasyonlar kullanılır.",
+        "NSLocationAlwaysUsageDescription": "Yakındaki turistik yerleri göstermek için konum izni isteriz. İzin vermezseniz varsayılan lokasyonlar kullanılır.",
+        "NSPhotoLibraryUsageDescription": "Profil resminizi yüklemek için galeriye erişim izni isteriz. İzin vermezseniz sadece fotoğraf yükleyemezsiniz."
       },
       "associatedDomains": [
         "applinks:turistikrota.com",
@@ -36,7 +42,7 @@
           "apiKey": "AIzaSyDi9aOuVYmkPZVwNKQGWz13nJY_AxRfWrE"
         }
       },
-      "permissions": ["android.permission.RECORD_AUDIO"],
+      "permissions": [],
       "package": "com.turistikrota.app"
     },
     "web": {
@@ -44,18 +50,8 @@
     },
     "plugins": [
       "expo-router",
-      [
-        "expo-image-picker",
-        {
-          "photosPermission": "The app optionally accesses your gallery to select your profile photo."
-        }
-      ],
-      [
-        "expo-location",
-        {
-          "photosPermission": "The app optionally accesses your location to show places near your location."
-        }
-      ],
+      "expo-image-picker",
+      "expo-location",
       "@react-native-firebase/app"
     ],
     "extra": {

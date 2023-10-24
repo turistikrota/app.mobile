@@ -68,7 +68,9 @@ export default function EditAccountPage() {
             <VStack space="2xl">
               <AccountEditProfilePictureSection
                 avatar={details.avatarUrl}
-                fullName={details.fullName}
+                fullName={
+                  !!details.fullName ? details.fullName : details.userName
+                }
                 userName={details.userName}
                 onUpdate={refetch}
               />

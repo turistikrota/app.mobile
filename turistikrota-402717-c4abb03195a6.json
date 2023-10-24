@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "turistikrota-402717",
+  "private_key_id": "c4abb03195a6f9a4c60c2ab62810460542772680",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC4YL1yFvEDJqud\nvJ+Qm9GNV1GISIi7XlBc6whb1B5Q8HRUmWZYt4HWA5yNOnTkPSxO2+n7g9OUdWGH\nsJiG2xUs0X/Qt3YRUvs0RWZ20Itaa1mMPyZi751wZU6eqhLVfGk7FkIVJDvl2xUC\n4WxeNHiAMTZPbZ5wyU7gqkP9+OyQdYZU3nN+LaRlArNGGToGorq+cgKZ7f35Mzck\nvyapX7LoqRLHX896uSvk14uHwJgW+pu+1kYW3d4J1IIRWKLECWqbeZzQa8n8308K\nLGaAbc52klG/ib/vgTJBn5rbCee6TLnmfbDJoKwcvNmdOQvV+qzAmSivI/r+a39c\nzZE86hCrAgMBAAECggEAPAKMln4eCpMDB291ldkJTtINQOiuzCEp0dxTl6PGDDz+\n9+wHsjdkBFaflR3iHslESxRrpwekjSzZRhM1yaqzzScQzUtxG7lg9oXiECjXOmI3\nPpztLwVjPkpS2PRs9dws2eToND5bWnhAcfQR0+WLFNovnZGFoJr818XDJH3o7Sks\n+v7vaJeGyY/mp5BU2ovV04a/30yuD1vLCoBWqyL6EI/336Y3WGhhl5uSkX29PnGP\nRcV8u0IC+VSkPKlQnkRxRTdrznmFfwRwcshIqNM2Oyjth64gxPHh40B/HDibAui/\nz5tpIzCC4UgDM8yeIvmD755GWmEGHDCHznRW2ZL7tQKBgQDylptDWssZwIyo09jk\nHUMHrTrEJLYF8HnQJN9p0npVbS/vz/UwUndrHQ5XkGBIerduDSstT/1ME05zexoT\nf1iorErSBA1KUQYDugpFsl0v0GtzwuHMBcQYl6nLCITcM+NeJNz+V0uOLraoq4nH\no8+lJ+AQqSlma18YctATYTVMLQKBgQDCkkWJFnQ4q6RMYKIVZHvheRtPvVXolmqz\n/gDP38+3xp1h1d1t1Edq9Qes2HlzlT5sWzrQ2rgMzRrSacu8rm4FsYKikfo5yqI4\nI0fTatfhqt9fEZvkTE/blYRSBN6rjdr8o7L3b8MqKXIDgiBACtS+yxXOdrefpLBo\n6yDsNTpfNwKBgQC0mERMF0p+CGduxA+CevpMu7y1CrNrpoO43cpoyGWENT3rpQBe\nkfYPCtmDfJsBOkJWLn2HRTZHrVPJCsr12ucQ4vrscFHIkpsMqTI+grN3Bg0IZ/ua\n3GwI9tdTrCrkl8hbbMwMmMZJuiMHXHS86AmMZSwcmyKT+bkYxVh8JPD9nQKBgFxP\ns2ff3FIKtQ97hUqq+s81ewyw4nJP8t3kc5QsNkuVkpOZOM3jueJ30CVkKvL4ar5T\n5iqyqkGAieosQXoKM67F0hm5MkN67M2/h1M5zKSHQiTDoPeGcRjX7ghPwSkZSz0z\nmTQltS1qrmoVsaFQwjCm/3iOAH5gT0Xn0B3g/wmvAoGBANe48QRaddA+BGUOrUA7\n94CekXtyyLvHyo/BPt1UReP5Ccsx1eTOqEJbcOuVRQjHrV59PnIz+aGuVaTuHK7w\n0PfArZ4DHjmZBddFNPpnf5epwPrZGc4OEDGkzJB7Lez7rTtBHjgTkbKJAmKKhM+M\npWZrlwQrlZlaZbAjtzKecIK5\n-----END PRIVATE KEY-----\n",
+  "client_email": "turistikrota@turistikrota-402717.iam.gserviceaccount.com",
+  "client_id": "108701976552114096649",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/turistikrota%40turistikrota-402717.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
