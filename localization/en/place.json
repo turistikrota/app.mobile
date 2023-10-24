@@ -9,6 +9,11 @@
   "review": {
     "label": "review"
   },
+  "notFound": {
+    "title": "No Result Found",
+    "desc": "No results were found matching your search. Please change your search and try again.",
+    "button": "Clear Filters"
+  },
   "sort-by": {
     "title": "Sort By",
     "most_popular": "Popularity",

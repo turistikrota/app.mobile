@@ -6,6 +6,11 @@
   "share": {
     "message": "Filtreleme sonuçlarınızı paylaşın"
   },
+  "notFound": {
+    "title": "Sonuç Bulunamadı",
+    "desc": "Aramanızla eşleşen sonuç bulunamadı. Lütfen aramanızı değiştirin ve tekrar deneyin.",
+    "button": "Filtreleri Temizle"
+  },
   "sort-by": {
     "title": "Sıralama Ölçütü",
     "most_popular": "Popülerlik",

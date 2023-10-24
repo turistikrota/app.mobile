@@ -11,7 +11,9 @@ import PlaceFilterToggleContent from "~partials/place/PlaceFilterToggleContent";
 import PlaceList from "~partials/place/PlaceList";
 import PlaceMap from "~partials/place/PlaceMap";
 import PlaceSortContent from "~partials/place/PlaceSortContent";
+import PlaceNotFoundCard from "~partials/place/card/PlaceNotFoundCard";
 import PlaceDetail from "~partials/place/detail/PlaceDetail";
+import LoadingListItem from "~partials/state/LoadingListItem";
 import { getLocale } from "~types/i18n";
 import {
   ContentType,
@@ -77,9 +79,9 @@ function PlaceListPage() {
   const { t, i18n } = useTranslation("place");
   const [refreshing, setRefreshing] = useState(false);
   const [contentType, setContentType] = React.useState<ContentType>("list");
-  const { query, isOnlyPageChanged, isQueryChanged, setQuery } =
+  const { query, isFiltered, isOnlyPageChanged, isQueryChanged, setQuery } =
     usePlaceFilter();
-  const [loading, setLoading] = React.useState<boolean>(false);
+  const [loading, setLoading] = React.useState<boolean>(true);
   const [data, setData] = React.useState<ListResponse<PlaceListItem>>({
     filteredTotal: 0,
     total: 0,
@@ -93,6 +95,10 @@ function PlaceListPage() {
   );
   const http = useHttpClient();
   usePlaceFeatures();
+
+  useEffect(() => {
+    fetch();
+  }, []);
 
   useEffect(() => {
     if (loading) return;
@@ -192,14 +198,23 @@ function PlaceListPage() {
         onTypeChange={setContentType}
       />
       {contentType === "list" && (
-        <PlaceList
-          data={data.list}
-          loading={loading}
-          refreshing={refreshing}
-          onSelect={onSelect}
-          onNextPage={onNextPage}
-          onRefresh={onRefresh}
-        />
+        <>
+          {loading && data.list.length === 0 ? <LoadingListItem /> : null}
+          {!loading && data.list.length === 0 && (
+            <PlaceNotFoundCard
+              isFiltered={isFiltered}
+              onReset={() => setQuery({ filter: {} })}
+            />
+          )}
+          <PlaceList
+            data={data.list}
+            loading={loading}
+            refreshing={refreshing}
+            onSelect={onSelect}
+            onNextPage={onNextPage}
+            onRefresh={onRefresh}
+          />
+        </>
       )}
       {contentType === "map" && (
         <PlaceMap data={data.list} loading={loading} onSelect={onSelect} />
