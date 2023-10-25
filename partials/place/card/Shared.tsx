@@ -2,14 +2,8 @@ import { Badge, BadgeText, Box, Text, useToken } from "@gluestack-ui/themed";
 import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import BoxIcon from "~assets/Icons/BoxIcon";
-import FiveStars from "~components/Stars";
 import { useTimeSpent, useTimeSpentUnit } from "~hooks/timespent";
 import { PlaceTypeItems, PlaceTypes, TimeSpent, Type } from "~types/place";
-
-type ReviewCardProps = {
-  star: number;
-  total: number;
-};
 
 type IsPayedProps = {
   isPayed: boolean;
@@ -20,21 +14,6 @@ type PlaceTypeProps = {
 };
 
 type TimeSpentProps = TimeSpent & {};
-
-export const ReviewCard: React.FC<ReviewCardProps> = ({ star, total }) => {
-  return (
-    <Box
-      sx={{
-        flexDirection: "row",
-        alignItems: "center",
-        gap: "$1.5",
-      }}
-    >
-      <FiveStars star={star} iconSize={20} />
-      <Text size="sm">{total}</Text>
-    </Box>
-  );
-};
 
 export const IsPayedCard: React.FC<IsPayedProps> = ({ isPayed }) => {
   const { t, i18n } = useTranslation("place");

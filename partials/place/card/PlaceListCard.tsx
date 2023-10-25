@@ -9,12 +9,7 @@ import { findBestOfBestNearestCities } from "~static/location/cities";
 import { PlaceListItem, getTranslations } from "~types/place";
 import { imageSort } from "~utils/sort";
 import PlaceImageCarousel from "./PlaceImageCarousel";
-import {
-  IsPayedCard,
-  PlaceTypeCard,
-  ReviewCard,
-  TimeSpentCard,
-} from "./Shared";
+import { IsPayedCard, PlaceTypeCard, TimeSpentCard } from "./Shared";
 
 type Props = {
   onSelect: () => void;
@@ -94,7 +89,7 @@ const PlaceListCard: React.FC<Props> = ({
           }}
           onPress={openDetail}
         >
-          <ReviewCard star={review.averagePoint} total={review.total} />
+          <Box />
           <TimeSpentCard
             max={averageTimeSpent.max}
             min={averageTimeSpent.min}

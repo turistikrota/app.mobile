@@ -29,7 +29,6 @@ import PlaceImageCarousel from "../card/PlaceImageCarousel";
 import PlaceDetailFeatureSection from "./PlaceDetailFeatureSection";
 import PlaceDetailGalleryModal from "./PlaceDetailGalleryModal";
 import PlaceDetailMarkdownContentSection from "./PlaceDetailMarkdownContentSection";
-import PlaceDetailReviewSection from "./PlaceDetailReviewSection";
 import PlaceDetailTitleSection from "./PlaceDetailTitleSection";
 
 type Props = {
@@ -140,10 +139,6 @@ const PlaceDetailContent: React.FC<Props> = ({
               <PlaceDetailTitleSection
                 description={translations.description}
                 title={translations.title}
-              />
-              <PlaceDetailReviewSection
-                averagePoint={review?.averagePoint ?? 0}
-                total={review?.total ?? 0}
               />
               <PlaceDetailFeatureSection
                 features={features ?? []}
