@@ -14,7 +14,7 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "buildNumber": "0.0.3",
+      "buildNumber": "0.0.4",
       "supportsTablet": false,
       "bundleIdentifier": "com.turistikrota.app",
       "googleServicesFile": "./GoogleService-Info.plist",

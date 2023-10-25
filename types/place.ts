@@ -40,8 +40,6 @@ export type PlaceFilterRequest = {
 };
 
 export enum Sort {
-  Popular = "most_popular",
-  Liked = "most_liked",
   Recent = "most_recent",
   Near = "nearest",
 }
@@ -158,6 +156,11 @@ export enum Type {
   Health = "health",
   Sport = "sport",
   Nightlife = "nightlife",
+  Garden = "garden",
+  Temple = "temple",
+  Museum = "museum",
+  Antique = "antique",
+  ThemePark = "themePark",
   Other = "other",
 }
 
@@ -241,6 +244,36 @@ export const PlaceTypes: Record<Type, PlaceTypeItems> = {
     text: "types.nightlife",
     color: "bg-indigo-100 dark:bg-indigo-900",
     variant: "indigo",
+  },
+  [Type.Garden]: {
+    icon: "florist",
+    text: "types.garden",
+    color: "bg-teal-100 dark:bg-teal-900",
+    variant: "teal",
+  },
+  [Type.Temple]: {
+    icon: "hard-hat",
+    text: "types.temple",
+    color: "bg-orange-100 dark:bg-orange-900",
+    variant: "amber",
+  },
+  [Type.Museum]: {
+    icon: "arch",
+    text: "types.museum",
+    color: "bg-purple-100 dark:bg-purple-900",
+    variant: "purple",
+  },
+  [Type.Antique]: {
+    icon: "castle",
+    text: "types.antique",
+    color: "bg-yellow-100 dark:bg-yellow-900",
+    variant: "yellow",
+  },
+  [Type.ThemePark]: {
+    icon: "carousel",
+    text: "types.themePark",
+    color: "bg-secondary-100 dark:bg-secondary-900",
+    variant: "warning",
   },
   [Type.Other]: {
     icon: "plus",
